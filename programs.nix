@@ -12,6 +12,7 @@
     vim
     wget
     git
+    gawk # GNU awk.
 
     # Utils.
     _1password-gui
@@ -28,9 +29,14 @@
     inkscape
 
     # Dev.
+    docker # GUI w/ yacht (compose service).
     jetbrains.rider
     vscodium
     postman
+    zulu8 # Java OpenJDK
+    dotnetCorePackages.sdk_8_0_2xx
+    nodejs_22
+    mono # for wine (vinegar).
 
     # Games.
     xmoto

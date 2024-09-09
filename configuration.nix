@@ -17,7 +17,7 @@
   users.users.lelimacon = {
     isNormalUser = true;
     description = "lelimacon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     ];
   };

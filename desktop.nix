@@ -14,15 +14,6 @@
     variant = "";
   };
 
-  # Configure console keymap.
-  console.keyMap = "fr";
-
-  # Set your time zone.
-  time.timeZone = "Asia/Hong_Kong";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_HK.UTF-8";
-
   # Gnome extensions.
   # https://extensions.gnome.org/
   environment.systemPackages = with pkgs; [

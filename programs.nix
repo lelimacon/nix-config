@@ -11,7 +11,7 @@
     # CLI tools.
     vim
     wget
-    git
+    git git-lfs
     gawk # GNU awk.
 
     # Utils.

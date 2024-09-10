@@ -9,8 +9,9 @@
   [
     ./hardware-configuration.nix
     ./hardware-overrides.nix
-    ./desktop.nix
     ./programs.nix
+    ./desktop.nix
+    ./home.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -40,4 +41,13 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05";
+
+  # Configure console keymap.
+  console.keyMap = "fr";
+
+  # Set your time zone.
+  time.timeZone = "Asia/Hong_Kong";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_HK.UTF-8";
 }

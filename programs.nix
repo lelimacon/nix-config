@@ -13,6 +13,7 @@
     wget
     git git-lfs
     gawk # GNU awk.
+    go-task
 
     # Utils.
     _1password-gui

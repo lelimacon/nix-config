@@ -1,0 +1,7 @@
+version: '3'
+
+tasks:
+  switch:
+    desc: Build and switch to the new configuration
+    cmds:
+      - nixos-rebuild switch

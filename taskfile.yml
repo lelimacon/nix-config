@@ -1,7 +1,28 @@
 version: '3'
 
 tasks:
+
+  diff:
+    desc: Build configuration, do not activate but show changes.
+    cmds:
+      - nixos-rebuild dry-activate
+
   switch:
-    desc: Build and switch to the new configuration
+    desc: Build configuration, make it default, and switch.
     cmds:
       - nixos-rebuild switch
+
+  test:
+    desc: Build configuration, switch, but don't add it to the bootloader menu.
+    cmds:
+      - nixos-rebuild test
+
+  boot:
+    desc: Build configuration, make it default, but switch on next boot.
+    cmds:
+      - nixos-rebuild boot
+
+  list:
+    desc: List packages installed in system profile.
+    cmds:
+      - nix search wget

@@ -7,7 +7,8 @@
     ./hardware-overrides.nix
     ./programs.nix
     ./home.nix
-    ./desktop-gnome.nix
+    #./desktop-gnome.nix
+    ./desktop-hyprland.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

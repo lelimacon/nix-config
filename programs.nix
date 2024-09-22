@@ -13,10 +13,12 @@
     gawk
     go-task
     neofetch
-    ranger nnn # CLI file explorers
+    ranger nnn # CLI file explorers.
+    fontconfig # List fonts with `fc-list`.
 
     # Utils.
     _1password-gui
+    pavucontrol # PulseAudio Volume Control.
 
     # Social.
     telegram-desktop
@@ -34,12 +36,19 @@
     jetbrains.rider
     vscodium
     postman
-    zulu8 # Java OpenJDK
+    zulu8 # Java OpenJDK.
     dotnetCorePackages.sdk_8_0_2xx
     nodejs_22
     mono # for wine (vinegar).
 
-    # Fonts.
+    # Games.
+    xmoto
+    vinegar # Roblox.
+  ];
+
+  # Fonts.
+  fonts.packages = with pkgs; [
+    font-awesome
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -52,9 +61,5 @@
     (nerdfonts.override {
       fonts = [ "FiraCode" "DroidSansMono" ];
     })
-
-    # Games.
-    xmoto
-    vinegar # Roblox.
   ];
 }

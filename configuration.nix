@@ -39,12 +39,17 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05";
 
-  # Configure console keymap.
+  # Console keymap.
   console.keyMap = "fr";
 
-  # Set your time zone.
+  # Culture.
   time.timeZone = "Asia/Hong_Kong";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_HK.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LANGUAGE = "en_US.UTF-8";
+    LANG = "en_US.UTF-8";
+    #LC_ALL = "en_US.UTF-8";
+    LC_MESSAGES = "en_US.UTF-8";
+    LC_TIME = "fr_FR.UTF-8";
+  };
 }

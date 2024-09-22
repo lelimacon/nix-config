@@ -18,15 +18,15 @@ in
     variant = "";
   };
 
+  # Mount drives automatically.
+  services.udisks2.enable = true;
+
   programs.hyprland = {
     enable = true;
 
     # Enable X applications.
     xwayland.enable = true;
   };
-
-  # Required for the default Hyprland config.
-  #programs.kitty.enable = true;
 
   environment.sessionVariables = {
     # If your cursor becomes invisible.
@@ -48,16 +48,21 @@ in
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  # Extensions.
-  # https://extensions.gnome.org/
   environment.systemPackages = with pkgs; [
-    waybar # top bar.
+    # Apps.
     kitty # terminal emulator.
     libnotify dunst # notifications.
     anyrun walker # app launchers.
+    cinnamon.nemo # file explorer.
+    wlogout # full-screen logout menu.
+
+    # Daemons.
     swww # wallpaper daemon.
-    networkmanagerapplet # tray applet for managing networks
-    cinnamon.nemo # file explorer
+
+    # Plugins.
+    waybar # top bar.
+    networkmanagerapplet # tray applet for managing networks.
+    udiskie # drives applet.
 
     # Fix for waybar.
     (waybar.overrideAttrs (oldAttrs: {

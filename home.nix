@@ -14,6 +14,7 @@ in
     home.file.".bashrc".text = ''
         alias ..='cd ..'
         alias ...='cd ../..'
+        alias code='codium'
     '';
 
     home.file.".gitconfig".text = ''

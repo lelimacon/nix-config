@@ -1,15 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-in
 {
-  imports = [
-    (import "${home-manager}/nixos")
-  ];
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  # Fix attempt with https://discourse.nixos.org/t/how-to-enable-login-screen-and-start-hyperland-after-login/37775
+  #services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.displayManager.sddm.wayland.enable = true;
 
   # Configure keymap in X11.
   services.xserver.exportConfiguration = true; # enable `localectl`.
@@ -20,6 +16,9 @@ in
 
   # Mount drives automatically.
   services.udisks2.enable = true;
+
+  # Add user to group input for keyboard state access.
+  users.groups.input.members = ["lelimacon"];
 
   programs.hyprland = {
     enable = true;
@@ -60,46 +59,9 @@ in
     swww # wallpaper daemon.
 
     # Plugins.
-    waybar # top bar.
+    ags # widget system.
+    waybar
     networkmanagerapplet # tray applet for managing networks.
     udiskie # drives applet.
-
-    # Fix for waybar.
-    (waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      })
-    )
   ];
-
-  # Home configuration.
-  home-manager.users.lelimacon = {
-
-    home.pointerCursor = {
-      gtk.enable = true;
-      # x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 16;
-    };
-
-    gtk = {
-      enable = true;
-
-      theme = {
-        package = pkgs.flat-remix-gtk;
-        name = "Flat-Remix-GTK-Grey-Darkest";
-      };
-
-      iconTheme = {
-        package = pkgs.gnome.adwaita-icon-theme;
-        name = "Adwaita";
-      };
-
-      font = {
-        name = "Sans";
-        size = 11;
-      };
-    };
-
-  };
 }

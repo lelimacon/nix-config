@@ -11,7 +11,7 @@
     ./desktop-hyprland.nix
   ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User account. Don't forget to set a password with ‘passwd’.
   users.users.lelimacon = {
     isNormalUser = true;
     description = "lelimacon";

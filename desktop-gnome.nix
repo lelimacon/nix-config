@@ -48,6 +48,8 @@ in
     gnomeExtensions.dash-to-panel
     gnomeExtensions.sound-output-device-chooser
     gnomeExtensions.space-bar
+
+    gnome.gnome-characters # Emoji table.
   ];
 
   programs.dconf.enable = true;

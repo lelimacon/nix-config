@@ -4,21 +4,25 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  environment.systemPackages = with pkgs; [
-
+  environment.systemPackages = with pkgs;
+  [
     # CLI tools.
+    wget jq gawk
     vim
-    wget
-    git git-lfs
-    gawk
-    go-task
     neofetch
+    git git-lfs
+    kitty # terminal emulator.
+    bash # shell.
+    starship # prompt engine.
+    eza # ls alternative.
+    go-task # taskfile runner.
     ranger nnn # CLI file explorers.
-    fontconfig # List fonts with `fc-list`.
+    fontconfig # list fonts with `fc-list`.
 
     # Utils.
     _1password-gui
     pavucontrol # PulseAudio Volume Control.
+    mission-center # activity monitor.
 
     # Social.
     telegram-desktop
@@ -38,7 +42,7 @@
     postman
     zulu8 # Java OpenJDK.
     dotnetCorePackages.sdk_8_0_2xx
-    nodejs_22
+    nodejs_22 bun # JS.
     mono # for wine (vinegar).
 
     # Games.

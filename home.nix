@@ -11,11 +11,11 @@ in
   home-manager.users.lelimacon = {
     home.stateVersion = "18.09";
 
-    home.file.".bashrc".text = ''
-        alias ..='cd ..'
-        alias ...='cd ../..'
-        alias code='codium'
-    '';
+    imports = [
+      ./home/hyprland.nix
+      ./home/terminal.nix
+      ./home/ags.nix
+    ];
 
     home.file.".gitconfig".text = ''
         [safe]

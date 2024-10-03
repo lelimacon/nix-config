@@ -26,3 +26,9 @@ tasks:
     desc: List packages installed in system profile.
     cmds:
       - nix search wget
+
+  gc:
+    desc: Garbage collect unused objects and 14+ days generations.
+    cmds:
+      - nix-env --delete-generations 14d
+      - nix-store --gc

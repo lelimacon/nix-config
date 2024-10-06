@@ -32,3 +32,8 @@ tasks:
     cmds:
       - nix-env --delete-generations 14d
       - nix-store --gc
+
+  repair:
+    desc: Fix stuff. Maybe. `/nix/store/***-source no such file or directory`
+    cmds:
+      - nix-store --repair --verify --check-contents

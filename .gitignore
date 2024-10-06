@@ -1,1 +1,4 @@
+# Nix output folder (link).
+result
+
 /hardware-configuration.nix

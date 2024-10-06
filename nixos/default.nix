@@ -3,13 +3,19 @@
 {
   imports =
   [
-    ./hardware-configuration.nix
-    ./hardware-overrides.nix
-    ./programs.nix
-    ./home.nix
     #./desktop-gnome.nix
     ./desktop-hyprland.nix
+    ../hardware-configuration.nix
+    ./hardware-overrides.nix
+    ./home.nix
+    ./programs.nix
   ];
+
+  nix.settings =
+  {
+    # TODO: Activate.
+    experimental-features = ["nix-command" "flakes"];
+  };
 
   # User account. Don't forget to set a password with ‘passwd’.
   users.users.lelimacon = {

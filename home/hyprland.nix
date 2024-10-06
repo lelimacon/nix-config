@@ -4,7 +4,8 @@
   ...
 }:
 {
-  home.pointerCursor = {
+  home.pointerCursor =
+  {
     gtk.enable = true;
     # x11.enable = true;
     package = pkgs.bibata-cursors;
@@ -12,20 +13,24 @@
     size = 16;
   };
 
-  gtk = {
+  gtk =
+  {
     enable = true;
 
-    theme = {
+    theme =
+    {
       package = pkgs.flat-remix-gtk;
       name = "Flat-Remix-GTK-Grey-Darkest";
     };
 
-    iconTheme = {
+    iconTheme =
+    {
       package = pkgs.gnome.adwaita-icon-theme;
       name = "Adwaita";
     };
 
-    font = {
+    font =
+    {
       name = "Sans";
       size = 11;
     };

@@ -2,6 +2,11 @@ version: '3'
 
 tasks:
 
+  check:
+    desc: Validate configuration.
+    cmds:
+      - nix flake check --impure
+
   diff:
     desc: Build configuration, do not activate but show changes.
     cmds:

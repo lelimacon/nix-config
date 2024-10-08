@@ -1,19 +1,19 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports =
   [
     #./desktop-gnome.nix
     ./desktop-hyprland.nix
-    ../hardware-configuration.nix
-    ./hardware-overrides.nix
-    ./home.nix
     ./programs.nix
   ];
 
   nix.settings =
   {
-    # TODO: Activate.
     experimental-features = ["nix-command" "flakes"];
   };
 

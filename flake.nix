@@ -22,27 +22,33 @@
     ...
   }:
   let
-    hostName = "nixos";
+    inherit (self) outputs;
+
     userName = "lelimacon";
+    system = "x86_64-linux";
   in
   {
-    nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem
+    nixosConfigurations."surfaceLaptop3" = nixpkgs.lib.nixosSystem
     {
+      modules =
+      [
+        ./nixos
+        ./hosts/surfaceLaptop3
+      ];
       specialArgs =
       {
-        inherit inputs;
+        inherit inputs outputs;
       };
-      modules = [./nixos];
     };
 
     homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
     {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      modules = [ ./home ];
       extraSpecialArgs =
       {
-        inherit inputs;
+        inherit inputs outputs;
       };
-      modules = [./home];
     };
   };
 }

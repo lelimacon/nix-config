@@ -4,10 +4,10 @@
   ...
 }:
 {
-  #imports =
-  #[
-  #  inputs.ags.homeManagerModules.default
-  #];
+  imports =
+  [
+    inputs.ags.homeManagerModules.default
+  ];
 
   home.packages = with pkgs;
   [
@@ -28,13 +28,13 @@
     gtk3
   ];
 
-  #programs.ags =
-  #{
-  #  enable = true;
-  #  configDir = ../ags;
-  #  extraPackages = with pkgs;
-  #  [
-  #    #accountsservice
-  #  ];
-  #};
+  programs.ags =
+  {
+    enable = true;
+    configDir = ../ags;
+    extraPackages = with pkgs;
+    [
+      accountsservice
+    ];
+  };
 }

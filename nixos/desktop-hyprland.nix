@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -9,7 +13,8 @@
 
   # Configure keymap in X11.
   services.xserver.exportConfiguration = true; # enable `localectl`.
-  services.xserver.xkb = {
+  services.xserver.xkb =
+  {
     layout = "fr";
     variant = "";
   };
@@ -18,16 +23,18 @@
   services.udisks2.enable = true;
 
   # Add user to group input for keyboard state access.
-  users.groups.input.members = ["lelimacon"];
+  users.groups.input.members = [ "lelimacon" ];
 
-  programs.hyprland = {
+  programs.hyprland =
+  {
     enable = true;
 
     # Enable X applications.
     xwayland.enable = true;
   };
 
-  environment.sessionVariables = {
+  environment.sessionVariables =
+  {
     # If your cursor becomes invisible.
     WLR_NO_HARDWARE_CURSORS = "1";
 
@@ -35,7 +42,8 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  hardware = {
+  hardware =
+  {
     # Opengl.
     opengl.enable = true;
 
@@ -47,7 +55,8 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;
+  [
     # Apps.
     kitty # terminal emulator.
     libnotify dunst # notifications.

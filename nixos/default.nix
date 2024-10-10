@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -9,20 +8,23 @@
   [
     #./desktop-gnome.nix
     ./desktop-hyprland.nix
+    ./fonts.nix
     ./programs.nix
   ];
 
   nix.settings =
   {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
-  # User account. Don't forget to set a password with ‘passwd’.
+  # User account.
+  # Set password with ‘passwd’.
   users.users.lelimacon = {
     isNormalUser = true;
     description = "lelimacon";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
+    packages = with pkgs;
+    [
     ];
   };
 
@@ -51,7 +53,8 @@
   # Culture.
   time.timeZone = "Asia/Hong_Kong";
   i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
+  i18n.extraLocaleSettings =
+  {
     LANGUAGE = "en_US.UTF-8";
     LANG = "en_US.UTF-8";
     #LC_ALL = "en_US.UTF-8";

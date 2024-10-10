@@ -37,4 +37,10 @@
       accountsservice
     ];
   };
+
+  # Manually create the link.
+  home.file.".test".text =
+  ''
+    hi @{programs.ags}
+  '';
 }

@@ -8,6 +8,7 @@
   [
     ./ags.nix
     ./git.nix
+    ./gtk.nix
     ./hyprland.nix
     ./terminal.nix
   ];

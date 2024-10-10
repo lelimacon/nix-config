@@ -23,7 +23,8 @@ in
     enable = true;
 
     shellAliases = aliases;
-    initExtra = ''
+    initExtra =
+    ''
       SHELL=${pkgs.bash}
     '';
   };

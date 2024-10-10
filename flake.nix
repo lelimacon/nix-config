@@ -41,7 +41,7 @@
       };
     };
 
-    homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
+    homeConfigurations."lelimacon" = home-manager.lib.homeManagerConfiguration
     {
       pkgs = nixpkgs.legacyPackages.${system};
       modules = [ ./home ];

@@ -4,7 +4,8 @@
   ...
 }:
 {
-  home.file.".gitconfig".text = ''
+  home.file.".gitconfig".text =
+  ''
       [safe]
         directory = /etc/nixos
       [user]
@@ -17,5 +18,10 @@
         clean = git-lfs clean -- %f
         smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
+  '';
+
+  home.file.".gitconfig2".text =
+  ''
+      test
   '';
 }

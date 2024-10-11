@@ -2,6 +2,12 @@ version: '3'
 
 tasks:
 
+  show:
+    desc: Show configuration and generations.
+    cmds:
+      - nix flake show
+      - nix-env --list-generations
+
   check:
     desc: Validate configuration.
     cmds:
@@ -15,7 +21,7 @@ tasks:
   switch:
     desc: Build configuration, make it default, and switch.
     cmds:
-      - nixos-rebuild switch
+      - nixos-rebuild switch --flake '.#surfaceLaptop3'
 
   test:
     desc: Build configuration, switch, but don't add it to the bootloader menu.
@@ -33,9 +39,9 @@ tasks:
       - nix search wget
 
   gc:
-    desc: Garbage collect unused objects and 14+ days generations.
+    desc: Garbage collect unused objects and 6+ generations.
     cmds:
-      - nix-env --delete-generations 14d
+      - nix-env --delete-generations +6
       - nix-store --gc
 
   repair:

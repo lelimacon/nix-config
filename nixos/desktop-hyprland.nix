@@ -45,7 +45,7 @@
   hardware =
   {
     # Opengl.
-    opengl.enable = true;
+    graphics.enable = true;
 
     # Most wayland compositors need this.
     nvidia.modesetting.enable = true;
@@ -61,7 +61,7 @@
     kitty # terminal emulator.
     libnotify dunst # notifications.
     anyrun walker # app launchers.
-    cinnamon.nemo # file explorer.
+    nemo # file explorer.
     wlogout # full-screen logout menu.
 
     # Daemons.

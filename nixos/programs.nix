@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   ...
 }:
 {
@@ -16,7 +17,7 @@
     bash # shell.
     starship # prompt engine.
     eza # ls alternative.
-    go-task # taskfile runner.
+    pkgs-stable.go-task # taskfile runner.
     ranger nnn # CLI file explorers.
     fontconfig # list fonts with `fc-list`.
 
@@ -42,12 +43,11 @@
     vscodium
     postman
     zulu8 # Java OpenJDK.
-    dotnetCorePackages.sdk_8_0_2xx
+    dotnetCorePackages.sdk_8_0_4xx
     nodejs_22 bun # JS.
     mono # for wine (vinegar).
 
     # Games.
     xmoto
-    vinegar # Roblox.
   ];
 }

@@ -4,11 +4,23 @@
   ...
 }:
 {
+  # Allow unfree packages.
+  nixpkgs.config.allowUnfree = true;
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs;
   [
     # CLI tools.
+    home-manager
     wget jq gawk
     vim
     neofetch
@@ -35,6 +47,7 @@
     vlc
     spotify
     blender
+    gimp
     inkscape
 
     # Dev.

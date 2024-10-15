@@ -33,7 +33,7 @@
   # services.xserver.libinput.enable = true;
 
   # Network.
-  networking.hostName = "surfaceLaptop3"; # Define your hostname.
+  networking.hostName = "surfaceLaptop3";
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.proxy.default = "http://user:password@proxy:port/";

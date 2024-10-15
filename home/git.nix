@@ -19,9 +19,4 @@
         smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
   '';
-
-  home.file.".gitconfig2".text =
-  ''
-      test
-  '';
 }

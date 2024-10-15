@@ -6,7 +6,7 @@ tasks:
     desc: Show configuration and generations.
     cmds:
       - nix flake show
-      - nix-env --list-generations
+      - nix-env --list-generations --profile /nix/var/nix/profiles/system
 
   check:
     desc: Validate configuration.
@@ -21,7 +21,12 @@ tasks:
   switch:
     desc: Build configuration, make it default, and switch.
     cmds:
-      - nixos-rebuild switch --flake '.#surfaceLaptop3'
+      - nixos-rebuild switch
+
+  switch-home:
+    desc: Build configuration, make it default, and switch.
+    cmds:
+      - home-manager switch --flake '.'
 
   test:
     desc: Build configuration, switch, but don't add it to the bootloader menu.
@@ -36,12 +41,12 @@ tasks:
   list:
     desc: List packages installed in system profile.
     cmds:
-      - nix search wget
+      - nix profile list
 
   gc:
     desc: Garbage collect unused objects and 6+ generations.
     cmds:
-      - nix-env --delete-generations +6
+      - nix-env --delete-generations +6 --profile /nix/var/nix/profiles/system
       - nix-store --gc
 
   repair:

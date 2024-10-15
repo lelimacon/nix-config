@@ -11,6 +11,7 @@
 
   home.packages = with pkgs;
   [
+    hello
     bun
     dart-sass
     fd
@@ -37,10 +38,4 @@
       accountsservice
     ];
   };
-
-  # Manually create the link.
-  home.file.".test".text =
-  ''
-    hi @{programs.ags}
-  '';
 }

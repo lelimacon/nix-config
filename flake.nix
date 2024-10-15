@@ -32,13 +32,16 @@
     pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
   in
   {
+    # System configuration.
+    # `nixos-rebuild switch`.
     nixosConfigurations."surfaceLaptop3" = nixpkgs.lib.nixosSystem
     {
-      system = "x86_64-linux";
+      #system = "x86_64-linux";
       modules =
       [
         ./nixos
         ./hosts/surfaceLaptop3
+        #inputs.home-manager.nixosModules.default
       ];
       specialArgs =
       {
@@ -46,26 +49,28 @@
       };
     };
 
-    homeConfigurations."lelimacon" = home-manager.lib.homeManagerConfiguration
+    # Standalone Home Manager configuration.
+    # `home-manager switch`.
+    homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
     {
       pkgs = nixpkgs.legacyPackages.${system};
       modules = [ ./home ];
       extraSpecialArgs =
       {
-        inherit inputs outputs;
+        inherit inputs;
       };
     };
 
     #packages.${system}.hello = pkgs.hello;
     #packages.${system}.default = pkgs.hello;
-    packages.${system} = {
-      default = pkgs.hello;
-      hello = pkgs.hello;
-    };
+    #packages.${system} = {
+    #  default = pkgs.hello;
+    #  hello = pkgs.hello;
+    #};
     #packages.${system}.default = pkgs.hello;
 
-    devShells.${system}.default = pkgs.mkShell {
-      buildInputs = [ pkgs.neovim ];
-    };
+    #devShells.${system}.default = pkgs.mkShell {
+    #  buildInputs = [ pkgs.neovim ];
+    #};
   };
 }

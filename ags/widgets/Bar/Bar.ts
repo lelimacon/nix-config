@@ -1,5 +1,5 @@
 const hyprland = await Service.import("hyprland")
-const notifications = await Service.import("notifications")
+//const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
@@ -7,14 +7,12 @@ const systemtray = await Service.import("systemtray")
 
 
 const date = Variable("", {
-    poll: [1000, 'date "+%H:%M:%S %b %e."'],
+    poll: [1000, 'date "+%H:%M %Y-%m-%d"'],
 })
 
-// widgets can be only assigned as a child in one container
-// so to make a reuseable widget, make it a function
-// then you can simply instantiate one by calling it
 
-function Workspaces() {
+const Workspaces = () =>
+{
     const activeId = hyprland.active.workspace.bind("id")
     const workspaces = hyprland.bind("workspaces")
         .as(ws => ws.map(({ id }) => Widget.Button({
@@ -23,41 +21,51 @@ function Workspaces() {
             class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
         })))
 
-    return Widget.Box({
+    return Widget.Box
+    ({
         class_name: "workspaces",
         children: workspaces,
     })
 }
 
 
-function ClientTitle() {
-    return Widget.Label({
+const ClientTitle = () =>
+{
+    return Widget.Label
+    ({
         class_name: "client-title",
         label: hyprland.active.client.bind("title"),
     })
 }
 
 
-function Clock() {
-    return Widget.Label({
+const Clock = () =>
+{
+    return Widget.Label
+    ({
         class_name: "clock",
         label: date.bind(),
     })
 }
 
 
-// we don't need dunst or any other notification daemon
-// because the Notifications module is a notification daemon itself
-function Notification() {
+// Notifications module is a notification daemon itself.
+const Notification = () =>
+{
     const popups = notifications.bind("popups")
-    return Widget.Box({
+
+    return Widget.Box
+    ({
         class_name: "notification",
         visible: popups.as(p => p.length > 0),
-        children: [
-            Widget.Icon({
+        children:
+        [
+            Widget.Icon
+            ({
                 icon: "preferences-system-notifications-symbolic",
             }),
-            Widget.Label({
+            Widget.Label
+            ({
                 label: popups.as(p => p[0]?.summary || ""),
             }),
         ],
@@ -65,17 +73,23 @@ function Notification() {
 }
 
 
-function Media() {
-    const label = Utils.watch("", mpris, "player-changed", () => {
-        if (mpris.players[0]) {
+const Media = () =>
+{
+    const label = Utils.watch("", mpris, "player-changed", () =>
+    {
+        if (mpris.players[0])
+        {
             const { track_artists, track_title } = mpris.players[0]
             return `${track_artists.join(", ")} - ${track_title}`
-        } else {
+        }
+        else
+        {
             return "Nothing is playing"
         }
     })
 
-    return Widget.Button({
+    return Widget.Button
+    ({
         class_name: "media",
         on_primary_click: () => mpris.getPlayer("")?.playPause(),
         on_scroll_up: () => mpris.getPlayer("")?.next(),
@@ -85,8 +99,10 @@ function Media() {
 }
 
 
-function Volume() {
-    const icons = {
+const Volume = () =>
+{
+    const icons =
+    {
         101: "overamplified",
         67: "high",
         34: "medium",
@@ -94,18 +110,21 @@ function Volume() {
         0: "muted",
     }
 
-    function getIcon() {
-        const icon = audio.speaker.is_muted ? 0 : [101, 67, 34, 1, 0].find(
-            threshold => threshold <= audio.speaker.volume * 100)
+    const getIcon = () =>
+    {
+        const icon = audio.speaker.is_muted ? 0 :
+            [101, 67, 34, 1, 0].find(threshold => threshold <= audio.speaker.volume * 100) ?? 0
 
         return `audio-volume-${icons[icon]}-symbolic`
     }
 
-    const icon = Widget.Icon({
+    const icon = Widget.Icon
+    ({
         icon: Utils.watch(getIcon(), audio.speaker, getIcon),
     })
 
-    const slider = Widget.Slider({
+    const slider = Widget.Slider
+    ({
         hexpand: true,
         draw_value: false,
         on_change: ({ value }) => audio.speaker.volume = value,
@@ -117,91 +136,131 @@ function Volume() {
     return Widget.Box({
         class_name: "volume",
         css: "min-width: 180px",
-        children: [icon, slider],
-    })
-}
-
-
-function BatteryLabel() {
-    const value = battery.bind("percent").as(p => p > 0 ? p / 100 : 0)
-    const icon = battery.bind("percent").as(p =>
-        `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
-
-    return Widget.Box({
-        class_name: "battery",
-        visible: battery.bind("available"),
-        children: [
-            Widget.Icon({ icon }),
-            Widget.LevelBar({
-                widthRequest: 140,
-                vpack: "center",
-                value,
-            }),
+        children:
+        [
+            icon,
+            slider,
         ],
     })
 }
 
 
-function SysTray() {
+const BatteryLevel = () =>
+{
+    const icons =
+    {
+        67: "high",
+        34: "medium",
+        1: "low",
+        0: "empty",
+    }
+
+    const valueStr = battery
+        .bind("percent")
+        .as(p => `${p > 0 ? p / 100 : 0}%`)
+
+    const value = battery
+        .bind("percent")
+        .as(p => p > 0 ? p / 100 : 0)
+
+    //const icon = battery
+    //    .bind("percent")
+    //    .as(p => `battery-level-${Math.floor(p / 10) * 10}-symbolic`)
+
+    const icon = battery
+        .bind("percent")
+        .as(p =>
+        {
+            const level = [67, 34, 1, 0].find(threshold => threshold <= p) ?? 0
+            return `battery-${icons[level]}-symbolic`
+        })
+
+    return Widget.Box
+    ({
+        class_name: "battery",
+        spacing: 8,
+        //visible: battery.bind("available"),
+        children: [
+            Widget.Icon({ icon }),
+            Widget.Label({ label: valueStr }),
+            //Widget.LevelBar
+            //({
+            //    widthRequest: 140,
+            //    vpack: "center",
+            //    value,
+            //}),
+        ],
+    })
+}
+
+
+const SysTray = () =>
+{
     const items = systemtray.bind("items")
-        .as(items => items.map(item => Widget.Button({
+        .as(items => items.map(item => Widget.Button
+        ({
             child: Widget.Icon({ icon: item.bind("icon") }),
             on_primary_click: (_, event) => item.activate(event),
             on_secondary_click: (_, event) => item.openMenu(event),
             tooltip_markup: item.bind("tooltip_markup"),
         })))
 
-    return Widget.Box({
+    return Widget.Box
+    ({
         children: items,
     })
 }
 
 
-// layout of the bar
-function Left() {
-    return Widget.Box({
+const left =
+    Widget.Box
+    ({
         spacing: 8,
-        children: [
+        children:
+        [
             Workspaces(),
             ClientTitle(),
         ],
     })
-}
 
-function Center() {
-    return Widget.Box({
+const center =
+    Widget.Box
+    ({
         spacing: 8,
-        children: [
+        children:
+        [
             Media(),
-            Notification(),
+            //Notification(),
         ],
     })
-}
 
-function Right() {
-    return Widget.Box({
+const right =
+    Widget.Box
+    ({
         hpack: "end",
         spacing: 8,
-        children: [
+        children:
+        [
             Volume(),
-            BatteryLabel(),
+            BatteryLevel(),
             Clock(),
             SysTray(),
         ],
     })
-}
 
 const Bar = (monitor = 0) =>
-    Widget.Window({
+    Widget.Window
+    ({
         name: `bar-${monitor}`, // name has to be unique
         class_name: "bar",
         monitor,
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
-        child: Widget.CenterBox({
-            start_widget: Left(),
-            center_widget: Center(),
-            end_widget: Right(),
+        child: Widget.CenterBox
+        ({
+            start_widget: left,
+            center_widget: center,
+            end_widget: right,
         }),
     })
 

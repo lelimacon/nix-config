@@ -38,7 +38,10 @@
     # If your cursor becomes invisible.
     WLR_NO_HARDWARE_CURSORS = "1";
 
-    # Hint electron apps to use wayland.
+    # Tell Firefox to use Wayland.
+    MOZ_ENABLE_WAYLAND = "1";
+
+    # Hint Electron apps to use Wayland.
     NIXOS_OZONE_WL = "1";
   };
 

@@ -15,7 +15,12 @@
     dina-font
     proggyfonts
     (nerdfonts.override {
-      fonts = [ "FiraCode" "DroidSansMono" ];
+      fonts =
+      [
+        "FiraCode"
+        "Ubuntu"
+        "UbuntuMono"
+      ];
     })
   ];
 }

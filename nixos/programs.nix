@@ -59,6 +59,7 @@
     dotnetCorePackages.sdk_8_0_4xx
     nodejs_22 bun # JS.
     mono # for wine (vinegar).
+    gtk4 # for gtk4-icon-browser.
 
     # Games.
     xmoto

@@ -40,9 +40,6 @@ in
     xdgOpenUsePortal = true;
   };
 
-  # Original configuration save.
-  #home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
-
   # Hyperland configuration.
   wayland.windowManager.hyprland =
   {
@@ -120,11 +117,14 @@ in
         workspace_swipe = false;
       };
 
+      # Startup apps.
       exec-once =
       [
+        #"swww init & swww img ~/Pictures/pixel-black.png" # wallpaper.
         "nm-applet --indicator" # networkmanagerapplet.
         "waybar" # top bar.
         "dunst" # notifications.
+        "telegram-desktop -startintray" # Telegram messenger minimized.
       ];
 
       env = lib.mapAttrsToList (name: value: "${name},${toString value}")
@@ -135,7 +135,7 @@ in
 
       general =
       {
-        border_size = 1;
+        border_size = 3;
         resize_on_border = false; # Resize windows by dragging borders and gaps.
 
         gaps_in = 3;

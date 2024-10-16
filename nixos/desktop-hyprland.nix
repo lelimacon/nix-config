@@ -62,13 +62,13 @@
   [
     # Apps.
     kitty # terminal emulator.
-    libnotify dunst # notifications.
     anyrun walker # app launchers.
     nemo # file explorer.
     wlogout # full-screen logout menu.
 
     # Daemons.
     swww # wallpaper daemon.
+    libnotify dunst # notifications.
 
     # Plugins.
     ags # widget system.

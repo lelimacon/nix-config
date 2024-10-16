@@ -18,6 +18,7 @@ window#waybar {
     transition-property: background-color;
     transition-duration: .5s;
     */
+    background-color: #000000;
     color: #ffffff;
 }
 

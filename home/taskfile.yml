@@ -1,0 +1,9 @@
+version: '3'
+
+
+tasks:
+
+  switch:
+    desc: Build configuration, make it default, and switch.
+    cmds:
+      - home-manager switch --flake '..'

@@ -1,44 +1,24 @@
-import Bar from "widgets/Bar/Bar"
+import WpTaskBar from "widgets/WpTaskBar"
+import WpNotifications from "widgets/WpNotifications"
 
 
-const varTime =
-    Variable
-    (
-        '',
-        {
-            poll: [1000, function() {
-                return Date().toString()
-            }],
-        },
-    )
+Utils.timeout(4000, () => Utils.notify({
+    summary: "Notification Popup Example",
+    iconName: "info-symbolic",
+    body: "Lorem ipsum dolor sit amet, qui minim labore adipisicing "
+        + "minim sint cillum sint consectetur cupidatat.",
+    actions: {
+        "Cool": () => print("pressed Cool"),
+    },
+}))
 
-const winBar = (monitor: number) =>
-    Widget.Window
-    ({
-        monitor,
-        name: `bar${monitor}`,
-        anchor: ['top', 'left', 'right'],
-        exclusivity: 'exclusive',
-        child: Widget.CenterBox
-        ({
-            start_widget: Widget.Label
-            ({
-                hpack: 'center',
-                label: 'hello from Nix',
-            }),
-            end_widget: Widget.Label
-            ({
-                hpack: 'center',
-                label: varTime.bind(),
-            }),
-        }),
-    })
 
 App.config
 ({
+    style: `${App.configDir}/widgets/notifications.css`,
     windows:
     [
-        //winBar(0),
-        Bar(1),
+        WpTaskBar(1),
+        WpNotifications(1),
     ],
 })

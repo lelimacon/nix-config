@@ -32,6 +32,7 @@
     pkgs-stable.go-task # taskfile runner.
     ranger nnn # CLI file explorers.
     fontconfig # list fonts with `fc-list`.
+    nix-index # find nixos packages.
 
     # Utils.
     _1password-gui
@@ -59,9 +60,17 @@
     dotnetCorePackages.sdk_8_0_4xx
     nodejs_22 bun # JS.
     mono # for wine (vinegar).
-    gtk4 # for gtk4-icon-browser.
+    gtk3 gtk4 # for gtk4-icon-browser.
 
     # Games.
     xmoto
   ];
+
+  # Locate service, updates (`updatedb` every night).
+  services.locate =
+  {
+    enable = true;
+    package = pkgs.mlocate; # alternative to GNU findutils.
+    localuser = null; # mlocate runs as root.
+  };
 }

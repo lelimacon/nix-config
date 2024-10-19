@@ -14,6 +14,9 @@ let
     "tree" = "eza --tree";
 
     "code" = "codium";
+
+    # Scripts.
+    "what" = "~/scripts/what.sh";
   };
 in
 {
@@ -131,4 +134,7 @@ in
       };
     };
   };
+
+  # Scripts.
+  home.file."scripts/what.sh".source = ./scripts/what.sh;
 }

@@ -136,5 +136,5 @@ in
   };
 
   # Scripts.
-  home.file."scripts/what.sh".source = ./scripts/what.sh;
+  home.file."scripts/what.sh".source = ../scripts/what.sh;
 }

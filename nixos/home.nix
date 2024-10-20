@@ -11,7 +11,8 @@
 
   # User account.
   # Set password with ‘passwd’.
-  users.users.lelimacon = {
+  users.users.lelimacon =
+  {
     isNormalUser = true;
     description = "lelimacon";
     extraGroups = [ "networkmanager" "wheel" "docker" ];

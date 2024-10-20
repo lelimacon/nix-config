@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -38,4 +39,7 @@
       accountsservice
     ];
   };
+
+  # Export home configuration to JSON to be used by AGS.
+  home.file.".config/ags.config.json".text = builtins.toJSON config.desktop;
 }

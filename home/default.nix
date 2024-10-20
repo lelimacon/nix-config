@@ -1,11 +1,10 @@
 {
-  config,
-  pkgs,
   ...
 }:
 {
   imports =
   [
+    ../desktop.nix
     ./ags.nix
     ./git.nix
     ./gtk.nix

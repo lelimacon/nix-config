@@ -17,7 +17,8 @@
     ags.url = "github:Aylur/ags";
   };
 
-  outputs = inputs @ {
+  outputs = inputs @
+  {
     self,
     nixpkgs,
     home-manager,

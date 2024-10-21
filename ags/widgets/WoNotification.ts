@@ -94,30 +94,29 @@ const WpNotification =
     })
 
     return Widget.EventBox
-    (
-        {
-            attribute: { id: notification.id },
-            on_primary_click: notification.dismiss,
-        },
-        Widget.Box
-        (
-            {
-                class_name: `notification ${notification.urgency}`,
-                vertical: true,
-            },
-            Widget.Box
-            ([
-                icon,
+    ({
+        attribute: { id: notification.id },
+        on_primary_click: notification.dismiss,
+        child: Widget.Box
+        ({
+            class_name: `wo-notification ${notification.urgency}`,
+            vertical: true,
+            children:
+            [
                 Widget.Box
-                (
-                    { vertical: true },
-                    title,
-                    body,
-                ),
-            ]),
-            actions,
-        ),
-    )
+                ([
+                    icon,
+                    Widget.Box
+                    (
+                        { vertical: true },
+                        title,
+                        body,
+                    ),
+                ]),
+                actions,
+            ]
+        }),
+    })
 }
 
 

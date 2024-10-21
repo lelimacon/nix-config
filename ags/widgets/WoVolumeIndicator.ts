@@ -1,4 +1,7 @@
-import icons from "../lib/icons"
+import
+{
+    icons,
+} from "../lib/icons"
 
 
 const audio = await Service.import("audio")

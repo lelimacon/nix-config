@@ -1,0 +1,14 @@
+/*
+Style is bundled and applied in lib/style.
+*/
+
+
+// Popovers, modals, floating windows.
+@mixin dialog
+{
+    padding: 1em;
+    border-radius: $dialog-border-radius;
+    border: $dialog-border-width solid $dialog-border-color-active;
+    background-color: $bg;
+    color: $fg;
+}

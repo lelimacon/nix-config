@@ -43,7 +43,7 @@ const WpNotifications =
     ({
         monitor,
         name: `notifications${monitor}`,
-        class_name: "notification-popups",
+        class_name: "wp-notifications",
         anchor: ["top", "right"],
         child: Widget.Box
         ({

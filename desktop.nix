@@ -116,17 +116,17 @@ let
         default = 2000;
         description = "Transition duration (ms).";
       };
-      "widget" = mkOption
-      {
-        type = windowThemeOptions;
-        default = {};
-        description = "Widget theme.";
-      };
       "window" = mkOption
       {
         type = windowThemeOptions;
         default = {};
         description = "Window theme.";
+      };
+      "dialog" = mkOption
+      {
+        type = windowThemeOptions;
+        default = {};
+        description = "Dialog theme (popovers, modals, floating windows).";
       };
       "fontSize" = mkOption
       {

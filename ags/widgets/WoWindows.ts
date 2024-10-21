@@ -1,5 +1,12 @@
-import { launchApp, getIcon } from "../lib/utils"
-import icons from "../lib/icons"
+import
+{
+    launchApp,
+} from "../lib/io"
+import
+{
+    getIcon,
+    icons,
+} from "../lib/icons"
 import WaPanelButton from "./WaPanelButton"
 
 

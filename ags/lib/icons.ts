@@ -1,6 +1,10 @@
+import GLib from "gi://GLib?version=2.0"
 
+
+// TODO: Move icon substitutions to options.
 export const substitutes =
 {
+    "system-file-manager": "files",
     "transmission-gtk": "transmission",
     "audio-headset-bluetooth": "audio-headphones-symbolic",
     "audio-card-analog-usb": "audio-speakers-symbolic",
@@ -10,7 +14,30 @@ export const substitutes =
     "com.github.Aylur.ags": "controls-symbolic",
 }
 
-export default
+/**
+  * @returns substitute icon || name || fallback icon
+  */
+export const getIcon =
+(
+    name: string | null,
+    fallback = icons.missing,
+) =>
+{
+    if (!name)
+        return fallback || ""
+
+    if (GLib.file_test(name, GLib.FileTest.EXISTS))
+        return name
+
+    const icon = (substitutes[name] || name)
+    if (Utils.lookUpIcon(icon))
+        return icon
+
+    print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
+    return fallback
+}
+
+export const icons =
 {
     missing: "image-missing-symbolic",
     nix:

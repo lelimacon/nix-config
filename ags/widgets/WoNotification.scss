@@ -1,0 +1,64 @@
+.wo-notification
+{
+    @include dialog;
+
+
+    min-width: 350px;
+    margin: .5em;
+    padding: 1em;
+
+
+    &.critical
+    {
+        border: 1px solid $color-error;
+    }
+
+    .icon
+    {
+        min-width: 68px;
+        min-height: 68px;
+        margin-right: 1em;
+    }
+
+    .icon image
+    {
+        font-size: 58px;
+        margin: 5px;
+    }
+
+    .icon box
+    {
+        min-width: 68px;
+        min-height: 68px;
+        border-radius: 7px;
+    }
+
+    .title
+    {
+        font-size: 1.4em;
+    }
+
+    .body
+    {
+        color: $fg;
+    }
+
+    .actions
+    {
+        .action-button
+        {
+            margin: 0 .4em;
+            margin-top: .8em;
+        }
+
+        .action-button:first-child
+        {
+            margin-left: 0;
+        }
+
+        .action-button:last-child
+        {
+            margin-right: 0;
+        }
+    }
+}

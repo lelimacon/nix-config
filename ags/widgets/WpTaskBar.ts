@@ -3,7 +3,7 @@ import WoClock from "./WoClock"
 import WoNotificationIndicator from "./WoNotificationIndicator"
 import WoSystemTray from "./WoSystemTray"
 import WoVolumeIndicator from "./WoVolumeIndicator"
-import WoWindows from "./WoWindows"
+import WoWindowList from "./WoWindowList"
 import WoWorkspaces from "./WoWorkspaces"
 
 
@@ -14,7 +14,7 @@ const left =
         children:
         [
             WoWorkspaces(),
-            WoWindows(),
+            WoWindowList(),
         ],
     })
 

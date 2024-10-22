@@ -1,9 +1,5 @@
 import
 {
-    bundleCss,
-} from "lib/style"
-import
-{
     hasDependencies,
 } from "lib/io"
 import WpTaskBar from "widgets/WpTaskBar"
@@ -31,7 +27,7 @@ Utils.timeout(2000, () => Utils.notify
 }))
 
 
-App.addIcons(`${App.configDir}/assets`)
+// Show dialogs.
 App.config
 ({
     windows:
@@ -40,13 +36,3 @@ App.config
         WpNotifications(1),
     ],
 })
-
-const resetCss = async () =>
-{
-    const cssPath = await bundleCss()
-    App.applyCss(cssPath, true)
-}
-
-Utils.monitorFile(`${App.configDir}`, resetCss)
-
-await resetCss()

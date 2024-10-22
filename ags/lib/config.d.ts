@@ -30,13 +30,17 @@ interface Theme
 
 interface Options
 {
+    agsVersion: string
     userName: string
     agsOutDir: string
     themes: Theme[]
     currentThemeName: string
+    currentTheme: Theme
     pinnedApps: string[]
 }
 
 
 // Option declarations.
-export default Options
+//export default Options
+export declare const config: Options
+export default config

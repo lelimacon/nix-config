@@ -4,7 +4,7 @@ import GLib from "gi://GLib?version=2.0"
 // TODO: Move icon substitutions to options.
 export const substitutes =
 {
-    "system-file-manager": "files",
+    "system-file-manager": "file-manager",
     "transmission-gtk": "transmission",
     "audio-headset-bluetooth": "audio-headphones-symbolic",
     "audio-card-analog-usb": "audio-speakers-symbolic",

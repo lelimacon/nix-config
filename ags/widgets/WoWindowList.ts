@@ -72,9 +72,11 @@ const WaWindowItem =
         tooltip_text: Utils.watch(client.title, hyprland, getTooltip),
         on_primary_click: () => focus(address),
         on_middle_click: () => app && launchApp(app),
-        child: Widget.Icon({
+        child: Widget.Icon
+        ({
             size: iconSize,
-            icon: getIcon(
+            icon: getIcon
+            (
                 (app?.icon_name || client.class) + (isMonochrome ? "-symbolic" : ""),
                 icons.fallback.executable + (isMonochrome ? "-symbolic" : ""),
             ),

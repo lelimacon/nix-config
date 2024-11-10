@@ -71,13 +71,13 @@ let
       "bg" = mkOption
       {
         type = types.str;
-        default = "#ffffff";
+        default = "#000000";
         description = "Background color.";
       };
       "fg" = mkOption
       {
         type = types.str;
-        default = "#000000";
+        default = "#ffffff";
         description = "Foreground color.";
       };
       "emphasisColor" = mkOption

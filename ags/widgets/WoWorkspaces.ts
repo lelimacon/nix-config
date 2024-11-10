@@ -1,23 +1,41 @@
+import WaPanelButton from "./WaPanelButton"
+
+
 const hyprland = await Service.import("hyprland")
 
 
-const WoWorkspaces = () =>
+const dispatch = (arg: string | number) =>
 {
-    const activeId = hyprland.active.workspace.bind("id")
-    const workspaces = hyprland.bind("workspaces")
-        .as(ws => ws.map(({ id }) => Widget.Button
-        ({
-            on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-            child: Widget.Label(`${id}`),
-            class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
-        })))
-
-    return Widget.Box
-    ({
-        class_name: "workspaces",
-        children: workspaces,
-    })
+    hyprland.messageAsync(`dispatch workspace ${arg}`)
 }
+
+const WorkspaceIndicator = (id: number) => Widget.Label
+({
+    attribute: id,
+    vpack: "center",
+    label: `${id}`,
+    setup: self => self.hook(hyprland, () =>
+    {
+        self.toggleClassName("active", hyprland.active.workspace.id === id)
+        self.toggleClassName("occupied", (hyprland.getWorkspace(id)?.windows || 0) > 0)
+    }),
+})
+
+const WoWorkspaces = () => WaPanelButton
+({
+    appearence: "flat",
+    class_name: "wo-workspaces",
+    bind_to_window: "wp-overview",
+    on_scroll_up: () => dispatch("m+1"),
+    on_scroll_down: () => dispatch("m-1"),
+    on_clicked: () => App.toggleWindow("wp-overview"),
+    child: Widget.Box
+    ({
+        children: hyprland
+            .bind("workspaces")
+            .as(workspace => workspace.map(({ id }) => WorkspaceIndicator(id))),
+    }),
+})
 
 
 export default WoWorkspaces

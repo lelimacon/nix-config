@@ -1,3 +1,5 @@
+import WaPanelButton from "./WaPanelButton"
+
 const notifications = await Service.import("notifications")
 
 
@@ -5,9 +7,10 @@ const WoNotificationIndicator = () =>
 {
     const popups = notifications.bind("popups")
 
-    return Widget.Button
+    return WaPanelButton
     ({
-        class_name: "notification-link",
+        appearence: "flat",
+        class_name: "notification-indicator",
         cursor: "pointer",
         child: Widget.Box
         ({
@@ -27,7 +30,6 @@ const WoNotificationIndicator = () =>
         }),
     })
 }
-
 
 
 export default WoNotificationIndicator

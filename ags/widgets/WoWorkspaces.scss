@@ -1,0 +1,46 @@
+$size: 6pt;
+
+
+.wo-workspaces
+{
+    label
+    {
+        font-size: 0;
+        min-width: $size;
+        min-height: $size;
+        margin: 0 0.5pt;
+        background-color: transparentize($fg, .6);
+        border-radius: 10pt;
+
+        &.occupied
+        {
+            background-color: transparentize($fg, .2);
+        }
+
+        &.active
+        {
+            background-color: $color-emphasis;
+            min-width: 2 * $size;
+            min-height: $size;
+        }
+    }
+
+    &.active,
+    &:active
+    {
+        label
+        {
+            background-color: transparentize($color-emphasis, .3);
+
+            &.occupied
+            {
+                background-color: transparentize($color-emphasis, .15);
+            }
+
+            &.active
+            {
+                background-color: $color-emphasis;
+            }
+        }
+    }
+}

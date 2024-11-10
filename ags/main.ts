@@ -1,19 +1,9 @@
-import
-{
-    hasDependencies,
-} from "lib/io"
-import WpTaskBar from "widgets/WpTaskBar"
+import WpBar from "widgets/WpBar"
+import WpDrawer from "widgets/WpDrawer"
 import WpNotifications from "widgets/WpNotifications"
 
 
-// Validate global dependencies.
-if (!hasDependencies(["sass", "fd"]))
-{
-    console.error(Error("Missing required dependencies"))
-    App.quit()
-}
-
-
+// Demo notification.
 Utils.timeout(2000, () => Utils.notify
 ({
     summary: "Notification Popup Example",
@@ -32,7 +22,8 @@ App.config
 ({
     windows:
     [
-        WpTaskBar(1),
+        WpBar(1),
+        WpDrawer(1),
         WpNotifications(1),
     ],
 })

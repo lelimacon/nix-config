@@ -1,0 +1,33 @@
+.wa-panel-button
+{
+    &.flat
+    {
+        background-color: transparent;
+        color: $fg;
+        border-radius: 0;
+
+
+        &:hover
+        {
+            background-color: transparent;
+            box-shadow: none;
+            background-image: none; // gradient.
+            //color: $bg;
+            text-shadow: none;
+            border: 1px solid transparent;
+        }
+
+        label
+        {
+            //background-color: red;
+            //color: $fg;
+            //color: yellow;
+        }
+
+        icon
+        {
+            background-color: red;
+            color: $fg;
+        }
+    }
+}

@@ -54,30 +54,6 @@ async (
 }
 
 /**
- * @returns true if all of the `bins` are found, false otherwise.
- */
-export const hasDependencies =
-async (
-    bins: string[],
-) =>
-{
-    const missing = bins.filter(bin => Utils.exec
-    ({
-        cmd: `which ${bin}`,
-        out: () => false,
-        err: () => true,
-    }))
-
-    if (missing.length == 0)
-    {
-        return true;
-    }
-
-    console.warn(Error(`Missing dependencies: ${missing.join(", ")}`))
-    return false;
-}
-
-/**
  * Run app detached.
  */
 export const launchApp =

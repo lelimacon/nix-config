@@ -2,6 +2,7 @@ import
 {
     icons,
 } from "../lib/icons"
+import WaPanelButton from "./WaPanelButton"
 
 
 const audio = await Service.import("audio")
@@ -73,8 +74,10 @@ const WoVolumeIndicator = () =>
         audio.speaker.volume = Math.max(0, audio.speaker.volume - step)
     }
 
-    const iconButton = Widget.Button
+    /*
+    const iconButton = WaPanelButton
     ({
+        appearence: "flat",
         class_name: "volume",
         on_primary_click: () => switchOpen(),
         on_scroll_up: () => incrementVolume(),
@@ -98,6 +101,17 @@ const WoVolumeIndicator = () =>
             //icon,
             iconButton,
             slider,
+        ],
+    })
+    */
+
+    return Widget.Box
+    ({
+        spacing: 4,
+        children:
+        [
+            icon,
+            Widget.Label({ label: valueStr }),
         ],
     })
 }

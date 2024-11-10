@@ -2,6 +2,30 @@ import GLib from "gi://GLib?version=2.0"
 import config from "./config.js"
 
 
+/**
+ * @returns true if all of the `bins` are found, false otherwise.
+ */
+export const hasDependencies =
+async (
+    /** @type {string[]} */ bins,
+) =>
+{
+    const missing = bins.filter(bin => Utils.exec
+    ({
+        cmd: `which ${bin}`,
+        out: () => false,
+        err: () => true,
+    }))
+
+    if (missing.length == 0)
+    {
+        return true
+    }
+
+    console.warn(Error(`Missing dependencies: ${missing.join(", ")}`))
+    return false
+}
+
 const getVariables = () =>
 {
     const theme = config.currentTheme

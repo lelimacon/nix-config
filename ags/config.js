@@ -1,8 +1,17 @@
 import
 {
+    hasDependencies,
     bundleJs,
     bundleCss,
 } from "./lib/bundler.js"
+
+
+// Validate global dependencies.
+if (!hasDependencies(["fd", "sass"]))
+{
+    console.error(Error("Missing required dependencies"))
+    App.quit()
+}
 
 
 try

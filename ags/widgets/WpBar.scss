@@ -1,0 +1,17 @@
+.wp-bar
+{
+    //background-color: red;
+
+
+    .wa-panel-button.flat
+    {
+        &:hover
+        {
+            border-right: 2px solid $color-action;
+        }
+        &.active
+        {
+            border-right: 2px solid $color-emphasis;
+        }
+    }
+}

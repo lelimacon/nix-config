@@ -1,15 +1,16 @@
-import WoBatteryIndicator from "./WoBatteryIndicator"
+import Gtk from "gi://Gtk?version=3.0"
 import WoClock from "./WoClock"
+import WoHardwareIndicators from "./WoHardwareIndicators"
 import WoNotificationIndicator from "./WoNotificationIndicator"
 import WoSystemTray from "./WoSystemTray"
-import WoVolumeIndicator from "./WoVolumeIndicator"
 import WoWindowList from "./WoWindowList"
 import WoWorkspaces from "./WoWorkspaces"
 
 
-const left =
+const start =
     Widget.Box
     ({
+        vertical: true,
         spacing: 8,
         children:
         [
@@ -18,40 +19,41 @@ const left =
         ],
     })
 
-const right =
+const end =
     Widget.Box
     ({
-        hpack: "end",
+        vpack: "end",
+        vertical: true,
         spacing: 8,
         children:
         [
             WoSystemTray(),
-            WoVolumeIndicator(),
-            WoBatteryIndicator(),
             WoClock(),
+            WoHardwareIndicators(),
             WoNotificationIndicator(),
         ],
     })
 
-const WpTaskBar =
+const WpBar =
 (
     monitor = 0,
-) =>
+): Gtk.Window =>
 {
     return Widget.Window
     ({
-        name: `bar-${monitor}`, // name has to be unique
-        class_name: "bar",
         monitor,
-        anchor: ["top", "left", "right"],
+        name: `wp-bar-${monitor}`, // name has to be unique.
+        class_name: "wp-bar",
+        anchor: ["left", "top", "bottom"],
         exclusivity: "exclusive",
         child: Widget.CenterBox
         ({
-            start_widget: left,
-            end_widget: right,
+            vertical: true,
+            start_widget: start,
+            end_widget: end,
         }),
     })
 }
 
 
-export default WpTaskBar
+export default WpBar

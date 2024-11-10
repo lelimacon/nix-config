@@ -3,15 +3,15 @@ import { ButtonProps } from "types/widgets/button"
 
 type PanelButtonProps = ButtonProps &
 {
-    window?: string,
-    flat?: boolean
+    bind_to_window?: string,
+    appearence?: "default" | "flat" | "primary",
 }
 
 
 const WaPanelButton =
 ({
-    window = "",
-    flat,
+    bind_to_window = "",
+    appearence = "default",
     child,
     setup,
     ...rest
@@ -22,13 +22,15 @@ const WaPanelButton =
     {
         let open = false
 
-        self.toggleClassName("panel-button")
-        self.toggleClassName(window)
+        self.toggleClassName("wa-panel-button")
+        self.toggleClassName(appearence)
 
-        self.hook(App, (_, win, visible) =>
+        self.hook(App, (_, window, visible) =>
         {
-            if (win !== window)
+            if (window !== bind_to_window)
+            {
                 return
+            }
 
             if (open && !visible)
             {
@@ -44,7 +46,9 @@ const WaPanelButton =
         })
 
         if (setup)
+        {
             setup(self)
+        }
     },
     ...rest,
 })

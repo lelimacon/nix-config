@@ -53,10 +53,12 @@ const WaWindowItem =
 
     const getIsVisible = () =>
     {
-        if (isExclusive)
-            return hyprland.active.workspace.id === client.workspace.id;
+        if (!isExclusive)
+        {
+            return true;
+        }
 
-        return true;
+        return hyprland.active.workspace.id === client.workspace.id;
     }
 
     const getTooltip = () =>
@@ -69,6 +71,7 @@ const WaWindowItem =
     const btn = WaPanelButton
     ({
         class_name: "panel-button",
+        appearence: "flat",
         tooltip_text: Utils.watch(client.title, hyprland, getTooltip),
         on_primary_click: () => focus(address),
         on_middle_click: () => app && launchApp(app),
@@ -118,6 +121,7 @@ function sortItems<T extends { attribute: { address: string } }>(arr: T[])
 const WoWindows = () => Widget.Box
 ({
     class_name: "taskbar",
+    vertical: true,
     children: sortItems(hyprland.clients.map(c => WaWindowItem(c.address))),
     setup: w => w
         .hook

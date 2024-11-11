@@ -6,6 +6,7 @@ import WpNotifications from "widgets/WpNotifications"
 
 
 // Demo notification.
+/*
 Utils.timeout(2000, () => Utils.notify
 ({
     summary: "Notification Popup Example",
@@ -17,6 +18,7 @@ Utils.timeout(2000, () => Utils.notify
         "Cool": () => print("pressed Cool"),
     },
 }))
+*/
 
 
 // Show dialogs.

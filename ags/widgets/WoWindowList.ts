@@ -107,14 +107,16 @@ const WaWindowItem =
     })
 }
 
-function sortItems<T extends { attribute: { address: string } }>(arr: T[])
+function sortItems<T extends { attribute: { address: string } }>(array: T[])
 {
-    return arr.sort(({ attribute: a }, { attribute: b }) =>
+    const comparer = (({ attribute: a }, { attribute: b }) =>
     {
         const aclient = hyprland.getClient(a.address)!
         const bclient = hyprland.getClient(b.address)!
         return aclient.workspace.id - bclient.workspace.id
     })
+
+    return array.sort(comparer)
 }
 
 const WoWindows = () => Widget.Box

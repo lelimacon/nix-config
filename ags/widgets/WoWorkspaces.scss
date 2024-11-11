@@ -3,6 +3,9 @@ $size: 6pt;
 
 .wo-workspaces
 {
+    margin: 10pt 0 8pt 0;
+
+
     label
     {
         font-size: 0;
@@ -22,25 +25,6 @@ $size: 6pt;
             background-color: $color-emphasis;
             min-width: 2 * $size;
             min-height: $size;
-        }
-    }
-
-    &.active,
-    &:active
-    {
-        label
-        {
-            background-color: transparentize($color-emphasis, .3);
-
-            &.occupied
-            {
-                background-color: transparentize($color-emphasis, .15);
-            }
-
-            &.active
-            {
-                background-color: $color-emphasis;
-            }
         }
     }
 }

@@ -37,6 +37,8 @@ interface Options
     currentThemeName: string
     currentTheme: Theme
     pinnedApps: string[]
+    iconSubstitutes: { [original: string]: string }
+    appNameSubstitutes: { [original: string]: string }
 }
 
 

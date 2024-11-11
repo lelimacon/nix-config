@@ -14,7 +14,7 @@ const WpDrawer =
     child,
 }: WpDrawerProps): Gtk.Window =>
 {
-    return Widget.Window
+    const window = Widget.Window
     ({
         //monitor, // show on active monitor.
         name,
@@ -44,12 +44,15 @@ const WpDrawer =
                     {
                         App.closeWindow(name)
                     },
+                    cursor: "not-allowed",
                     hexpand: true,
                     className: "overlay",
                 }),
             ],
         }),
     })
+
+    return window
 }
 
 

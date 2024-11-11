@@ -18,16 +18,19 @@ const WorkspaceIndicator = (id: number) => Widget.Label
     }),
 })
 
-const WoWorkspaces = () => Widget.EventBox
+const WoWorkspaces = () => Widget.Box
 ({
-    class_name: "wo-workspaces",
-    on_scroll_up: () => dispatch("m+1"),
-    on_scroll_down: () => dispatch("m-1"),
-    child: Widget.Box
+    className: "wo-workspaces",
+    child: Widget.EventBox
     ({
-        children: hyprland
-            .bind("workspaces")
-            .as(workspace => workspace.map(({ id }) => WorkspaceIndicator(id))),
+        onScrollUp: () => dispatch("m+1"),
+        onScrollDown: () => dispatch("m-1"),
+        child: Widget.Box
+        ({
+            children: hyprland
+                .bind("workspaces")
+                .as(workspace => workspace.map(({ id }) => WorkspaceIndicator(id))),
+        }),
     }),
 })
 

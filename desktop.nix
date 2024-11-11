@@ -167,6 +167,18 @@ let
       ];
       description = "List of pinned apps (used by taskbar).";
     };
+    "iconSubstitutes" = mkOption
+    {
+      type = types.attrs;
+      default = {};
+      description = "Key-values for substituting icons.";
+    };
+    "appNameSubstitutes" = mkOption
+    {
+      type = types.attrs;
+      default = {};
+      description = "Key-values for substituting application names.";
+    };
   };
 in
 {
@@ -185,5 +197,22 @@ in
       }
     ];
     currentThemeName = "other";
+    iconSubstitutes =
+    {
+        "system-file-manager" = "file-manager";
+        "transmission-gtk" = "transmission";
+        "audio-headset-bluetooth" = "audio-headphones-symbolic";
+        "audio-card-analog-usb" = "audio-speakers-symbolic";
+        "audio-card-analog-pci" = "audio-card-symbolic";
+        "preferences-system" = "emblem-system-symbolic";
+        "com.github.Aylur.ags-symbolic" = "controls-symbolic";
+        "com.github.Aylur.ags" = "controls-symbolic";
+    };
+    appNameSubstitutes =
+    {
+        "GNU Image Manipulation Program" = "GIMP";
+        "Telegram Desktop" = "Telegram";
+        "VLC media player" = "VLC";
+    };
   };
 }

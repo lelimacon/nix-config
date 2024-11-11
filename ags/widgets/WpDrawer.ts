@@ -46,6 +46,7 @@ const WpDrawer =
         monitor,
         //visible: false,
         //exclusivity: "exclusive",
+        keymode: "exclusive", // for key binding.
         name: name,
         className: "wp-drawer",
         anchor: ["left", "right", "top", "bottom"],
@@ -54,65 +55,27 @@ const WpDrawer =
         {
             w.keybind("Escape", () => App.closeWindow(name))
         },
-        /*
-        child: Widget.EventBox
-        ({
-            on_primary_click: () => App.closeWindow(name),
-            child: Widget.Box
-            ({
-                class_name: "container",
-                vertical: false,
-                hpack: "start",
-                child: list,
-            }),
-        }),
-        */
-        child: Widget.EventBox
-        ({
-            on_primary_click: () => App.closeWindow(name),
-            child: Widget.EventBox
-            ({
-                on_primary_click: (s, e) =>
-                {
-                    console.log("pressed")
-                },
-                child: Widget.Box
-                ({
-                    class_name: "container",
-                    vertical: false,
-                    hpack: "start",
-                    child: list,
-                }),
-            }),
-        }),
-        /*
         child: Widget.Box
         ({
-            //hpack: "fill",
-            css: "background-color: transparentize(pink, 0.6);",
             children:
             [
                 Widget.Box
                 ({
-                    //hpack: "start",
+                    hpack: "start",
                     className: "container",
-                    //child: list,
+                    child: list,
                 }),
-                Widget.Box
+                Widget.EventBox
                 ({
-                    vpack: "fill",
+                    on_primary_click: (s, e) =>
+                    {
+                        App.closeWindow(name)
+                    },
+                    hexpand: true,
                     className: "overlay",
-                    child: Widget.Box
-                    ({
-                        //vpack: "fill",
-                        vertical: true,
-                        css: "min-width: 100pt; background-color: orange; padding: 1em",
-                        child: list,
-                    }),
                 }),
             ],
         }),
-        */
     })
 }
 

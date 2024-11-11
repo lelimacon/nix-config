@@ -1,18 +1,14 @@
 .wp-drawer
 {
-    background-color: transparentize($bg, 0.8);
-
-
     .container
     {
-        min-width: 500pt;
-        background-color: yellowgreen;
-        background-color: transparentize(yellowgreen, 0.6);
+        min-width: 300pt;
+        background-color: $bg;
+        box-shadow: transparentize($bg, 0.2) 0px 2px 8px 0px;
     }
 
     .overlay
     {
-        //min-width: 100%;
-        background-color: transparentize(red, 0.6);
+        background-color: transparentize($bg, 0.8);
     }
 }

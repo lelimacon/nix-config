@@ -68,11 +68,10 @@ const WaWindowItem =
 
     const app = apps.list.find(app => app.match(client.class))
 
-    const btn = WaPanelButton
+    const button = WaPanelButton
     ({
-        class_name: "panel-button",
         appearence: "flat",
-        tooltip_text: Utils.watch(client.title, hyprland, getTooltip),
+        tooltipText: Utils.watch(client.title, hyprland, getTooltip),
         on_primary_click: () => focus(address),
         on_middle_click: () => app && launchApp(app),
         child: Widget.Icon
@@ -92,7 +91,7 @@ const WaWindowItem =
         visible: Utils.watch(true, [hyprland], getIsVisible),
         child: Widget.Overlay
         ({
-            child: btn,
+            child: button,
             pass_through: true,
             overlay: Widget.Box
             ({

@@ -2,7 +2,6 @@ import
 {
     icons,
 } from "../lib/icons"
-import WaPanelButton from "./WaPanelButton"
 
 
 const audio = await Service.import("audio")

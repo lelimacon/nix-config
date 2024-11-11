@@ -1,13 +1,13 @@
 import Gtk from "gi://Gtk?version=3.0"
 import WoNotification from "./WoNotification"
+import WpDrawer from "./WpDrawer"
 
 
 const notifications = await Service.import("notifications")
 
 
-const WpNotifications =
+const WpDrawerEvents =
 (
-    monitor = 0,
 ): Gtk.Window =>
 {
     const list = Widget.Box
@@ -39,21 +39,12 @@ const WpNotifications =
     list.hook(notifications, onNotified, "notified")
     list.hook(notifications, onDismissed, "dismissed")
 
-    return Widget.Window
+    return WpDrawer
     ({
-        monitor,
-        name: `wp-notifications-${monitor}`,
-        class_name: "wp-notifications",
-        anchor: ["top", "right"],
-        child: Widget.Box
-        ({
-            css: "min-width: 2px; min-height: 2px;",
-            class_name: "notifications",
-            vertical: true,
-            child: list,
-        }),
+        name: "wp-drawer-events",
+        child: list,
     })
 }
 
 
-export default WpNotifications
+export default WpDrawerEvents

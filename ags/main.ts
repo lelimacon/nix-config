@@ -1,5 +1,7 @@
 import WpBar from "widgets/WpBar"
-import WpDrawer from "widgets/WpDrawer"
+import WpDrawerEvents from "widgets/WpDrawerEvents"
+import WpDrawerHardware from "widgets/WpDrawerHardware"
+import WpDrawerOverview from "widgets/WpDrawerOverview"
 import WpNotifications from "widgets/WpNotifications"
 
 
@@ -23,7 +25,9 @@ App.config
     windows:
     [
         WpBar(1),
-        WpDrawer(1),
+        WpDrawerOverview(),
+        WpDrawerHardware(),
+        WpDrawerEvents(),
         WpNotifications(1),
     ],
 })

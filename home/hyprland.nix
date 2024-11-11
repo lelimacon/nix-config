@@ -53,6 +53,7 @@ in
       "$mod" = "SUPER";
 
       # Default programs.
+      "$drawer" = "ags -t wp-drawer-overview";
       "$terminal" = "kitty";
       "$fileManager" = "nemo";
       "$menu" = "anyrun";
@@ -226,6 +227,12 @@ in
         "$mod SHIFT, 2, movetoworkspace, 2"
         "$mod SHIFT, 3, movetoworkspace, 3"
         "$mod SHIFT, 4, movetoworkspace, 4"
+      ];
+
+      bindr =
+      [
+        # Mod tap to open drawer.
+        "$mod, SUPER_L, exec, $drawer"
       ];
 
       windowrulev2 =

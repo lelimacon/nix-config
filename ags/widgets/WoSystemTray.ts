@@ -1,3 +1,6 @@
+import WaPanelButton from "./WaPanelButton"
+
+
 const systemtray = await Service.import("systemtray")
 
 
@@ -5,16 +8,19 @@ const WoSystemTray = () =>
 {
     const items = systemtray
         .bind("items")
-        .as(items => items.map(item => Widget.Button
+        .as(items => items.map(item => WaPanelButton
         ({
-            child: Widget.Icon({ icon: item.bind("icon") }),
+            appearence: "flat",
+            tooltip_markup: item.bind("tooltip_markup"),
             on_primary_click: (_, event) => item.activate(event),
             on_secondary_click: (_, event) => item.openMenu(event),
-            tooltip_markup: item.bind("tooltip_markup"),
+            child: Widget.Icon({ icon: item.bind("icon") }),
         })))
 
     return Widget.Box
     ({
+        vertical: true,
+        className: "wo-system-tray",
         children: items,
     })
 }

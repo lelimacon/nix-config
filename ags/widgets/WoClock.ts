@@ -1,5 +1,3 @@
-import WaPanelButton from "./WaPanelButton"
-
 // Format: YYYY,MM,DD,hh,mm
 const dateParts = Variable
 (
@@ -50,15 +48,7 @@ const WoClock = () =>
         ],
     })
 
-    return WaPanelButton
-    ({
-        appearence: "flat",
-        class_name: "wo-hardware-indicators",
-        cursor: "pointer",
-        bind_to_window: "wp-drawer-1",
-        on_clicked: () => App.toggleWindow("wp-drawer-1"),
-        child: clockContent,
-    })
+    return clockContent
 }
 
 

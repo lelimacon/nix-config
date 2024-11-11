@@ -1,10 +1,12 @@
 import Gtk from "gi://Gtk?version=3.0"
 import WoClock from "./WoClock"
-import WoHardwareIndicators from "./WoHardwareIndicators"
 import WoNotificationIndicator from "./WoNotificationIndicator"
 import WoSystemTray from "./WoSystemTray"
 import WoWindowList from "./WoWindowList"
 import WoWorkspaces from "./WoWorkspaces"
+import WaPanelButton from "./WaPanelButton"
+import WoVolumeIndicator from "./WoVolumeIndicator"
+import WoBatteryIndicator from "./WoBatteryIndicator"
 
 
 const start =
@@ -14,7 +16,21 @@ const start =
         spacing: 8,
         children:
         [
-            WoWorkspaces(),
+            // Overview.
+            WaPanelButton
+            ({
+                appearence: "flat",
+                bind_to_window: "wp-drawer-overview",
+                child: Widget.Box
+                ({
+                    vertical: true,
+                    children:
+                    [
+                        WoWorkspaces(),
+                    ]
+                }),
+            }),
+
             WoWindowList(),
         ],
     })
@@ -28,9 +44,38 @@ const end =
         children:
         [
             WoSystemTray(),
-            WoClock(),
-            WoHardwareIndicators(),
-            WoNotificationIndicator(),
+
+            // Hardware indicators.
+            WaPanelButton
+            ({
+                appearence: "flat",
+                bind_to_window: "wp-drawer-hardware",
+                child: Widget.Box
+                ({
+                    vertical: true,
+                    children:
+                    [
+                        WoVolumeIndicator(),
+                        WoBatteryIndicator(),
+                    ]
+                }),
+            }),
+
+            // Events.
+            WaPanelButton
+            ({
+                appearence: "flat",
+                bind_to_window: "wp-drawer-events",
+                child: Widget.Box
+                ({
+                    vertical: true,
+                    children:
+                    [
+                        WoClock(),
+                        WoNotificationIndicator(),
+                    ]
+                }),
+            }),
         ],
     })
 

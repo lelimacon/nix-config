@@ -1,6 +1,3 @@
-import WaPanelButton from "./WaPanelButton"
-
-
 const hyprland = await Service.import("hyprland")
 
 
@@ -21,14 +18,11 @@ const WorkspaceIndicator = (id: number) => Widget.Label
     }),
 })
 
-const WoWorkspaces = () => WaPanelButton
+const WoWorkspaces = () => Widget.EventBox
 ({
-    appearence: "flat",
     class_name: "wo-workspaces",
-    bind_to_window: "wp-overview",
     on_scroll_up: () => dispatch("m+1"),
     on_scroll_down: () => dispatch("m-1"),
-    on_clicked: () => App.toggleWindow("wp-overview"),
     child: Widget.Box
     ({
         children: hyprland

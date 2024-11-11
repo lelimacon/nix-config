@@ -1,69 +1,42 @@
 import Gtk from "gi://Gtk?version=3.0"
-import WoNotification from "./WoNotification"
 
 
-const notifications = await Service.import("notifications")
+type WpDrawerProps =
+{
+    name: string,
+    child: Gtk.Widget,
+}
 
 
 const WpDrawer =
-(
-    monitor = 0,
-): Gtk.Window =>
+({
+    name,
+    child,
+}: WpDrawerProps): Gtk.Window =>
 {
-    const list = Widget.Box
-    ({
-        vertical: true,
-        children: notifications.popups.map(WoNotification),
-    })
-
-    const onNotified = (_, id: number) =>
-    {
-        const notification = notifications.getNotification(id)
-        if (notification)
-        {
-            list.children =
-            [
-                WoNotification(notification),
-                ...list.children,
-            ]
-        }
-    }
-
-    const onDismissed = (_, id: number) =>
-    {
-        list.children
-            .find(n => n.attribute.id === id)
-            ?.destroy()
-    }
-
-    list.hook(notifications, onNotified, "notified")
-    list.hook(notifications, onDismissed, "dismissed")
-
-    const name = `wp-drawer-${monitor}`
-
     return Widget.Window
     ({
-        monitor,
-        //visible: false,
-        //exclusivity: "exclusive",
-        keymode: "exclusive", // for key binding.
-        name: name,
-        className: "wp-drawer",
+        //monitor, // show on active monitor.
+        name,
+        visible: false,
         anchor: ["left", "right", "top", "bottom"],
         layer: "top",
-        setup: w =>
+        keymode: "exclusive", // for key binding.
+        setup: (w) =>
         {
             w.keybind("Escape", () => App.closeWindow(name))
         },
+        className: "wp-drawer",
         child: Widget.Box
         ({
+            hpack: "fill",
             children:
             [
                 Widget.Box
                 ({
                     hpack: "start",
                     className: "container",
-                    child: list,
+                    child: child,
                 }),
                 Widget.EventBox
                 ({

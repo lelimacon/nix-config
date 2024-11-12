@@ -8,10 +8,17 @@ import
     icons,
 } from "../lib/icons"
 import WaPanelButton from "./WaPanelButton"
+import Gtk from "types/@girs/gtk-3.0/gtk-3.0"
+import Box from "types/widgets/box"
+import config from "lib/config"
 
 
-const hyprland = await Service.import("hyprland")
-const apps = await Service.import("applications")
+type WindowWidgetTypeProps = { address: string }
+type WindowWidgetType = Box<Gtk.Widget, WindowWidgetTypeProps>
+
+
+const hyprlandService = await Service.import("hyprland")
+const applicationsService = await Service.import("applications")
 
 
 const isExclusive = false
@@ -24,7 +31,7 @@ const focus =
     address: string,
 ) =>
 {
-    return hyprland.messageAsync(`dispatch focuswindow address:${address}`)
+    return hyprlandService.messageAsync(`dispatch focuswindow address:${address}`)
 }
 
 const DummyItem =
@@ -42,9 +49,9 @@ const DummyItem =
 const WaWindowItem =
 (
     address: string,
-) =>
+): WindowWidgetType =>
 {
-    const client = hyprland.getClient(address)
+    const client = hyprlandService.getClient(address)
 
     if (!client || client.class === "")
     {
@@ -58,20 +65,39 @@ const WaWindowItem =
             return true;
         }
 
-        return hyprland.active.workspace.id === client.workspace.id;
+        return hyprlandService.active.workspace.id === client.workspace.id;
     }
 
     const getTooltip = () =>
     {
-        return hyprland.getClient(address)?.title || "";
+        return hyprlandService.getClient(address)?.title || "";
     }
 
-    const app = apps.list.find(app => app.match(client.class))
+    let appConfig = client.class
+        ? config.apps.find(app => app.clientClasses.includes(client.class))
+        : null
+
+    print("TEST2", client.class, appConfig?.name)
+
+    const app = applicationsService.list.find(app => app.match(appConfig?.appClass || client.class))
+
+    if (app && !appConfig)
+    {
+        appConfig = app.wm_class
+            ? config.apps.find(a => a.appClass === app.wm_class)
+            : app.desktop
+            ? config.apps.find(a => a.appClass === app.desktop)
+            : null
+    }
+
+    print(app
+        ? `Client created: ${client.address}, class=${client.class}, wm_class=${app.wm_class}`
+        : `Client created: ${client.address}, class=${client.class}, no app matched`)
 
     const button = WaPanelButton
     ({
         appearence: "flat",
-        tooltipText: Utils.watch(client.title, hyprland, getTooltip),
+        tooltipText: Utils.watch(client.title, hyprlandService, getTooltip),
         on_primary_click: () => focus(address),
         on_middle_click: () => app && launchApp(app),
         child: Widget.Icon
@@ -79,7 +105,7 @@ const WaWindowItem =
             size: iconSize,
             icon: getIcon
             (
-                (app?.icon_name || client.class) + (isMonochrome ? "-symbolic" : ""),
+                (appConfig?.iconName || app?.icon_name || client.class) + (isMonochrome ? "-symbolic" : ""),
                 icons.fallback.executable + (isMonochrome ? "-symbolic" : ""),
             ),
         }),
@@ -88,7 +114,7 @@ const WaWindowItem =
     return Widget.Box
     ({
         attribute: { address },
-        visible: Utils.watch(true, [hyprland], getIsVisible),
+        visible: Utils.watch(true, [hyprlandService], getIsVisible),
         child: Widget.Overlay
         ({
             child: button,
@@ -98,9 +124,9 @@ const WaWindowItem =
                 className: "indicator",
                 hpack: "center",
                 vpack: "start",
-                setup: w => w.hook(hyprland, () =>
+                setup: w => w.hook(hyprlandService, () =>
                 {
-                    w.toggleClassName("active", hyprland.active.client.address === address)
+                    w.toggleClassName("active", hyprlandService.active.client.address === address)
                 }),
             }),
         }),
@@ -111,50 +137,67 @@ function sortItems<T extends { attribute: { address: string } }>(array: T[])
 {
     const comparer = (({ attribute: a }, { attribute: b }) =>
     {
-        const aclient = hyprland.getClient(a.address)!
-        const bclient = hyprland.getClient(b.address)!
+        const aclient = hyprlandService.getClient(a.address)!
+        const bclient = hyprlandService.getClient(b.address)!
         return aclient.workspace.id - bclient.workspace.id
     })
 
     return array.sort(comparer)
 }
 
+const onClientAdded =
+(
+    w: Box<WindowWidgetType, unknown>,
+    address?: string,
+) =>
+{
+    if (typeof address !== "string")
+    {
+        return;
+    }
+
+    w.children = sortItems([...w.children, WaWindowItem(address)])
+}
+
+const onClientRemoved =
+(
+    w: Box<WindowWidgetType, unknown>,
+    address?: string,
+) =>
+{
+    if (typeof address !== "string")
+    {
+        return;
+    }
+
+    w.children = w.children.filter(ch => ch.attribute.address !== address)
+}
+
+const onClientEvent =
+(
+    w: Box<WindowWidgetType, unknown>,
+    event?: string,
+) =>
+{
+    if (event !== "movewindow")
+    {
+        return;
+    }
+
+    w.children = sortItems(w.children)
+}
+
 const WoWindows = () => Widget.Box
 ({
     class_name: "taskbar",
     vertical: true,
-    children: sortItems(hyprland.clients.map(c => WaWindowItem(c.address))),
-    setup: w => w
-        .hook
-        (
-            hyprland,
-            (w, address?: string) =>
-            {
-                if (typeof address === "string")
-                    w.children = w.children.filter(ch => ch.attribute.address !== address)
-            },
-            "client-removed",
-        )
-        .hook
-        (
-            hyprland,
-            (w, address?: string) =>
-            {
-                if (typeof address === "string")
-                    w.children = sortItems([...w.children, WaWindowItem(address)])
-            },
-            "client-added",
-        )
-        .hook
-        (
-            hyprland,
-            (w, event?: string) =>
-            {
-                if (event === "movewindow")
-                    w.children = sortItems(w.children)
-            },
-            "event",
-        ),
+    children: sortItems(hyprlandService.clients.map(c => WaWindowItem(c.address))),
+    setup: w =>
+    {
+        w.hook(hyprlandService, onClientRemoved, "client-removed")
+        w.hook(hyprlandService, onClientAdded, "client-added")
+        w.hook(hyprlandService, onClientEvent, "event")
+    }
 })
 
 

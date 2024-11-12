@@ -143,6 +143,55 @@ let
     };
   });
 
+  appOptions = types.submodule
+  ({
+    options =
+    {
+      "appClass" = mkOption
+      {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Application (wm) class/desktop to match entry.";
+      };
+      "clientClasses" = mkOption
+      {
+        type = types.listOf types.str;
+        default = [];
+        description = "Client classes to match entry.";
+      };
+      "category" = mkOption
+      {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Optional application category.";
+      };
+      "name" = mkOption
+      {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Optional application name override.";
+      };
+      "iconName" = mkOption
+      {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Optional icon name override.";
+      };
+      "executable" = mkOption
+      {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Optional CLI.";
+      };
+      "isHidden" = mkOption
+      {
+        type = types.bool;
+        default = false;
+        description = "Hide from lists (can still be shown and searched for).";
+      };
+    };
+  });
+
   rootOptions =
   {
     "themes" = mkOption
@@ -179,6 +228,12 @@ let
       default = {};
       description = "Key-values for substituting application names.";
     };
+    "apps" = mkOption
+    {
+      type = types.listOf appOptions;
+      default = {};
+      description = "Application matching and overrides.";
+    };
   };
 in
 {
@@ -199,20 +254,97 @@ in
     currentThemeName = "other";
     iconSubstitutes =
     {
-        "system-file-manager" = "file-manager";
-        "transmission-gtk" = "transmission";
-        "audio-headset-bluetooth" = "audio-headphones-symbolic";
-        "audio-card-analog-usb" = "audio-speakers-symbolic";
-        "audio-card-analog-pci" = "audio-card-symbolic";
-        "preferences-system" = "emblem-system-symbolic";
-        "com.github.Aylur.ags-symbolic" = "controls-symbolic";
-        "com.github.Aylur.ags" = "controls-symbolic";
+      "system-file-manager" = "file-manager";
+      "transmission-gtk" = "transmission";
+      "audio-headset-bluetooth" = "audio-headphones-symbolic";
+      "audio-card-analog-usb" = "audio-speakers-symbolic";
+      "audio-card-analog-pci" = "audio-card-symbolic";
+      "preferences-system" = "emblem-system-symbolic";
+      "com.github.Aylur.ags-symbolic" = "controls-symbolic";
+      "com.github.Aylur.ags" = "controls-symbolic";
     };
     appNameSubstitutes =
     {
-        "GNU Image Manipulation Program" = "GIMP";
-        "Telegram Desktop" = "Telegram";
-        "VLC media player" = "VLC";
+      "GNU Image Manipulation Program" = "GIMP";
+      "Telegram Desktop" = "Telegram";
+      "VLC media player" = "VLC";
     };
+    apps =
+    [
+      # Social.
+      {
+        appClass = "firefox";
+        category = "Social";
+      }
+      {
+        appClass = "discord.desktop";
+        category = "Social";
+      }
+      {
+        appClass = "Slack";
+        category = "Social";
+      }
+
+      # Utils.
+      {
+        appClass = "1Password";
+        category = "Utils";
+      }
+      {
+        appClass = "cups.desktop";
+        category = "Utils";
+      }
+      {
+        clientClasses = ["com.github.Aylur.ags"];
+        category = "Utils";
+        name = "AGS inspector";
+        iconName = "astal";
+        executable = "ags -i";
+      }
+      {
+        appClass = "org.pulseaudio.pavucontrol.desktop";
+        category = "Utils";
+        isHidden = true;
+      }
+      {
+        appClass = "nemo";
+        iconName = "file-manager";
+        category = "Utils";
+      }
+
+      # Code.
+      {
+        appClass = "vscodium";
+        clientClasses = ["codium-url-handler"];
+        name = "Code";
+        category = "Code";
+      }
+      {
+        appClass = "postman.desktop";
+        category = "Code";
+      }
+
+      # Media.
+      {
+        appClass = "gimp.desktop";
+        category = "Media";
+      }
+      {
+        appClass = "org.inkscape.Inkscape.desktop";
+        category = "Media";
+      }
+      {
+        appClass = "vlc.desktop";
+        category = "Media";
+        isHidden = true;
+      }
+
+      # Games.
+      {
+        appClass = "xmoto.desktop";
+        clientClasses = [".xmoto-wrapped"];
+        category = "Games";
+      }
+    ];
   };
 }

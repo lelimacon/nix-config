@@ -1,112 +1,191 @@
-import config from "lib/config"
+import Gtk from "gi://Gtk?version=3.0"
+import config,
+{
+    AppOptions,
+} from "lib/config"
+import { launchApp, launchExecutable } from "lib/io"
 import
 {
     Application,
 } from "types/service/applications"
 
 
+type AppHandleType =
+{
+    app?: Application,
+    appConfig?: AppOptions | null,
+}
+
+
 const applicationService = await Service.import("applications")
 
 
+const rowCount = 5
 const iconSize = 36
 const spacing = 12
 
 
-const AppItem = (app: Application) => Widget.Button
-({
-    visible: true,
-    on_clicked: () =>
+const isMatch =
+(
+    prop?: string,
+    search?: string,
+) =>
+{
+    if (!prop)
     {
-        App.closeWindow("wp-drawer-overview")
-        app.launch()
-    },
-    tooltipText: app.name,
-    attribute: { app },
-    child: Widget.Box
+        return false;
+    }
+
+    if (!search)
+    {
+        return true;
+    }
+
+    return prop.toLowerCase().includes(search.toLowerCase());
+}
+
+const launch = (appHandle: AppHandleType) =>
+{
+    App.closeWindow("wp-drawer-overview")
+
+    if (appHandle.appConfig?.executable)
+    {
+        launchExecutable(appHandle.appConfig.executable)
+    }
+    else if (appHandle.app)
+    {
+        launchApp(appHandle.app)
+    }
+}
+
+const AppItem = (appHandle: AppHandleType) =>
+{
+    const app = appHandle.app
+    const appConfig = appHandle.appConfig
+    const appName = appConfig?.name || app?.name
+
+    const button = Widget.Button
     ({
-        vertical: true,
-        className: "app-item",
-        children:
-        [
-            Widget.Icon
-            ({
-                icon: app.icon_name || "",
-                size: iconSize,
-            }),
-            Widget.Label
-            ({
-                label: config.appNameSubstitutes[app.name] ?? app.name,
-                maxWidthChars: 8,
-                truncate: "end",
-            }),
-        ],
-    }),
-})
+        visible: true,
+        on_clicked: () =>
+        {
+            launch(appHandle)
+        },
+        tooltipText: appName,
+        attribute: { app, appConfig },
+        child: Widget.Box
+        ({
+            vertical: true,
+            className: "app-item",
+            children:
+            [
+                Widget.Icon
+                ({
+                    icon: appConfig?.iconName || app?.icon_name || "",
+                    size: iconSize,
+                }),
+                Widget.Label
+                ({
+                    //label: config.appNameSubstitutes[app.name] || app.name,
+                    label: appName,
+                    maxWidthChars: 8,
+                    //widthRequest: 20,
+                    //wrap: true,
+                    halign: Gtk.Align.CENTER,
+                    truncate: "end", // ellipsize.
+                }),
+            ],
+        }),
+    })
+
+    return button
+}
 
 const WoAppList = () =>
 {
-    let applicationItems = [].map(AppItem)
+    let allApps: AppHandleType[] = []
+    let filteredApps: AppHandleType[] = []
+    let filteredItems = [].map(AppItem)
 
     // Container holding the buttons.
     const list = Widget.FlowBox
     ({
         vpack: "start",
+        minChildrenPerLine: rowCount,
+        maxChildrenPerLine: rowCount,
+        css: `padding: ${spacing}px;`,
     })
 
-    // Repopulate the box, so the most frequent apps are on top of the list.
-    const repopulate = () =>
+    let filter = ""
+
+    // Filter app list.
+    const applyFilter = () =>
     {
-        for (const appItem of applicationItems)
+        for (const appItem of filteredItems)
         {
             list.remove(appItem)
         }
 
-        applicationItems = applicationService.list.map(AppItem)
+        filteredApps = allApps
+            .filter((o) =>
+                o.appConfig?.isHidden !== true && (
+                isMatch(o.appConfig?.appClass, filter) ||
+                isMatch(o.appConfig?.name, filter) ||
+                o.app?.match(filter)))
 
-        for(const appItem of applicationItems)
+        filteredItems = filteredApps.map(AppItem)
+
+        for (const appItem of filteredItems)
         {
             list.add(appItem)
         }
     }
 
-    //repopulate()
+    // Repopulate app list.
+    const repopulate = () =>
+    {
+        allApps = []
 
-    let filter = ""
+        for (const app of applicationService.list)
+        {
+            let appConfig = app.wm_class
+                ? config.apps.find(a => a.appClass === app.wm_class)
+                : app.desktop
+                ? config.apps.find(a => a.appClass === app.desktop)
+                : null
+            allApps.push({ app, appConfig })
+        }
+
+        for (const appConfig of config.apps.filter(a => a.executable))
+        {
+            allApps.push({ appConfig })
+        }
+
+        applyFilter()
+    }
 
     // Search entry.
     const searchBox = Widget.Entry
     ({
         hexpand: true,
-        css: `margin-bottom: ${spacing}px;`,
+        css: `margin: ${spacing}px; margin-bottom: ${spacing}px;`,
 
         // Launch the first item on Enter.
         on_accept: () =>
         {
-            if (!filter)
+            if (!filter || !filteredApps)
             {
                 return
             }
 
-            // Make sure we only consider visible (searched for) applications.
-	        const results = applicationItems.filter((item) => item.visible);
-            if (results[0])
-            {
-                App.closeWindow("wp-drawer-overview")
-                results[0].attribute.app.launch()
-            }
+            launch(filteredApps[0])
         },
 
         // Filter the list.
         on_change: ({ text }) =>
         {
             filter = text ?? ""
-
-            applicationItems.forEach(item =>
-            {
-                item.visible = filter
-                    ? item.attribute.app.match(filter)
-                    : true
-            })
+            applyFilter()
         },
     })
 
@@ -114,7 +193,6 @@ const WoAppList = () =>
     ({
         vertical: true,
         className: "wo-app-list",
-        css: `margin: ${spacing}px;`,
         children:
         [
             searchBox,

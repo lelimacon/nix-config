@@ -28,6 +28,17 @@ interface Theme
     fontFamily: string
 }
 
+export interface AppOptions
+{
+    appClass?: string
+    clientClasses: string[]
+    category?: string
+    name?: string
+    iconName?: string
+    executable?: string
+    isHidden?: boolean
+}
+
 interface Options
 {
     agsVersion: string
@@ -39,6 +50,7 @@ interface Options
     pinnedApps: string[]
     iconSubstitutes: { [original: string]: string }
     appNameSubstitutes: { [original: string]: string }
+    apps: AppOptions[]
 }
 
 

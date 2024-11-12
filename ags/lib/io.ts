@@ -61,6 +61,10 @@ export const launchApp =
     app: Application,
 ) =>
 {
+    print(`Launching app "${app.name}" (class=${app.wm_class}, desktop=${app.desktop}, exe=${app.executable}, description=${app.description})`)
+    app.launch()
+    return
+
     const exe = app.executable
         .split(/\s+/)
         .filter(str => !str.startsWith("%") && !str.startsWith("@"))
@@ -68,4 +72,20 @@ export const launchApp =
 
     bash(`${exe} &`)
     app.frequency += 1
+}
+
+/**
+ * Run app detached.
+ */
+export const launchExecutable =
+(
+    executable: string,
+) =>
+{
+    const exe = executable
+        .split(/\s+/)
+        .filter(str => !str.startsWith("%") && !str.startsWith("@"))
+        .join(" ")
+
+    bash(`${exe} &`)
 }

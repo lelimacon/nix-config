@@ -1,7 +1,7 @@
 import WaPanelButton from "./WaPanelButton"
 
 
-const systemtray = await Service.import("systemtray")
+const systemtrayService = await Service.import("systemtray")
 
 
 const iconSize = 36
@@ -9,7 +9,7 @@ const iconSize = 36
 
 const WoSystemTray = () =>
 {
-    const items = systemtray
+    const items = systemtrayService
         .bind("items")
         .as(items => items.map(item => WaPanelButton
         ({

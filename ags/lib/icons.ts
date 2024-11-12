@@ -1,9 +1,8 @@
 import GLib from "gi://GLib?version=2.0"
-import config from "./config"
 
 
 /**
-  * @returns substitute icon || name || fallback icon
+  * @returns name || fallback icon
   */
 export const getIcon =
 (
@@ -12,16 +11,22 @@ export const getIcon =
 ) =>
 {
     if (!name)
+    {
         return fallback || ""
+    }
 
     if (GLib.file_test(name, GLib.FileTest.EXISTS))
+    {
         return name
+    }
 
-    const icon = (config.iconSubstitutes[name] || name)
-    if (Utils.lookUpIcon(icon))
-        return icon
+    if (Utils.lookUpIcon(name))
+    {
+        return name
+    }
 
-    print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
+    print(`# No icon "${name}", fallback to "${fallback}"`)
+
     return fallback
 }
 

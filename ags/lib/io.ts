@@ -2,6 +2,7 @@ import
 {
     type Application,
 } from "types/service/applications"
+import config from "./config"
 
 
 /**
@@ -61,17 +62,9 @@ export const launchApp =
     app: Application,
 ) =>
 {
-    print(`Launching app "${app.name}" (class=${app.wm_class}, desktop=${app.desktop}, exe=${app.executable}, description=${app.description})`)
+    print(`# Launching app "${app.name}" (class=${app.wm_class}, desktop=${app.desktop}, exe=${app.executable}, description=${app.description})`)
     app.launch()
     return
-
-    const exe = app.executable
-        .split(/\s+/)
-        .filter(str => !str.startsWith("%") && !str.startsWith("@"))
-        .join(" ")
-
-    bash(`${exe} &`)
-    app.frequency += 1
 }
 
 /**
@@ -88,4 +81,24 @@ export const launchExecutable =
         .join(" ")
 
     bash(`${exe} &`)
+}
+
+/**
+ * Run app detached.
+ */
+export const findAppConfig =
+(
+    app: Application,
+) =>
+{
+    let appConfig = app.wm_class
+        ? config.apps.find(a => a.appClass === app.wm_class)
+        : null
+
+    if (!appConfig && app.desktop)
+    {
+        appConfig = config.apps.find(a => a.appClass === app.desktop)
+    }
+
+    return appConfig
 }

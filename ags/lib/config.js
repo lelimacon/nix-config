@@ -9,7 +9,7 @@ config.agsVersion = pkg.version ?? "undefined"
 const minVersion = "1.8.1"
 
 // Validate version.
-print(`AGS v${config.agsVersion} (min = v${minVersion})`)
+print(`# AGS v${config.agsVersion} (min = v${minVersion})`)
 if (config.agsVersion < minVersion)
 {
     console.error(Error(`AGS version too low`))

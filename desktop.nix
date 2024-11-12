@@ -216,18 +216,6 @@ let
       ];
       description = "List of pinned apps (used by taskbar).";
     };
-    "iconSubstitutes" = mkOption
-    {
-      type = types.attrs;
-      default = {};
-      description = "Key-values for substituting icons.";
-    };
-    "appNameSubstitutes" = mkOption
-    {
-      type = types.attrs;
-      default = {};
-      description = "Key-values for substituting application names.";
-    };
     "apps" = mkOption
     {
       type = types.listOf appOptions;
@@ -252,29 +240,17 @@ in
       }
     ];
     currentThemeName = "other";
-    iconSubstitutes =
-    {
-      "system-file-manager" = "file-manager";
-      "transmission-gtk" = "transmission";
-      "audio-headset-bluetooth" = "audio-headphones-symbolic";
-      "audio-card-analog-usb" = "audio-speakers-symbolic";
-      "audio-card-analog-pci" = "audio-card-symbolic";
-      "preferences-system" = "emblem-system-symbolic";
-      "com.github.Aylur.ags-symbolic" = "controls-symbolic";
-      "com.github.Aylur.ags" = "controls-symbolic";
-    };
-    appNameSubstitutes =
-    {
-      "GNU Image Manipulation Program" = "GIMP";
-      "Telegram Desktop" = "Telegram";
-      "VLC media player" = "VLC";
-    };
     apps =
     [
       # Social.
       {
         appClass = "firefox";
         category = "Social";
+      }
+      {
+        appClass = "org.telegram.desktop.desktop";
+        category = "Social";
+        name = "Telegram";
       }
       {
         appClass = "discord.desktop";
@@ -286,6 +262,14 @@ in
       }
 
       # Utils.
+      {
+        appClass = "kitty.desktop";
+        category = "Utils";
+      }
+      {
+        appClass = "io.missioncenter.MissionCenter.desktop";
+        category = "Utils";
+      }
       {
         appClass = "1Password";
         category = "Utils";
@@ -302,14 +286,34 @@ in
         executable = "ags -i";
       }
       {
+        appClass = "nemo";
+        iconName = "file-manager";
+        category = "Utils";
+      }
+      {
         appClass = "org.pulseaudio.pavucontrol.desktop";
         category = "Utils";
         isHidden = true;
       }
       {
-        appClass = "nemo";
-        iconName = "file-manager";
+        appClass = "XTerm";
         category = "Utils";
+        isHidden = true;
+      }
+      {
+        appClass = "nixos-manual.desktop";
+        category = "Utils";
+        isHidden = true;
+      }
+      {
+        appClass = "nm-connection-editor.desktop";
+        category = "Utils";
+        isHidden = true;
+      }
+      {
+        appClass = "vim.desktop";
+        category = "Utils";
+        isHidden = true;
       }
 
       # Code.
@@ -323,11 +327,28 @@ in
         appClass = "postman.desktop";
         category = "Code";
       }
+      {
+        appClass = "jetbrains-rider";
+        clientClasses = ["jetbrains-rider"];
+        category = "Code";
+      }
 
       # Media.
       {
+        appClass = "nemo.desktop";
+        category = "Media";
+        name = "Nemo";
+        iconName = "file-manager";
+        isHidden = true;
+      }
+      {
+        appClass = "Spotify";
+        category = "Media";
+      }
+      {
         appClass = "gimp.desktop";
         category = "Media";
+        name = "GIMP";
       }
       {
         appClass = "org.inkscape.Inkscape.desktop";
@@ -336,7 +357,12 @@ in
       {
         appClass = "vlc.desktop";
         category = "Media";
+        name = "VLC";
         isHidden = true;
+      }
+      {
+        appClass = "Blender";
+        category = "Media";
       }
 
       # Games.

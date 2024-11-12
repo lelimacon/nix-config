@@ -1,5 +1,6 @@
 import
 {
+    findAppConfig,
     launchApp,
 } from "../lib/io"
 import
@@ -77,22 +78,16 @@ const WaWindowItem =
         ? config.apps.find(app => app.clientClasses.includes(client.class))
         : null
 
-    print("TEST2", client.class, appConfig?.name)
-
     const app = applicationsService.list.find(app => app.match(appConfig?.appClass || client.class))
 
     if (app && !appConfig)
     {
-        appConfig = app.wm_class
-            ? config.apps.find(a => a.appClass === app.wm_class)
-            : app.desktop
-            ? config.apps.find(a => a.appClass === app.desktop)
-            : null
+        appConfig = findAppConfig(app)
     }
 
     print(app
-        ? `Client created: ${client.address}, class=${client.class}, wm_class=${app.wm_class}`
-        : `Client created: ${client.address}, class=${client.class}, no app matched`)
+        ? `# Client created: ${client.address}, class=${client.class}, wm_class=${app.wm_class}`
+        : `# Client created: ${client.address}, class=${client.class}, no app matched`)
 
     const button = WaPanelButton
     ({

@@ -3,7 +3,12 @@ import config,
 {
     AppOptions,
 } from "lib/config"
-import { launchApp, launchExecutable } from "lib/io"
+import
+{
+    findAppConfig,
+    launchApp,
+    launchExecutable,
+} from "lib/io"
 import
 {
     Application,
@@ -24,6 +29,27 @@ const rowCount = 5
 const iconSize = 36
 const spacing = 12
 
+
+// Compile array of category names, with null for rest.
+const categories = [... new Set(config.apps.map(a => a.category)), null]
+
+
+const getAppHandles = () =>
+{
+    let apps: AppHandleType[] = []
+
+    for (const app of applicationService.list)
+    {
+        apps.push({ app, appConfig: findAppConfig(app) })
+    }
+
+    for (const appConfig of config.apps.filter(a => a.executable))
+    {
+        apps.push({ appConfig })
+    }
+
+    return apps
+}
 
 const isMatch =
 (
@@ -72,7 +98,6 @@ const AppItem = (appHandle: AppHandleType) =>
             launch(appHandle)
         },
         tooltipText: appName,
-        attribute: { app, appConfig },
         child: Widget.Box
         ({
             vertical: true,
@@ -86,7 +111,6 @@ const AppItem = (appHandle: AppHandleType) =>
                 }),
                 Widget.Label
                 ({
-                    //label: config.appNameSubstitutes[app.name] || app.name,
                     label: appName,
                     maxWidthChars: 8,
                     //widthRequest: 20,
@@ -101,13 +125,12 @@ const AppItem = (appHandle: AppHandleType) =>
     return button
 }
 
-const WoAppList = () =>
+const buildCategory =
+(
+    name: string,
+    appHandles: AppHandleType[],
+) =>
 {
-    let allApps: AppHandleType[] = []
-    let filteredApps: AppHandleType[] = []
-    let filteredItems = [].map(AppItem)
-
-    // Container holding the buttons.
     const list = Widget.FlowBox
     ({
         vpack: "start",
@@ -116,52 +139,71 @@ const WoAppList = () =>
         css: `padding: ${spacing}px;`,
     })
 
+    for (const appHandle of appHandles)
+    {
+        list.add(AppItem(appHandle))
+    }
+
+    const categoryBox = Widget.Box
+    ({
+        vertical: true,
+        children:
+        [
+            Widget.Label
+            ({
+                className: "category-label",
+                label: name,
+                halign: Gtk.Align.START,
+            }),
+            list,
+        ],
+    })
+
+    return categoryBox
+}
+
+const WoAppList = () =>
+{
+    let allApps: AppHandleType[] = []
+    let filteredApps: AppHandleType[] = []
+
+    const appsBox = Widget.Scrollable
+    ({
+        hscroll: "never",
+        vexpand: true,
+    })
+
     let filter = ""
 
     // Filter app list.
     const applyFilter = () =>
     {
-        for (const appItem of filteredItems)
+        if (!filter)
         {
-            list.remove(appItem)
+            filteredApps = allApps.filter((o) => o.appConfig?.isHidden !== true)
         }
-
-        filteredApps = allApps
-            .filter((o) =>
-                o.appConfig?.isHidden !== true && (
+        else
+        {
+            filteredApps = allApps.filter((o) =>
                 isMatch(o.appConfig?.appClass, filter) ||
                 isMatch(o.appConfig?.name, filter) ||
-                o.app?.match(filter)))
-
-        filteredItems = filteredApps.map(AppItem)
-
-        for (const appItem of filteredItems)
-        {
-            list.add(appItem)
-        }
-    }
-
-    // Repopulate app list.
-    const repopulate = () =>
-    {
-        allApps = []
-
-        for (const app of applicationService.list)
-        {
-            let appConfig = app.wm_class
-                ? config.apps.find(a => a.appClass === app.wm_class)
-                : app.desktop
-                ? config.apps.find(a => a.appClass === app.desktop)
-                : null
-            allApps.push({ app, appConfig })
+                o.app?.match(filter))
         }
 
-        for (const appConfig of config.apps.filter(a => a.executable))
+        const children: Gtk.Widget[] = categories.map(c =>
         {
-            allApps.push({ appConfig })
-        }
+            const name = c || "Others"
+            const apps = filteredApps.filter(a => a.appConfig?.category == c)
+            return buildCategory(name, apps)
+        })
 
-        applyFilter()
+        const box = Widget.Box
+        ({
+            vertical: true,
+            children: children,
+        })
+
+        appsBox.child = box
     }
 
     // Search entry.
@@ -196,12 +238,7 @@ const WoAppList = () =>
         children:
         [
             searchBox,
-            Widget.Scrollable
-            ({
-                hscroll: "never",
-                vexpand: true,
-                child: list,
-            }),
+            appsBox,
         ],
         setup: (self) => self.hook(App, (_, windowName, visible) =>
         {
@@ -213,9 +250,11 @@ const WoAppList = () =>
             // When the applauncher shows up.
             if (visible)
             {
-                repopulate()
+                // Repopulate apps.
+                allApps = getAppHandles()
                 searchBox.text = ""
                 searchBox.grab_focus()
+                applyFilter()
             }
         }),
     })

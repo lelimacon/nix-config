@@ -13,7 +13,7 @@ const WoClock = () =>
     ({
         class_name: "wo-clock",
         vertical: true,
-        spacing: 8,
+        spacing: 4,
         children:
         [
             Widget.Label

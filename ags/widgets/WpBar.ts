@@ -16,47 +16,20 @@ const start =
         //spacing: 8,
         children:
         [
-            // Overview.
+            // Events.
             WaPanelButton
             ({
                 appearence: "flat",
-                bind_to_window: "wp-drawer-overview",
+                bind_to_window: "wp-drawer-events",
                 child: Widget.Box
                 ({
                     vertical: true,
+                    marginTop: 10,
+                    spacing: 8,
                     children:
                     [
-                        WoWorkspaces(),
-                    ]
-                }),
-            }),
-
-            WoWindowList(),
-        ],
-    })
-
-const end =
-    Widget.Box
-    ({
-        vpack: "end",
-        vertical: true,
-        //spacing: 8,
-        children:
-        [
-            WoSystemTray(),
-
-            // Volume.
-            WaPanelButton
-            ({
-                appearence: "flat",
-                bind_to_window: "wp-drawer-volume",
-                child: Widget.Box
-                ({
-                    vertical: true,
-                    hexpand: true,
-                    children:
-                    [
-                        WoVolumeIndicator(),
+                        WoNotificationIndicator(),
+                        WoClock(),
                     ]
                 }),
             }),
@@ -77,18 +50,51 @@ const end =
                 }),
             }),
 
-            // Events.
+            // Volume.
             WaPanelButton
             ({
                 appearence: "flat",
-                bind_to_window: "wp-drawer-events",
+                bind_to_window: "wp-drawer-volume",
                 child: Widget.Box
                 ({
                     vertical: true,
+                    hexpand: true,
                     children:
                     [
-                        WoClock(),
-                        WoNotificationIndicator(),
+                        WoVolumeIndicator(),
+                    ]
+                }),
+            }),
+
+            // Tray.
+            WoSystemTray(),
+        ],
+    })
+
+const end =
+    Widget.Box
+    ({
+        vpack: "end",
+        vertical: true,
+        //spacing: 8,
+        children:
+        [
+            // Taskbar.
+            WoWindowList(),
+
+            // Overview.
+            WaPanelButton
+            ({
+                appearence: "flat",
+                bind_to_window: "wp-drawer-overview",
+                child: Widget.Box
+                ({
+                    vertical: true,
+                    marginTop: 2,
+                    marginBottom: 6,
+                    children:
+                    [
+                        WoWorkspaces(),
                     ]
                 }),
             }),

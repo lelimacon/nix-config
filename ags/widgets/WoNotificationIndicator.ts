@@ -1,14 +1,14 @@
-const notifications = await Service.import("notifications")
+const notificationsService = await Service.import("notifications")
 
 
 const WoNotificationIndicator = () =>
 {
-    const popups = notifications.bind("popups")
+    const popups = notificationsService.bind("popups")
 
-    const indicator = Widget.Box
+    const box = Widget.Box
     ({
-        className: "wo-notification-indicator",
         hpack: "center",
+        className: "wo-notification-indicator",
         children:
         [
             Widget.Icon
@@ -24,7 +24,7 @@ const WoNotificationIndicator = () =>
         ],
     })
 
-    return indicator
+    return box
 }
 
 

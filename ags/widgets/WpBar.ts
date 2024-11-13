@@ -1,19 +1,19 @@
 import Gtk from "gi://Gtk?version=3.0"
-import WoClock from "./WoClock"
-import WoNotificationIndicator from "./WoNotificationIndicator"
-import WoSystemTray from "./WoSystemTray"
-import WoWindowList from "./WoWindowList"
-import WoWorkspaces from "./WoWorkspaces"
-import WaPanelButton from "./WaPanelButton"
-import WoVolumeIndicator from "./WoVolumeIndicator"
-import WoBatteryIndicator from "./WoBatteryIndicator"
+import WoClock from "widgets/WoClock"
+import WoNotificationIndicator from "widgets/WoNotificationIndicator"
+import WoSystemTray from "widgets/WoSystemTray"
+import WoWindowList from "widgets/WoWindowList"
+import WoWorkspaces from "widgets/WoWorkspaces"
+import WaPanelButton from "widgets/WaPanelButton"
+import WoVolumeIndicator from "widgets/WoVolumeIndicator"
+import WoPowerIndicator from "./WoPowerIndicator"
 
 
 const start =
     Widget.Box
     ({
         vertical: true,
-        spacing: 8,
+        //spacing: 8,
         children:
         [
             // Overview.
@@ -45,18 +45,34 @@ const end =
         [
             WoSystemTray(),
 
-            // Hardware indicators.
+            // Volume.
             WaPanelButton
             ({
                 appearence: "flat",
-                bind_to_window: "wp-drawer-hardware",
+                bind_to_window: "wp-drawer-volume",
                 child: Widget.Box
                 ({
                     vertical: true,
+                    hexpand: true,
                     children:
                     [
                         WoVolumeIndicator(),
-                        WoBatteryIndicator(),
+                    ]
+                }),
+            }),
+
+            // Power (battery, screen).
+            WaPanelButton
+            ({
+                appearence: "flat",
+                bind_to_window: "wp-drawer-power",
+                child: Widget.Box
+                ({
+                    vertical: true,
+                    hexpand: true,
+                    children:
+                    [
+                        WoPowerIndicator(),
                     ]
                 }),
             }),

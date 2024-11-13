@@ -2,13 +2,13 @@ import
 {
     findAppConfig,
     launchApp,
-} from "../lib/io"
+} from "lib/io"
 import
 {
     getIcon,
     icons,
-} from "../lib/icons"
-import WaPanelButton from "./WaPanelButton"
+} from "lib/icons"
+import WaPanelButton from "widgets/WaPanelButton"
 import Gtk from "types/@girs/gtk-3.0/gtk-3.0"
 import Box from "types/widgets/box"
 import config from "lib/config"

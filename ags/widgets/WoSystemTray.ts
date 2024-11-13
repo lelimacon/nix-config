@@ -1,4 +1,4 @@
-import WaPanelButton from "./WaPanelButton"
+import WaPanelButton from "widgets/WaPanelButton"
 
 
 const systemtrayService = await Service.import("systemtray")

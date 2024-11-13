@@ -98,30 +98,30 @@ export const icons =
         },
         mixer: "mixer-symbolic",
     },
-    powerprofile:
-    {
-        balanced: "power-profile-balanced-symbolic",
-        "power-saver": "power-profile-power-saver-symbolic",
-        performance: "power-profile-performance-symbolic",
-    },
-    asusctl:
+    power:
     {
         profile:
         {
-            Balanced: "power-profile-balanced-symbolic",
-            Quiet: "power-profile-power-saver-symbolic",
-            Performance: "power-profile-performance-symbolic",
+            balanced: "power-profile-balanced-symbolic",
+            powerSaver: "power-profile-power-saver-symbolic",
+            performance: "power-profile-performance-symbolic",
         },
-        mode:
+        actions:
         {
-            Integrated: "processor-symbolic",
-            Hybrid: "controller-symbolic",
+            sleep: "weather-clear-night-symbolic",
+            reboot: "system-reboot-symbolic",
+            logout: "system-log-out-symbolic",
+            shutdown: "system-shutdown-symbolic",
         },
     },
     battery:
     {
         charging: "battery-flash-symbolic",
         warning: "battery-empty-symbolic",
+        high: "battery-high-symbolic",
+        medium: "battery-medium-symbolic",
+        low: "battery-low-symbolic",
+        empty: "battery-empty-symbolic",
     },
     bluetooth:
     {
@@ -133,13 +133,6 @@ export const icons =
         indicator: "display-brightness-symbolic",
         keyboard: "keyboard-brightness-symbolic",
         screen: "display-brightness-symbolic",
-    },
-    powermenu:
-    {
-        sleep: "weather-clear-night-symbolic",
-        reboot: "system-reboot-symbolic",
-        logout: "system-log-out-symbolic",
-        shutdown: "system-shutdown-symbolic",
     },
     recorder:
     {

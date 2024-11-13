@@ -1,6 +1,6 @@
 import Gtk from "gi://Gtk?version=3.0"
-import WpDrawer from "./WpDrawer"
-import WoAppList from "./WoAppList"
+import WpDrawer from "widgets/WpDrawer"
+import WoAppList from "widgets/WoAppList"
 
 
 const WpDrawerOverview =

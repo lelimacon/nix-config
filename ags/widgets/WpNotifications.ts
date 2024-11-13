@@ -1,5 +1,5 @@
 import Gtk from "gi://Gtk?version=3.0"
-import WoNotification from "./WoNotification"
+import WoNotification from "widgets/WoNotification"
 
 
 const notifications = await Service.import("notifications")

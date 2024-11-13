@@ -1,4 +1,7 @@
-import { ButtonProps } from "types/widgets/button"
+import
+{
+    ButtonProps,
+} from "types/widgets/button"
 
 
 type WaPanelButtonProps = ButtonProps &

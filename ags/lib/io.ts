@@ -2,7 +2,7 @@ import
 {
     type Application,
 } from "types/service/applications"
-import config from "./config"
+import config from "lib/config"
 
 
 /**

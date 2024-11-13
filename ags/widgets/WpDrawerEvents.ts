@@ -1,6 +1,6 @@
 import Gtk from "gi://Gtk?version=3.0"
-import WoNotification from "./WoNotification"
-import WpDrawer from "./WpDrawer"
+import WoNotification from "widgets/WoNotification"
+import WpDrawer from "widgets/WpDrawer"
 
 
 const notifications = await Service.import("notifications")

@@ -1,8 +1,6 @@
 import Gtk from "gi://Gtk?version=3.0"
+import notificationsService from "services/notificationsService"
 import WoNotification from "widgets/WoNotification"
-
-
-const notifications = await Service.import("notifications")
 
 
 const WpNotifications =
@@ -13,12 +11,12 @@ const WpNotifications =
     const list = Widget.Box
     ({
         vertical: true,
-        children: notifications.popups.map(WoNotification),
+        children: notificationsService.popups.map(WoNotification),
     })
 
     const onNotified = (_, id: number) =>
     {
-        const notification = notifications.getNotification(id)
+        const notification = notificationsService.getNotification(id)
         if (notification)
         {
             list.children =
@@ -36,8 +34,8 @@ const WpNotifications =
             ?.destroy()
     }
 
-    list.hook(notifications, onNotified, "notified")
-    list.hook(notifications, onDismissed, "dismissed")
+    list.hook(notificationsService, onNotified, "notified")
+    list.hook(notificationsService, onDismissed, "dismissed")
 
     return Widget.Window
     ({

@@ -1,3 +1,4 @@
+import audioService from "services/audioService"
 import Gtk from "gi://Gtk?version=3.0"
 import
 {
@@ -5,9 +6,6 @@ import
 } from "lib/icons"
 import WpDrawer from "widgets/WpDrawer"
 import WaSection from "widgets/WaSection"
-
-
-const audioService = await Service.import("audio")
 
 
 const buildVolumeSection = () =>

@@ -40,7 +40,7 @@ const end =
     ({
         vpack: "end",
         vertical: true,
-        spacing: 8,
+        //spacing: 8,
         children:
         [
             WoSystemTray(),

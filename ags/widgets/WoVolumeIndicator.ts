@@ -1,10 +1,8 @@
+import audioService from "services/audioService"
 import
 {
     icons,
 } from "lib/icons"
-
-
-const audioService = await Service.import("audio")
 
 
 const iconPerLevel =

@@ -1,3 +1,4 @@
+import applicationsService from "services/applicationsService"
 import Gtk from "gi://Gtk?version=3.0"
 import config,
 {
@@ -22,9 +23,6 @@ type AppHandleType =
 }
 
 
-const applicationService = await Service.import("applications")
-
-
 const rowCount = 5
 const iconSize = 36
 const spacing = 12
@@ -38,7 +36,7 @@ const getAppHandles = () =>
 {
     let apps: AppHandleType[] = []
 
-    for (const app of applicationService.list)
+    for (const app of applicationsService.list)
     {
         apps.push({ app, appConfig: findAppConfig(app) })
     }

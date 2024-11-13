@@ -3,12 +3,10 @@ import
 {
     icons,
 } from "lib/icons"
+import batteryService from "services/batteryService"
 import brightnessService from "services/brightnessService"
 import WpDrawer from "widgets/WpDrawer"
 import WaSection from "widgets/WaSection"
-
-
-const batteryService = await Service.import("battery")
 
 
 const buildScreenSection = () =>

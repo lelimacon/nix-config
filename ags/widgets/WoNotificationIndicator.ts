@@ -1,4 +1,4 @@
-const notificationsService = await Service.import("notifications")
+import notificationsService from "services/notificationsService"
 
 
 const WoNotificationIndicator = () =>

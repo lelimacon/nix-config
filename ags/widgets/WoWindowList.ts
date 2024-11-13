@@ -1,3 +1,4 @@
+import applicationsService from "services/applicationsService"
 import
 {
     findAppConfig,
@@ -8,6 +9,7 @@ import
     getIcon,
     icons,
 } from "lib/icons"
+import hyprlandService from "services/hyprlandService"
 import WaPanelButton from "widgets/WaPanelButton"
 import Gtk from "types/@girs/gtk-3.0/gtk-3.0"
 import Box from "types/widgets/box"
@@ -16,10 +18,6 @@ import config from "lib/config"
 
 type WindowWidgetTypeProps = { address: string }
 type WindowWidgetType = Box<Gtk.Widget, WindowWidgetTypeProps>
-
-
-const hyprlandService = await Service.import("hyprland")
-const applicationsService = await Service.import("applications")
 
 
 const isExclusive = false

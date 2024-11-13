@@ -2,9 +2,7 @@ import
 {
     icons,
 } from "lib/icons"
-
-
-const batteryService = await Service.import("battery")
+import batteryService from "services/batteryService"
 
 
 const WoPowerIndicator = () =>

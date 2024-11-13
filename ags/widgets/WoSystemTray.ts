@@ -1,7 +1,5 @@
+import systemtrayService from "services/systemtrayService"
 import WaPanelButton from "widgets/WaPanelButton"
-
-
-const systemtrayService = await Service.import("systemtray")
 
 
 const iconSize = 36

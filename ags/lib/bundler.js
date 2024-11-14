@@ -39,6 +39,7 @@ const getVariables = () =>
     const variables =
     {
         "bg": transparentize(theme.dialog.opacity, theme.bg),
+        "bg-soft": transparentize(0.9, theme.fg),
         "fg": theme.fg,
 
         "color-emphasis": theme.emphasisColor,

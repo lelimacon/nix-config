@@ -7,6 +7,7 @@ import batteryService from "services/batteryService"
 import brightnessService from "services/brightnessService"
 import WpDrawer from "widgets/WpDrawer"
 import WaSection from "widgets/WaSection"
+import WaHeader from "./WaHeader"
 
 
 const buildScreenSection = () =>
@@ -48,8 +49,11 @@ const buildScreenSection = () =>
 
     return WaSection
     ({
-        title: "Screen",
-        child: slider,
+        children:
+        [
+            WaHeader({ label: "Screen" }),
+            slider,
+        ],
     })
 }
 
@@ -132,8 +136,11 @@ const buildBatterySection = () =>
 
     return WaSection
     ({
-        title: "Battery",
-        child: slider,
+        children:
+        [
+            WaHeader({ label: "Battery" }),
+            slider,
+        ],
     })
 }
 

@@ -342,7 +342,7 @@ in
         isHidden = true;
       }
       {
-        appClass = "Spotify";
+        appClass = "spotify";
         category = "Media";
       }
       {

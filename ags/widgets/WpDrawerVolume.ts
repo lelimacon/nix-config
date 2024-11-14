@@ -6,6 +6,7 @@ import
 } from "lib/icons"
 import WpDrawer from "widgets/WpDrawer"
 import WaSection from "widgets/WaSection"
+import WaHeader from "./WaHeader"
 
 
 const buildVolumeSection = () =>
@@ -68,11 +69,14 @@ const buildVolumeSection = () =>
 
     return WaSection
     ({
-        title: "Volume",
-        child: slider,
+        children:
+        [
+            WaHeader({ label: "Volume" }),
+            slider,
+        ],
     })
 }
-    
+
 const WpDrawerVolume =
 (
 ): Gtk.Window =>

@@ -14,6 +14,8 @@ import
 {
     Application,
 } from "types/service/applications"
+import WaSection from "./WaSection"
+import WaHeader from "./WaHeader"
 
 
 type AppHandleType =
@@ -142,22 +144,16 @@ const buildCategory =
         list.add(AppItem(appHandle))
     }
 
-    const categoryBox = Widget.Box
+    const section = WaSection
     ({
-        vertical: true,
         children:
         [
-            Widget.Label
-            ({
-                className: "category-label",
-                label: name,
-                halign: Gtk.Align.START,
-            }),
+            WaHeader({ label: name }),
             list,
         ],
     })
 
-    return categoryBox
+    return section
 }
 
 const WoAppList = () =>

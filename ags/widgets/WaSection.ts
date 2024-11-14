@@ -1,41 +1,21 @@
-import
-{
-    BoxProps,
-} from "types/widgets/box"
+import Gtk from "gi://Gtk?version=3.0"
 
+
+type WaSectionProps =
+{
+    children: Gtk.Widget[],
+}
 
 
 const WaSection =
 ({
-    title,
-    child,
-}) => Widget.Box
+    children,
+}: WaSectionProps) => Widget.Box
 ({
     vertical: true,
     vpack: "start",
-    className: "wa-section-container",
-    children:
-    [
-        Widget.Box
-        ({
-            className: "wa-section-label",
-            hpack: "fill",
-            child: Widget.Label
-            ({
-                hexpand: true,
-                hpack: 'start',
-                label: title,
-            }),
-        }),
-        Widget.Box
-        ({
-            vertical: true,
-            hpack: "fill",
-            vexpand: true,
-            className: "menu-items-section",
-            child: child,
-        }),
-    ],
+    className: "wa-section",
+    children: children,
 })
 
 

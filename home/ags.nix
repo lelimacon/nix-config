@@ -12,22 +12,28 @@
 
   home.packages = with pkgs;
   [
-    hello
+    # Dev dependencies.
+    gtk3
     bun
-    dart-sass
-    fd
-    brightnessctl
-    swww
-    #inputs.matugen.packages.${system}.default
+    dart-sass # scss.
     slurp
-    wf-recorder
+
+    # CLI tools.
+    fd
+
+    # APIs.
+    brightnessctl
+    bluez # for `bluetoothctl`
+
+    # Programs.
+    swww
     wl-clipboard
-    wayshot
-    swappy
-    hyprpicker
+    wayshot # screenshot tool.
+    swappy # snapshot editing app.
+    wf-recorder # screen recorder.
+    hyprpicker # color picker.
     pavucontrol
     networkmanager
-    gtk3
   ];
 
   programs.ags =

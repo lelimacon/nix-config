@@ -6,14 +6,14 @@ import
 
 type WaPanelButtonProps = ButtonProps &
 {
-    bind_to_window?: string,
-    appearence?: "default" | "flat" | "primary",
+    bindToWindow?: string,
+    appearence?: "default" | "flat" | "primary" | "list-item",
 }
 
 
 const WaPanelButton =
 ({
-    bind_to_window = "",
+    bindToWindow = "",
     appearence = "default",
     child,
     setup,
@@ -26,9 +26,9 @@ const WaPanelButton =
     {
         let open = false
 
-        if (bind_to_window)
+        if (bindToWindow)
         {
-            self.on_clicked = () => App.toggleWindow(bind_to_window)
+            self.on_clicked = () => App.toggleWindow(bindToWindow)
         }
 
         self.toggleClassName("wa-panel-button")
@@ -36,12 +36,12 @@ const WaPanelButton =
 
         self.hook(App, (_, window, visible) =>
         {
-            if (window !== bind_to_window)
+            if (window !== bindToWindow)
             {
                 // Opening another dialog, close this one.
                 if (open && visible)
                 {
-                    App.closeWindow(bind_to_window)
+                    App.closeWindow(bindToWindow)
                 }
                 return
             }
@@ -53,7 +53,7 @@ const WaPanelButton =
             }
             else if (visible)
             {
-                //console.log(bind_to_window, window, visible)
+                //console.log(bindToWindow, window, visible)
                 open = true
                 self.toggleClassName("active")
             }

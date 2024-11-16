@@ -7,6 +7,7 @@ import WoWorkspaces from "widgets/WoWorkspaces"
 import WaPanelButton from "widgets/WaPanelButton"
 import WoVolumeIndicator from "widgets/WoVolumeIndicator"
 import WoPowerIndicator from "./WoPowerIndicator"
+import WoBluetoothIndicator from "./WoBluetoothIndicator"
 
 
 const start =
@@ -20,7 +21,7 @@ const start =
             WaPanelButton
             ({
                 appearence: "flat",
-                bind_to_window: "wp-drawer-events",
+                bindToWindow: "wp-drawer-events",
                 child: Widget.Box
                 ({
                     vertical: true,
@@ -28,8 +29,8 @@ const start =
                     spacing: 8,
                     children:
                     [
-                        WoNotificationIndicator(),
                         WoClock(),
+                        WoNotificationIndicator(),
                     ]
                 }),
             }),
@@ -38,7 +39,7 @@ const start =
             WaPanelButton
             ({
                 appearence: "flat",
-                bind_to_window: "wp-drawer-power",
+                bindToWindow: "wp-drawer-power",
                 child: Widget.Box
                 ({
                     vertical: true,
@@ -54,7 +55,7 @@ const start =
             WaPanelButton
             ({
                 appearence: "flat",
-                bind_to_window: "wp-drawer-volume",
+                bindToWindow: "wp-drawer-volume",
                 child: Widget.Box
                 ({
                     vertical: true,
@@ -62,6 +63,22 @@ const start =
                     children:
                     [
                         WoVolumeIndicator(),
+                    ]
+                }),
+            }),
+
+            // Bluetooth.
+            WaPanelButton
+            ({
+                appearence: "flat",
+                bindToWindow: "wp-drawer-bluetooth",
+                child: Widget.Box
+                ({
+                    vertical: true,
+                    hexpand: true,
+                    children:
+                    [
+                        WoBluetoothIndicator(),
                     ]
                 }),
             }),
@@ -86,7 +103,7 @@ const end =
             WaPanelButton
             ({
                 appearence: "flat",
-                bind_to_window: "wp-drawer-overview",
+                bindToWindow: "wp-drawer-overview",
                 child: Widget.Box
                 ({
                     vertical: true,

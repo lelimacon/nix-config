@@ -12,7 +12,7 @@ const WoSystemTray = () =>
         .as(items => items.map(item => WaPanelButton
         ({
             appearence: "flat",
-            tooltip_markup: item.bind("tooltip_markup"),
+            tooltipMarkup: item.bind("tooltip_markup"),
             on_primary_click: (_, event) => item.activate(event),
             on_secondary_click: (_, event) => item.openMenu(event),
             child: Widget.Icon

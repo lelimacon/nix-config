@@ -12,7 +12,7 @@
   #services.xserver.displayManager.sddm.wayland.enable = true;
 
   # Configure keymap in X11.
-  services.xserver.exportConfiguration = true; # enable `localectl`.
+  services.xserver.exportConfiguration = true; # for `localectl`.
   services.xserver.xkb =
   {
     layout = "fr";

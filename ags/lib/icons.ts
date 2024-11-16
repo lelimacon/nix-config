@@ -143,6 +143,8 @@ export const icons =
         noisy: "org.gnome.Settings-notifications-symbolic",
         silent: "notifications-disabled-symbolic",
         message: "chat-bubbles-symbolic",
+        none: "notifications-disabled-symbolic",
+        some: "preferences-system-notifications-symbolic",
     },
     trash:
     {

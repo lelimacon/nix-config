@@ -9,8 +9,7 @@ const WaHeader =
     label,
 }: WaHeaderProps) => Widget.Box
 ({
-    vertical: true,
-    vpack: "start",
+    vpack: "center",
     className: "wa-header",
     child: Widget.Label
     ({

@@ -1,3 +1,4 @@
+import { icons } from "lib/icons"
 import notificationsService from "services/notificationsService"
 
 
@@ -13,13 +14,13 @@ const WoNotificationIndicator = () =>
         [
             Widget.Icon
             ({
-                visible: popups.as(p => p.length == 0),
-                icon: "notifications-disabled-symbolic",
+                visible: popups.as(p => p.length === 0),
+                icon: icons.notifications.none,
             }),
             Widget.Icon
             ({
                 visible: popups.as(p => p.length > 0),
-                icon: "preferences-system-notifications-symbolic",
+                icon: icons.notifications.some,
             }),
         ],
     })

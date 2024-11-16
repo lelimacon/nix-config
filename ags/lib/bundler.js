@@ -26,6 +26,21 @@ async (
     return false
 }
 
+export const requireDependencies =
+async (
+    /** @type {string[]} */ bins,
+) =>
+{
+    const result = hasDependencies(bins)
+
+    if (!result)
+    {
+        App.quit()
+    }
+
+    return result
+}
+
 const getVariables = () =>
 {
     const theme = config.currentTheme

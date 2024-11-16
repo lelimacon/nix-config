@@ -1,4 +1,5 @@
 import WpBar from "widgets/WpBar"
+import WpDrawerBluetooth from "widgets/WpDrawerBluetooth"
 import WpDrawerEvents from "widgets/WpDrawerEvents"
 import WpDrawerOverview from "widgets/WpDrawerOverview"
 import WpDrawerPower from "widgets/WpDrawerPower"
@@ -33,6 +34,7 @@ App.config
         WpDrawerEvents(),
         WpDrawerPower(),
         WpDrawerVolume(),
+        WpDrawerBluetooth(),
 
         WpNotifications(1),
     ],

@@ -5,6 +5,8 @@
 {
   imports =
   [
+    inputs.home-manager.nixosModules.default
+
     ../../modules/culture.nix
     ../../modules/fonts.nix
     ../../modules/hyprland.nix
@@ -15,8 +17,6 @@
 
     ./hardware-configuration.nix
     ./hardware-overrides.nix
-
-    inputs.home-manager.nixosModules.default
   ];
 
   nix.settings =
@@ -31,19 +31,6 @@
   home-manager =
   {
     users."lelimacon" = import ../../../home/profiles/all.nix;
-    #users."lelimacon" =
-    #{
-    #  imports =
-    #  [
-    #    ../home
-    #    ../desktop/gnome
-    #    ../desktop/hyprland
-    #  ];
-    #};
-    #users."lelimacon" = import ../../desktop/hyprland;
-    extraSpecialArgs =
-    {
-      inherit inputs;
-    };
+    extraSpecialArgs = { inherit inputs; };
   };
 }

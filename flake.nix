@@ -20,12 +20,6 @@
     #  url = "github:aylur/astal";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
-    #desktop.url = "./desktop/hyprland";
-    #desktop =
-    #{
-    #  url = "./desktop/hyprland";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
   };
 
   outputs = inputs @
@@ -44,27 +38,13 @@
     pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
   in
   {
-    #imports =
-    #[
-    #  ./desktop/hyprland
-    #];
-
     # System configuration.
     # `nixos-rebuild switch`.
     nixosConfigurations."surfaceLaptop3" = nixpkgs.lib.nixosSystem
     {
       #system = "x86_64-linux";
-      modules =
-      [
-        #./nixos
-        #./hosts/surfaceLaptop3
-        ./nixos/hosts/surfaceLaptop3
-        #inputs.home-manager.nixosModules.default
-      ];
-      specialArgs =
-      {
-        inherit inputs outputs pkgs-stable;
-      };
+      modules = [ ./nixos/hosts/surfaceLaptop3 ];
+      specialArgs = { inherit inputs outputs pkgs-stable; };
     };
 
     # Standalone Home Manager configuration.
@@ -72,17 +52,8 @@
     homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
     {
       pkgs = nixpkgs.legacyPackages.${system};
-      modules =
-      [
-        #./desktop/hyprland
-        #./desktop/gnome
-        #./home
-        ./home/profiles/all.nix
-      ];
-      extraSpecialArgs =
-      {
-        inherit inputs;
-      };
+      modules = [ ./home/profiles/all.nix ];
+      extraSpecialArgs = { inherit inputs; };
     };
   };
 }

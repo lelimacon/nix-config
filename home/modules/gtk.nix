@@ -50,7 +50,7 @@ in
   home.pointerCursor =
   {
     gtk.enable = true;
-    # x11.enable = true;
+    #x11.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 16;
@@ -77,40 +77,4 @@ in
       #'';
     };
   };
-
-  # `dconf watch /` to track changes.
-  #dconf.settings =
-  #{
-  #  "org/gtk/gtk4/settings/file-chooser" =
-  #  {
-  #    show-hidden = true; # show hidden files.
-  #  };
-  #  "org/gnome/shell" =
-  #  {
-  #    favorite-apps =
-  #    [
-  #      "firefox.desktop"
-  #      "org.gnome.Nautilus.desktop"
-  #      "org.telegram.desktop.desktop"
-  #      "org.gnome.Console.desktop"
-  #    ];
-  #  };
-  #  "org/gnome/desktop/interface" =
-  #  {
-  #    color-scheme = "default"; # light with dark appbar.
-  #    enable-hot-corners = false; # no flicking to the top-left corner.
-  #    gtk-enable-primary-paste = false; # no pasting with mouse middle click.
-  #  };
-  #  "org/gnome/desktop/wm/preferences" =
-  #  {
-  #    workspace-names = [ "Main" ];
-  #  };
-  #  "org/gnome/desktop/background" =
-  #  {
-  #    picture-uri = "file:///home/lelimacon/Pictures/pixel-black.png";
-  #    picture-options = "stretched";
-  #    #primary-color = "#000000";
-  #    #secondary-color = "#000000";
-  #  };
-  #};
 }

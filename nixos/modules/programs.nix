@@ -30,7 +30,6 @@
     bash # shell.
     starship # prompt engine.
     eza # ls alternative.
-    pkgs-stable.go-task # taskfile runner.
     ranger nnn # CLI file explorers.
     fontconfig # list fonts with `fc-list`.
     nix-index # find nixos packages.
@@ -57,11 +56,18 @@
     jetbrains.rider
     vscodium
     postman
-    zulu8 # Java OpenJDK.
+
+    # Build tools.
+    pkgs-stable.go-task # taskfile runner.
+    meson ninja
+
+    # Languges and frameworks.
     dotnetCorePackages.sdk_8_0_4xx
+    mono # for wine.
+    zulu8 # Java OpenJDK.
     nodejs_22 bun # JS.
-    mono # for wine (vinegar).
     gtk3 gtk4 # for gtk4-icon-browser.
+    vala dart-sass
 
     # Games.
     xmoto

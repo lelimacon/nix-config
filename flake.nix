@@ -14,7 +14,18 @@
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags/v1";
+    #astal =
+    #{
+    #  url = "github:aylur/astal";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    #desktop.url = "./desktop/hyprland";
+    #desktop =
+    #{
+    #  url = "./desktop/hyprland";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs = inputs @
@@ -33,6 +44,11 @@
     pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
   in
   {
+    #imports =
+    #[
+    #  ./desktop/hyprland
+    #];
+
     # System configuration.
     # `nixos-rebuild switch`.
     nixosConfigurations."surfaceLaptop3" = nixpkgs.lib.nixosSystem
@@ -40,8 +56,9 @@
       #system = "x86_64-linux";
       modules =
       [
-        ./nixos
-        ./hosts/surfaceLaptop3
+        #./nixos
+        #./hosts/surfaceLaptop3
+        ./nixos/hosts/surfaceLaptop3
         #inputs.home-manager.nixosModules.default
       ];
       specialArgs =
@@ -55,23 +72,17 @@
     homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
     {
       pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ ./home ];
+      modules =
+      [
+        #./desktop/hyprland
+        #./desktop/gnome
+        #./home
+        ./home/profiles/all.nix
+      ];
       extraSpecialArgs =
       {
         inherit inputs;
       };
     };
-
-    #packages.${system}.hello = pkgs.hello;
-    #packages.${system}.default = pkgs.hello;
-    #packages.${system} = {
-    #  default = pkgs.hello;
-    #  hello = pkgs.hello;
-    #};
-    #packages.${system}.default = pkgs.hello;
-
-    #devShells.${system}.default = pkgs.mkShell {
-    #  buildInputs = [ pkgs.neovim ];
-    #};
   };
 }

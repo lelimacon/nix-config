@@ -11,6 +11,9 @@
   # Enable touchpad support.
   services.libinput.enable = true;
 
+  # To mount drives automatically.
+  services.udisks2.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

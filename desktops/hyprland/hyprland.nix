@@ -1,6 +1,4 @@
 {
-  inputs,
-  config,
   pkgs,
   lib,
   ...
@@ -13,33 +11,6 @@ let
   };
 in
 {
-  imports =
-  [
-    inputs.hyprland.homeManagerModules.default
-  ];
-
-  xdg.portal =
-  {
-    enable = true;
-    config =
-    {
-      common =
-      {
-        default = [ "hyprland" ];
-      };
-      hyprland =
-      {
-        default = [ "gtk" "hyprland" ];
-      };
-    };
-    extraPortals = with pkgs;
-    [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-    ];
-    xdgOpenUsePortal = true;
-  };
-
   # Hyperland configuration.
   wayland.windowManager.hyprland =
   {
@@ -123,6 +94,7 @@ in
       [
         #"swww init & swww img ~/Pictures/pixel-black.png" # wallpaper.
         "nm-applet --indicator" # networkmanagerapplet.
+        "ags" # side bar.
         "waybar" # top bar.
         "dunst" # notifications.
         "telegram-desktop -startintray" # Telegram messenger minimized.
@@ -245,11 +217,4 @@ in
     # https://wiki.hyprland.org/Configuring/XWayland/
     xwayland.enable = true;
   };
-
-  # Waybar.
-  home.file.".config/waybar/config.jsonc".source = ./waybar-config.jsonc;
-  home.file.".config/waybar/style.css".source = ./waybar-style.css;
-  home.file.".config/waybar/launch.sh".source = ../scripts/waybar-launch.sh;
-  home.file.".config/waybar/print-keyboard-layout.sh".source = ../scripts/print-keyboard-layout.sh;
-  home.file.".config/waybar/switch-keyboard-layout.sh".source = ../scripts/switch-keyboard-layout.sh;
 }

@@ -33,8 +33,3 @@ tasks:
     desc: Build system configuration, do not activate but show changes.
     cmds:
       - task: nixos:diff
-
-  switch:
-    desc: Build system configuration, make it default, and switch.
-    cmds:
-      - task: nixos:switch

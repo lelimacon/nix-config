@@ -4,12 +4,16 @@
 {
   imports =
   [
-    ../desktop.nix
-    ./ags.nix
-    ./git.nix
-    ./gtk.nix
-    ./hyprland.nix
-    ./terminal.nix
+    ../../desktop.nix
+    #../../desktops/gnome
+    ../../desktops/hyprland
+
+    ../modules/bash.nix
+    ../modules/git.nix
+    ../modules/gtk.nix
+    ../modules/kitty.nix
+    ../modules/scripts.nix
+    ../modules/starship.nix
   ];
 
   home.username = "lelimacon";

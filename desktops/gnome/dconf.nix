@@ -2,8 +2,6 @@
   ...
 }:
 {
-  programs.dconf.enable = true;
-
   # `dconf watch /` to track changes.
   dconf.settings =
   {

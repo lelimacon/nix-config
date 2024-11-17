@@ -9,6 +9,7 @@
 
     ../../modules/culture.nix
     ../../modules/fonts.nix
+    ../../modules/gnome.nix
     ../../modules/hyprland.nix
     ../../modules/programs.nix
     ../../modules/users.nix

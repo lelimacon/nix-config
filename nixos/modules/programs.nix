@@ -61,14 +61,6 @@
     pkgs-stable.go-task # taskfile runner.
     meson ninja
 
-    # Languges and frameworks.
-    dotnetCorePackages.sdk_8_0_4xx
-    mono # for wine.
-    zulu8 # Java OpenJDK.
-    nodejs_22 bun # JS.
-    gtk3 gtk4 # for gtk4-icon-browser.
-    vala dart-sass
-
     # Games.
     xmoto
   ];
@@ -79,5 +71,10 @@
     enable = true;
     package = pkgs.mlocate; # alternative to GNU findutils.
     localuser = null; # mlocate runs as root.
+  };
+
+  environment.sessionVariables =
+  {
+    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
   };
 }

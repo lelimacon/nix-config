@@ -15,6 +15,10 @@
     ../../modules/users.nix
     ../../modules/wayland.nix
     ../../modules/x11.nix
+    ../../modules/frameworks/dotnet.nix
+    ../../modules/frameworks/gtk.nix
+    ../../modules/frameworks/java.nix
+    ../../modules/frameworks/web.nix
 
     ./hardware-configuration.nix
     ./hardware-overrides.nix

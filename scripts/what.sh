@@ -10,20 +10,21 @@
 # Usage
 # $ what echo
 
-set -e -o pipefail
-INF='\033[1;34m';ERR='\033[0;31m';DBG='\033[0m'
+set -eE -o pipefail
+INF='\033[1;34m';ERR='\033[0;31m';OK='\033[0;32m';DBG='\033[0m'
+trap 'echo -e ${ERR}ERROR${DBG}' ERR
 
 
 COMMAND=$1
 
-echo -e "${INF}---- ${DBG}"
-echo -e "${INF}${COMMAND} ${DBG}"
-echo -e "${INF}---- ${DBG}"
+echo -e "${INF}----${DBG}"
+echo -e "${INF}${COMMAND}${DBG}"
+echo -e "${INF}----${DBG}"
 
 
 COMMAND_PATH=$(which "${COMMAND}")
 
-echo -e "${INF}-> ${DBG} ${COMMAND_PATH}"
+echo -e "${INF}-> ${DBG}${COMMAND_PATH}"
 
 
 # Generate DB with `nix-index`

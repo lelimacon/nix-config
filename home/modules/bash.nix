@@ -15,6 +15,7 @@ let
     "code" = "codium";
 
     # Scripts.
+    "dirt" = "~/scripts/dirt.sh";
     "what" = "~/scripts/what.sh";
   };
 in

@@ -1,5 +1,6 @@
 {
   inputs,
+  system,
   ...
 }:
 {
@@ -36,6 +37,6 @@
   home-manager =
   {
     users."lelimacon" = import ../../../home/profiles/all.nix;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs system; };
   };
 }

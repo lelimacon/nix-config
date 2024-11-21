@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  system,
   ...
 }:
 {
@@ -9,7 +10,6 @@
     inputs.hyprland.homeManagerModules.default
 
     ./ags.nix
-    #./astal
     ./hyprland.nix
     ./waybar
     ./xdg.nix
@@ -31,5 +31,8 @@
     waybar
     networkmanagerapplet # tray applet for managing networks.
     udiskie # drives applet.
+
+    # Custom packages.
+    inputs.drawernator.packages."${system}".default
   ];
 }

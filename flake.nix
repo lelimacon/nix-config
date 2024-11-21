@@ -16,12 +16,11 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     ags.url = "github:Aylur/ags/v1";
 
-    #astal =
-    #{
-    #  url = "github:aylur/astal";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
+    drawernator =
+    {
+      url = "./ext/Drawernator";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @
@@ -55,7 +54,7 @@
     {
       pkgs = nixpkgs.legacyPackages.${system};
       modules = [ ./home/profiles/all.nix ];
-      extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = { inherit inputs system; };
     };
   };
 }

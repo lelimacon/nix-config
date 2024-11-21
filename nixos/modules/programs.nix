@@ -2,7 +2,6 @@
   inputs,
   pkgs,
   pkgs-stable,
-  system,
   ...
 }:
 {
@@ -35,7 +34,6 @@
     ranger nnn # CLI file explorers.
     fontconfig # list fonts with `fc-list`.
     nix-index # find nixos packages.
-    inputs.hellocs.packages."${system}".default # Test dotnet app `Hellocs`.
 
     # Utils.
     _1password-gui

@@ -22,11 +22,6 @@
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
 
-    hellocs =
-    {
-      url = "./ext/Hellocs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @

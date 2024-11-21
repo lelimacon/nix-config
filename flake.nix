@@ -15,11 +15,18 @@
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     ags.url = "github:Aylur/ags/v1";
+
     #astal =
     #{
     #  url = "github:aylur/astal";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
+
+    hellocs =
+    {
+      url = "./ext/Hellocs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @
@@ -44,7 +51,7 @@
     {
       #system = "x86_64-linux";
       modules = [ ./nixos/hosts/surfaceLaptop3 ];
-      specialArgs = { inherit inputs outputs pkgs-stable; };
+      specialArgs = { inherit inputs outputs pkgs-stable system; };
     };
 
     # Standalone Home Manager configuration.

@@ -21,6 +21,7 @@ tasks:
   show:
     desc: Show configuration and generations.
     cmds:
+      - nix flake metadata
       - nix flake show
       - task: nixos:show
 

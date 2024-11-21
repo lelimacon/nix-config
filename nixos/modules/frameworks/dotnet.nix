@@ -6,9 +6,12 @@
 {
   environment.systemPackages = with pkgs;
   [
-    dotnet-sdk # 6.
-    dotnet-sdk_8
+    (dotnetCorePackages.combinePackages [
+      dotnetCorePackages.sdk_6_0
+      dotnetCorePackages.sdk_8_0
+    ])
 
+    powershell
     mono # for wine.
   ];
 

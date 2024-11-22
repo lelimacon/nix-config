@@ -5,6 +5,11 @@
   ...
 }:
 {
+  imports =
+  [
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+  ];
+
   # Allow unfree packages.
   nixpkgs.config.allowUnfree = true;
 
@@ -66,16 +71,17 @@
     xmoto
   ];
 
+  services.flatpak.packages =
+  [
+    # Games.
+    "app.drey.Blurble" # Wordle clone.
+  ];
+
   # Locate service, updates (`updatedb` every night).
   services.locate =
   {
     enable = true;
     package = pkgs.mlocate; # alternative to GNU findutils.
     localuser = null; # mlocate runs as root.
-  };
-
-  environment.sessionVariables =
-  {
-    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
   };
 }

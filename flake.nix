@@ -3,8 +3,13 @@
 
   inputs =
   {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    ags.url = "github:Aylur/ags/v1";
+
+    drawernator =
+    {
+      url = "./ext/Drawernator";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager =
     {
@@ -14,13 +19,11 @@
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    ags.url = "github:Aylur/ags/v1";
 
-    drawernator =
-    {
-      url = "./ext/Drawernator";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
   };
 
   outputs = inputs @

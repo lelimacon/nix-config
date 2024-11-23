@@ -2,4 +2,4 @@
 
 System configurations by hosts.
 
-Modules are cherry-picked in the hosts.
+Modules are cherry-picked by the hosts.

@@ -8,7 +8,7 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # Enable dconf (configured in /desktops/gnome).
+  # Enable dconf (configured in /home/desktops/gnome).
   programs.dconf.enable = true;
 
   # Excluded apps.

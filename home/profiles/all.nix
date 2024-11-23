@@ -5,8 +5,9 @@
   imports =
   [
     ../../desktop.nix
-    ../../desktops/gnome
-    ../../desktops/hyprland
+
+    ../desktops/gnome
+    ../desktops/hyprland
 
     ../modules/bash.nix
     ../modules/git.nix

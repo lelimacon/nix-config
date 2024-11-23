@@ -9,6 +9,10 @@
     inputs.home-manager.nixosModules.default
 
     ../../modules/culture.nix
+    ../../modules/dev/dotnet.nix
+    ../../modules/dev/gtk.nix
+    ../../modules/dev/java.nix
+    ../../modules/dev/web.nix
     ../../modules/fonts.nix
     ../../modules/gnome.nix
     ../../modules/hyprland.nix
@@ -16,10 +20,6 @@
     ../../modules/users.nix
     ../../modules/wayland.nix
     ../../modules/x11.nix
-    ../../modules/frameworks/dotnet.nix
-    ../../modules/frameworks/gtk.nix
-    ../../modules/frameworks/java.nix
-    ../../modules/frameworks/web.nix
 
     ./hardware-configuration.nix
     ./hardware-overrides.nix

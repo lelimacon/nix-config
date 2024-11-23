@@ -225,10 +225,10 @@ let
   };
 in
 {
-  options."desktop" = rootOptions;
+  options."customization" = rootOptions;
 
   # Rest of configuration will be completed with default values.
-  config.desktop =
+  config.customization =
   {
     themes =
     [

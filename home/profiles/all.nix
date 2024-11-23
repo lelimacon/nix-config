@@ -4,7 +4,7 @@
 {
   imports =
   [
-    ../../desktop.nix
+    ../customization.nix
 
     ../desktops/gnome
     ../desktops/hyprland

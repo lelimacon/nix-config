@@ -11,36 +11,21 @@
   # Enable dconf (configured in /home/desktops/gnome).
   programs.dconf.enable = true;
 
-  # Excluded apps.
+  # Remove all default apps.
+  # Some may be added back in home manager.
   environment.gnome.excludePackages = with pkgs;
   [
-    epiphany # "Web" browser.
-    geary # email client.
-    totem # video player.
-    evince # document viewer.
     cheese # webcam.
-    yelp gnome-initial-setup gnome-tour # assistance apps.
+    epiphany # "Web" browser.
+    evince # document viewer.
+    geary # email client.
+    gnome-characters # Emoji table.
     gnome-contacts
-    gnome-weather
     gnome-maps
     gnome-music
     gnome-photos
-  ];
-
-  # Extensions.
-  # https://extensions.gnome.org/
-  environment.systemPackages = with pkgs;
-  [
-    gnomeExtensions.just-perfection
-    gnomeExtensions.appindicator
-    gnomeExtensions.user-themes
-    gnomeExtensions.tray-icons-reloaded
-    gnomeExtensions.vitals
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.sound-output-device-chooser
-    gnomeExtensions.space-bar
-
-    gnome-characters # Emoji table.
-    gnome-tweaks
+    gnome-weather
+    totem # video player.
+    yelp gnome-initial-setup gnome-tour # assistance apps.
   ];
 }

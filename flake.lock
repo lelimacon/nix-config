@@ -84,12 +84,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-azeW09Q5K41xB1QNgnOaQF4xRlyU52+1f+Fcvf+npms=",
-        "path": "/nix/store/bkl6y6hx1xbnx50z4h1rxk77hxj5m7lp-source/ext/Drawernator",
+        "narHash": "sha256-Il9lnVlFy9I/DrC84cudNBRjKTKWmrzRMtiC298zhas=",
+        "path": "/nix/store/ha9lksyxq7snzl23x7g8pkv4nj9ghp8f-source/ext/Drawernator",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/bkl6y6hx1xbnx50z4h1rxk77hxj5m7lp-source/ext/Drawernator",
+        "path": "/nix/store/ha9lksyxq7snzl23x7g8pkv4nj9ghp8f-source/ext/Drawernator",
         "type": "path"
       }
     },

@@ -3,6 +3,8 @@
   ...
 }:
 let
+  loadFileIfExists = path: "[ -f ${path} ] && . ${path}";
+
   aliases =
   {
     ".." = "cd ..";
@@ -25,9 +27,16 @@ in
     enable = true;
 
     shellAliases = aliases;
+
+    historyControl = [ "erasedups" ]; # erase previous duplicate entries.
+    historyFileSize = 200000;
+
     initExtra =
     ''
       SHELL=${pkgs.bash}
+
+      # Load private bashrc if found.
+      ${loadFileIfExists("$HOME/.bashrc_private")}
     '';
   };
 }

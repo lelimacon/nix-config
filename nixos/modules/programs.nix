@@ -44,6 +44,7 @@
     _1password-gui
     pavucontrol # PulseAudio Volume Control.
     mission-center # activity monitor.
+    #bottles # WINE prefix manager.
 
     # Social.
     telegram-desktop

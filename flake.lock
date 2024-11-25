@@ -85,11 +85,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-Il9lnVlFy9I/DrC84cudNBRjKTKWmrzRMtiC298zhas=",
-        "path": "/nix/store/ha9lksyxq7snzl23x7g8pkv4nj9ghp8f-source/ext/Drawernator",
+        "path": "ext/Drawernator",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/ha9lksyxq7snzl23x7g8pkv4nj9ghp8f-source/ext/Drawernator",
+        "path": "ext/Drawernator",
         "type": "path"
       }
     },

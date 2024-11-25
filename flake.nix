@@ -7,7 +7,8 @@
 
     drawernator =
     {
-      url = "./ext/Drawernator";
+      # https://github.com/NixOS/nix/issues/9339
+      url = "path:ext/Drawernator";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

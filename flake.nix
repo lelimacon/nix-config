@@ -21,7 +21,7 @@
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/main";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";

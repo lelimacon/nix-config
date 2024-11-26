@@ -72,11 +72,15 @@
     xmoto
   ];
 
-  services.flatpak.packages =
-  [
-    # Games.
-    "app.drey.Blurble" # Wordle clone.
-  ];
+  services.flatpak =
+  {
+    enable = true;
+    packages =
+    [
+      # Games.
+      "app.drey.Blurble" # Wordle clone.
+    ];
+  };
 
   # Locate service, updates (`updatedb` every night).
   services.locate =

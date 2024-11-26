@@ -34,3 +34,8 @@ tasks:
     desc: Build system configuration, do not activate but show changes.
     cmds:
       - task: nixos:diff
+
+  update:
+    desc: Updates the lock file.
+    cmds:
+      - nix flake update

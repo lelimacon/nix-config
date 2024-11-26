@@ -43,7 +43,7 @@
     # Utils.
     _1password-gui
     pavucontrol # PulseAudio Volume Control.
-    mission-center # activity monitor.
+    pkgs-stable.mission-center # activity monitor.
     #bottles # WINE prefix manager.
 
     # Social.

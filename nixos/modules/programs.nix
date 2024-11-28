@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  pkgs-stable,
+  pkgs-unstable,
   ...
 }:
 {
@@ -9,9 +9,6 @@
   [
     inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
-
-  # Allow unfree packages.
-  nixpkgs.config.allowUnfree = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -43,7 +40,7 @@
     # Utils.
     _1password-gui
     pavucontrol # PulseAudio Volume Control.
-    pkgs-stable.mission-center # activity monitor.
+    mission-center # activity monitor.
     #bottles # WINE prefix manager.
 
     # Social.
@@ -65,7 +62,7 @@
     postman
 
     # Build tools.
-    pkgs-stable.go-task # taskfile runner.
+    go-task # taskfile runner.
     meson ninja
 
     # Games.

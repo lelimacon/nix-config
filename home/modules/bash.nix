@@ -29,7 +29,7 @@ in
     shellAliases = aliases;
 
     historyControl = [ "erasedups" ]; # erase previous duplicate entries.
-    historyFileSize = 200000;
+    historyFileSize = 20000;
 
     initExtra =
     ''

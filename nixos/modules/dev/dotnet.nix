@@ -1,22 +1,25 @@
 {
   pkgs,
-  pkgs-stable,
   ...
 }:
+let
+  dotnet-sdks = with pkgs; dotnetCorePackages.combinePackages
+  [
+    dotnetCorePackages.sdk_6_0
+    dotnetCorePackages.sdk_8_0
+  ];
+in
 {
   environment.systemPackages = with pkgs;
   [
-    (dotnetCorePackages.combinePackages [
-      dotnetCorePackages.sdk_6_0
-      dotnetCorePackages.sdk_8_0
-    ])
-
+    #dotnet-sdk # 6.0.422
+    dotnet-sdks
     powershell
     mono # for wine.
   ];
 
   environment.sessionVariables =
   {
-    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
+    DOTNET_ROOT = "${dotnet-sdks}";
   };
 }

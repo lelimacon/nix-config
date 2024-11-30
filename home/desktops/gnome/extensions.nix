@@ -7,14 +7,13 @@
   # Enabled in dconf configuration.
   home.packages = with pkgs;
   [
-    gnomeExtensions.appindicator
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.just-perfection
-    gnomeExtensions.sound-output-device-chooser
-    gnomeExtensions.space-bar
-    gnomeExtensions.tray-icons-reloaded
-    gnomeExtensions.user-themes
-    gnomeExtensions.vitals
+    gnomeExtensions.appindicator # AppIndicator and KStatusNotifierItem support.
+    gnomeExtensions.dash-to-panel # Windows-style taskbar.
+    gnomeExtensions.just-perfection # tweak tool.
+    gnomeExtensions.space-bar # better workspaces indicator.
+    gnomeExtensions.user-themes # User Themes.
+    gnomeExtensions.vitals # system information.
+    gnomeExtensions.steal-my-focus-window # remove 'window is ready' and focus the window instead.
 
     gnome-characters # Emoji table.
     gnome-tweaks

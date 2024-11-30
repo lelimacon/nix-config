@@ -63,7 +63,6 @@
     # `nixos-rebuild switch`.
     nixosConfigurations."surfaceLaptop3" = nixpkgs.lib.nixosSystem
     {
-      system = system;
       pkgs = pkgs;
       modules = [ ./nixos/hosts/surfaceLaptop3 ];
       specialArgs = { inherit inputs outputs pkgs-unstable system; };
@@ -73,7 +72,6 @@
     # `home-manager switch`.
     homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
     {
-      system = system;
       pkgs = pkgs;
       modules = [ ./home/profiles/all.nix ];
       extraSpecialArgs = { inherit inputs system; };

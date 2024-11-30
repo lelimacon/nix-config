@@ -25,7 +25,7 @@
   [
     # CLI tools.
     home-manager
-    wget jq gawk
+    busybox curl jq
     vim
     neofetch
     git git-lfs
@@ -36,6 +36,7 @@
     ranger nnn # CLI file explorers.
     fontconfig # list fonts with `fc-list`.
     nix-index # find nixos packages.
+    openssl # SSL & TLS library.
 
     # Utils.
     _1password-gui

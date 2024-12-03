@@ -12,7 +12,6 @@ in
 {
   environment.systemPackages = with pkgs;
   [
-    #dotnet-sdk # 6.0.422
     dotnet-sdks
     powershell
     mono # for wine.

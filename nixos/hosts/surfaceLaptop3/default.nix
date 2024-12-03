@@ -9,7 +9,7 @@
     inputs.home-manager.nixosModules.default
 
     ../../modules/culture.nix
-    ../../modules/dev/dotnet.nix
+    #../../modules/dev/dotnet.nix
     ../../modules/dev/gtk.nix
     ../../modules/dev/java.nix
     ../../modules/dev/web.nix

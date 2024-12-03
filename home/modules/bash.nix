@@ -16,6 +16,10 @@ let
 
     "code" = "codium";
 
+    # Dev shells.
+    "dev-builder" = "nix develop path:${toString ../../shells/gtk} --command gnome-builder";
+    "dev-rider" = "nix develop path:${toString ../../shells/dotnet} --command rider";
+
     # Scripts.
     "dirt" = "~/scripts/dirt.sh";
     "what" = "~/scripts/what.sh";

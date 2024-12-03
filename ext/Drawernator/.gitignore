@@ -1,2 +1,5 @@
 # Nix build output.
 result
+
+# Meson output.
+builddir

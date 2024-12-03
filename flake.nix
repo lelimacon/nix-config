@@ -10,6 +10,13 @@
       # https://github.com/NixOS/nix/issues/9339
       url = "path:ext/Drawernator";
       inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.systems.follows = "systems"; # TODO: not working.
+    };
+
+    flake-utils =
+    {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
     };
 
     home-manager =
@@ -24,13 +31,16 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    systems.url = "github:nix-systems/x86_64-linux";
   };
 
   outputs = inputs @
   {
-    self,
-    nixpkgs,
+    flake-utils,
     home-manager,
+    nixpkgs,
+    self,
     ...
   }:
   let
@@ -65,7 +75,7 @@
     {
       pkgs = pkgs;
       modules = [ ./nixos/hosts/surfaceLaptop3 ];
-      specialArgs = { inherit inputs outputs pkgs-unstable system; };
+      specialArgs = { inherit inputs pkgs pkgs-unstable outputs system; };
     };
 
     # Standalone Home Manager configuration.
@@ -74,7 +84,7 @@
     {
       pkgs = pkgs;
       modules = [ ./home/profiles/all.nix ];
-      extraSpecialArgs = { inherit inputs system; };
+      extraSpecialArgs = { inherit inputs pkgs pkgs-unstable outputs system; };
     };
   };
 }

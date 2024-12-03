@@ -1,9 +1,18 @@
+class Toto
+{
+    public static int a = 3;
+    static int aaa = 3;
+}
+
 class App : Astal.Application {
     public static App instance;
+
+    private int a = 2;
 
     public override void request (string msg, SocketConnection conn) {
         print(@"$msg\n");
         AstalIO.write_sock.begin(conn, "ok");
+        Toto.a = 4;
     }
 
     public override void activate () {

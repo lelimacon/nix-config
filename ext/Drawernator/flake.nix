@@ -30,7 +30,10 @@
   }:
   flake-utils.lib.eachDefaultSystem (system:
     let
-      pkgs = import nixpkgs { system = system; };
+      pkgs = import nixpkgs
+      {
+        system = system;
+      };
       nativeBuildInputs = with pkgs;
       [
         vala # language.

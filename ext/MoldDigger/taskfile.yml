@@ -1,0 +1,11 @@
+version: '3'
+
+
+tasks:
+
+  build:
+    desc: Build.
+    cmds:
+      - mkdir -p out
+      - carbon compile --output="out/Main.o" Main.carbon
+      - carbon link --output="out/Main" "out/Main.o"

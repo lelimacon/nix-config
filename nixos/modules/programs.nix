@@ -55,6 +55,8 @@
     blender
     gimp
     inkscape
+    musescore
+    transmission_4
 
     # Dev.
     docker # GUI w/ yacht (compose service).
@@ -70,6 +72,14 @@
     xmoto
   ];
 
+  programs.steam =
+  {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+
   services.flatpak =
   {
     enable = true;
@@ -80,7 +90,7 @@
     ];
   };
 
-  # Locate service, updates (`updatedb` every night).
+  # Locate service, updates every night (`updatedb`).
   services.locate =
   {
     enable = true;

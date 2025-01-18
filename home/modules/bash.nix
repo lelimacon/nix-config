@@ -17,8 +17,9 @@ let
     "code" = "codium";
 
     # Dev shells.
-    "dev-builder" = "nix develop path:${toString ../../shells/gtk} --command gnome-builder";
-    "dev-rider" = "nix develop path:${toString ../../shells/dotnet} --command rider";
+    "dev-builder" = "nix develop path:${toString ../../shells/gtk}    --command gnome-builder";
+    "dev-rider"   = "nix develop path:${toString ../../shells/dotnet} --command rider";
+    "dev-rust"    = "nix develop path:${toString ../../shells/rust}   --command codium";
 
     # Scripts.
     "dirt" = "~/scripts/dirt.sh";

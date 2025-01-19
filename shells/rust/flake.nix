@@ -11,6 +11,8 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+
     systems.url = "github:nix-systems/x86_64-linux";
   };
 
@@ -18,14 +20,16 @@
   {
     flake-utils,
     nixpkgs,
+    rust-overlay,
     self,
     ...
   }:
   flake-utils.lib.eachDefaultSystem (system:
     let
+      overlays = [ (import rust-overlay) ];
       pkgs = import nixpkgs
       {
-        system = system;
+        inherit system overlays;
       };
     in
     {
@@ -35,8 +39,11 @@
       {
         buildInputs = with pkgs;
         [
-          cargo
-          rustc
+          openssl
+          pkg-config
+          eza
+          fd
+          rust-bin.stable.latest.default
         ];
       };
     }

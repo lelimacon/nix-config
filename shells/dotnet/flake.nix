@@ -51,6 +51,7 @@
         buildInputs = with pkgs;
         [
           dotnet-sdks
+          #dotnet-ef # Entity Framework tools.
           powershell
         ];
       };

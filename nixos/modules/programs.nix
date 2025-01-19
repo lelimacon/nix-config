@@ -60,8 +60,9 @@
 
     # Dev.
     docker # GUI w/ yacht (compose service).
-    jetbrains.rider
     vscodium
+    jetbrains.rider # dotnet IDE.
+    jetbrains.rust-rover # Rust IDE.
     postman
 
     # Build tools.

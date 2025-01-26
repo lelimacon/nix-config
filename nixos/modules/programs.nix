@@ -67,6 +67,8 @@
 
     # Build tools.
     go-task # taskfile runner.
+    deno # JS/TS runtime.
+    typst typst-lsp # typesetting system.
     meson ninja
 
     # Games.

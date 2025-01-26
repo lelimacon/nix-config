@@ -3,7 +3,8 @@
   ...
 }:
 {
-  fonts.packages = with pkgs; [
+  fonts.packages = with pkgs;
+  [
     font-awesome
     noto-fonts
     noto-fonts-cjk-sans
@@ -14,7 +15,9 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    (nerdfonts.override {
+    libertinus
+    (nerdfonts.override
+    {
       fonts =
       [
         "FiraCode"

@@ -41,11 +41,12 @@
       [
         dotnetCorePackages.sdk_6_0
         dotnetCorePackages.sdk_8_0
+        dotnetCorePackages.sdk_9_0
       ];
     in
     {
       # To run Rider :
-      # $ nix develop --command rider
+      # $ nix develop path:./shells/dotnet --command rider
       devShells.default = pkgs.mkShell
       {
         buildInputs = with pkgs;

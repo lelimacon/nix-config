@@ -55,6 +55,12 @@
           #dotnet-ef # Entity Framework tools.
           powershell
         ];
+
+        shellHook =
+        ''
+          export DOTNET_ROOT="${dotnet-sdks}/share/dotnet";
+          export PATH="$PATH:/home/$USER/.dotnet/tools";
+        '';
       };
     }
   );

@@ -43,6 +43,7 @@
     pavucontrol # PulseAudio Volume Control.
     mission-center # activity monitor.
     #bottles # WINE prefix manager.
+    rustdesk # remote desktop sharing (OSS alternative to AnyDesk).
 
     # Social.
     telegram-desktop
@@ -60,6 +61,7 @@
 
     # Dev.
     docker # GUI w/ yacht (compose service).
+    lazydocker # terminal UI for Docker.
     vscodium
     jetbrains.rider # dotnet IDE.
     jetbrains.rust-rover # Rust IDE.

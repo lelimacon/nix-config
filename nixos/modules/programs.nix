@@ -57,7 +57,8 @@
     gimp
     inkscape
     musescore
-    transmission_4
+    transmission_4-qt # torrent client.
+    fontforge-gtk # font editor.
 
     # Dev.
     docker # GUI w/ yacht (compose service).

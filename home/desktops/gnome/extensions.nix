@@ -14,6 +14,7 @@
     gnomeExtensions.user-themes # User Themes.
     gnomeExtensions.vitals # system information.
     gnomeExtensions.steal-my-focus-window # remove 'window is ready' and focus the window instead.
+    gnomeExtensions.eye-on-cursor # eyes!
 
     gnome-characters # Emoji table.
     gnome-tweaks

@@ -39,6 +39,7 @@ in
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "Vitals@CoreCoding.com"
         "steal-my-focus-window@steal-my-focus-window"
+        "eye-on-cursor@djinnalexio.github.io"
       ];
 
       # Pinned apps.

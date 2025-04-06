@@ -32,6 +32,16 @@
       {
         inherit system overlays;
       };
+
+      bevyBuildInputs = with pkgs;
+      [
+        libxkbcommon libudev-zero
+        alsa-lib
+        udev
+        vulkan-loader
+        xorg.libX11 xorg.libXrandr xorg.libXcursor xorg.libXi # for X11.
+        wayland # for Wayland.
+      ];
     in
     {
       # To run VS Code :
@@ -46,10 +56,13 @@
           {
             extensions = [ "rust-src" ];
           })
+
+          bevyBuildInputs
         ];
 
         shellHook =
         ''
+          export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${pkgs.lib.makeLibraryPath bevyBuildInputs}
           rustc --version
           cargo --version
         '';

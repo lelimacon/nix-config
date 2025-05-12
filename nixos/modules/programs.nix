@@ -19,8 +19,6 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.firefox.enable = true;
-
   environment.systemPackages = with pkgs;
   [
     # CLI tools.
@@ -46,9 +44,12 @@
     rustdesk # remote desktop sharing (OSS alternative to AnyDesk).
 
     # Social.
+    firefox
+    ungoogled-chromium # chrome without the spyware.
     telegram-desktop
     slack
     discord
+    teams-for-linux # https://www.reddit.com/r/NixOS/comments/jcheqg/does_microsoft_teams_work_on_nixos/
 
     # Multimedia.
     vlc
@@ -59,6 +60,8 @@
     musescore
     transmission_4-qt # torrent client.
     fontforge-gtk # font editor.
+    jellyfin-ffmpeg # Jellyfin fork of FFmpeg.
+    handbrake # video converter with GUI (`ghb`).
 
     # Dev.
     docker # GUI w/ yacht (compose service).

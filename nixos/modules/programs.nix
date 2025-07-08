@@ -37,7 +37,7 @@
     openssl # SSL & TLS library.
 
     # Utils.
-    _1password-gui
+    pkgs-unstable._1password-gui
     pavucontrol # PulseAudio Volume Control.
     mission-center # activity monitor.
     #bottles # WINE prefix manager.
@@ -67,14 +67,14 @@
     docker # GUI w/ yacht (compose service).
     lazydocker # terminal UI for Docker.
     vscodium
-    jetbrains.rider # dotnet IDE.
-    jetbrains.rust-rover # Rust IDE.
+    pkgs-unstable.jetbrains.rider # dotnet IDE.
+    pkgs-unstable.jetbrains.rust-rover # Rust IDE.
     postman
 
     # Build tools.
     go-task # taskfile runner.
     deno # JS/TS runtime.
-    typst typst-lsp # typesetting system.
+    typst typst-lsp tinymist # typesetting system.
     meson ninja
 
     # Games.

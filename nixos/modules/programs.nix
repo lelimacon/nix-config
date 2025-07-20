@@ -67,8 +67,13 @@
     docker # GUI w/ yacht (compose service).
     lazydocker # terminal UI for Docker.
     vscodium
-    pkgs-unstable.jetbrains.rider # dotnet IDE.
-    pkgs-unstable.jetbrains.rust-rover # Rust IDE.
+    # https://github.com/nixos/nixpkgs/issues/426815
+    (pkgs-unstable.jetbrains.rider.override {
+      jdk = pkgs.openjdk21;
+    }) # dotnet IDE.
+    (pkgs-unstable.jetbrains.rust-rover.override {
+      jdk = pkgs.openjdk21;
+    }) # Rust IDE.
     postman
 
     # Build tools.

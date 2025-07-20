@@ -9,6 +9,7 @@
     {
       # https://github.com/NixOS/nix/issues/9339
       url = "path:ext/Drawernator";
+      #url = "./ext/Drawernator";
       inputs.nixpkgs.follows = "nixpkgs";
       #inputs.systems.follows = "systems"; # TODO: not working.
     };

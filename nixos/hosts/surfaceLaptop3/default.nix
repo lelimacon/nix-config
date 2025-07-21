@@ -8,18 +8,27 @@
   [
     inputs.home-manager.nixosModules.default
 
-    ../../modules/culture.nix
-    #../../modules/dev/dotnet.nix
+    ../../modules/system/culture.nix
+    ../../modules/system/fonts.nix
+    ../../modules/system/gnome.nix
+    ../../modules/system/hyprland.nix
+    ../../modules/system/users.nix
+    ../../modules/system/wayland.nix
+    ../../modules/system/x11.nix
+
+    ../../modules/programs/docs.nix
+    ../../modules/programs/games.nix
+    ../../modules/programs/general.nix
+    ../../modules/programs/graphics.nix
+    ../../modules/programs/music.nix
+
+    ../../modules/dev/dotnet.nix
+    ../../modules/dev/gamedev.nix
+    ../../modules/dev/general.nix
     ../../modules/dev/gtk.nix
     ../../modules/dev/java.nix
+    ../../modules/dev/rust.nix
     ../../modules/dev/web.nix
-    ../../modules/fonts.nix
-    ../../modules/gnome.nix
-    ../../modules/hyprland.nix
-    ../../modules/programs.nix
-    ../../modules/users.nix
-    ../../modules/wayland.nix
-    ../../modules/x11.nix
 
     ./hardware-configuration.nix
     ./hardware-overrides.nix

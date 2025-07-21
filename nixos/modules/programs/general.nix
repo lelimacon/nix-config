@@ -1,15 +1,9 @@
 {
-  inputs,
   pkgs,
   pkgs-unstable,
   ...
 }:
 {
-  imports =
-  [
-    inputs.nix-flatpak.nixosModules.nix-flatpak
-  ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -40,8 +34,10 @@
     pkgs-unstable._1password-gui
     pavucontrol # PulseAudio Volume Control.
     mission-center # activity monitor.
-    #bottles # WINE prefix manager.
     rustdesk # remote desktop sharing (OSS alternative to AnyDesk).
+
+    # Wine.
+    #bottles # WINE prefix manager.
 
     # Social.
     firefox
@@ -54,55 +50,7 @@
     # Multimedia.
     vlc
     spotify
-    blender
-    gimp
-    inkscape
-    musescore
-    transmission_4-qt # torrent client.
-    fontforge-gtk # font editor.
-    jellyfin-ffmpeg # Jellyfin fork of FFmpeg.
-    handbrake # video converter with GUI (`ghb`).
-
-    # Dev.
-    docker # GUI w/ yacht (compose service).
-    lazydocker # terminal UI for Docker.
-    vscodium
-    # https://github.com/nixos/nixpkgs/issues/426815
-    (pkgs-unstable.jetbrains.rider.override {
-      jdk = pkgs.openjdk21;
-    }) # dotnet IDE.
-    (pkgs-unstable.jetbrains.rust-rover.override {
-      jdk = pkgs.openjdk21;
-    }) # Rust IDE.
-    postman
-
-    # Build tools.
-    go-task # taskfile runner.
-    deno # JS/TS runtime.
-    typst typst-lsp tinymist # typesetting system.
-    meson ninja
-
-    # Games.
-    xmoto
   ];
-
-  programs.steam =
-  {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
-
-  services.flatpak =
-  {
-    enable = true;
-    packages =
-    [
-      # Games.
-      "app.drey.Blurble" # Wordle clone.
-    ];
-  };
 
   # Locate service, updates every night (`updatedb`).
   services.locate =

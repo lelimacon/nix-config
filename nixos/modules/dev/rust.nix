@@ -4,12 +4,11 @@
   ...
 }:
 {
-  # Use dev shell for libs.
   environment.systemPackages = with pkgs;
   [
     # https://github.com/nixos/nixpkgs/issues/426815
-    (pkgs-unstable.jetbrains.rider.override {
+    (pkgs-unstable.jetbrains.rust-rover.override {
       jdk = pkgs.openjdk21;
-    }) # dotnet IDE.
+    }) # Rust IDE.
   ];
 }

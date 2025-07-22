@@ -40,9 +40,10 @@ in
     initExtra =
     ''
       SHELL=${pkgs.bash}
+      STORE_ROOT=${toString ../..}
 
       # Load private bashrc if found.
-      ${loadFileIfExists("$HOME/.bashrc_private")}
+      ${loadFileIfExists("$HOME/.private.bashrc")}
     '';
   };
 }

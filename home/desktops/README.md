@@ -1,1 +1,1 @@
-# Desktop (environments)
+# Desktop environments

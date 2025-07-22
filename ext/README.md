@@ -11,11 +11,6 @@ General purpose scripts that are added to PATH (in `/home`) or used directly.
 - **dirt**: Lists the dirty (sub)directories
 
 
-## Drawernator
-
-Left drawer made with Astal and GTK.
-
-
 ## Compose
 
 - **yacht**: Docker management web UI

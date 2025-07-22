@@ -24,7 +24,7 @@ in
       "$mod" = "SUPER";
 
       # Default programs.
-      "$drawer" = "ags -t wp-drawer-overview";
+      #TODO "$drawer" = "ags -t wp-drawer-overview";
       "$terminal" = "kitty";
       "$fileManager" = "nemo";
       "$menu" = "anyrun";
@@ -94,7 +94,7 @@ in
       [
         #"swww init & swww img ~/Pictures/pixel-black.png" # wallpaper.
         "nm-applet --indicator" # networkmanagerapplet.
-        "ags" # side bar.
+        #TODO "ags" # side bar.
         "waybar" # top bar.
         "dunst" # notifications.
         "telegram-desktop -startintray" # Telegram messenger minimized.

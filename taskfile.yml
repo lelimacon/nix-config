@@ -11,10 +11,6 @@ includes:
       taskfile: ./home/taskfile.yml
       dir: ./home
 
-  ags:
-      taskfile: ./ags/taskfile.yml
-      dir: ./ags
-
 
 tasks:
 

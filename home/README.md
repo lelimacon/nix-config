@@ -1,4 +1,4 @@
-# Home (Manager)
+# Home Manager
 
 Configurations for home-manager.
 

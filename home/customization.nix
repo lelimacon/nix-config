@@ -279,13 +279,6 @@ in
         category = "Utils";
       }
       {
-        clientClasses = ["com.github.Aylur.ags"];
-        category = "Utils";
-        name = "AGS inspector";
-        iconName = "astal";
-        executable = "ags -i";
-      }
-      {
         appClass = "nemo";
         iconName = "file-manager";
         category = "Utils";

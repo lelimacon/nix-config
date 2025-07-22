@@ -1,6 +1,9 @@
 {
   inputs,
+  outputs,
   system,
+  pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -22,7 +25,6 @@
     ../../modules/programs/graphics.nix
     ../../modules/programs/music.nix
 
-    ../../modules/dev/dotnet.nix
     ../../modules/dev/gamedev.nix
     ../../modules/dev/general.nix
     ../../modules/dev/gtk.nix
@@ -46,6 +48,6 @@
   home-manager =
   {
     users."lelimacon" = import ../../../home/profiles/all.nix;
-    extraSpecialArgs = { inherit inputs system; };
+    extraSpecialArgs = { inherit inputs outputs system pkgs pkgs-unstable; };
   };
 }

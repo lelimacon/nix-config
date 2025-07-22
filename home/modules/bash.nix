@@ -20,6 +20,7 @@ let
     "dev-builder" = "nix develop path:${toString ../../shells/gtk}    --command gnome-builder";
     "dev-rider"   = "nix develop path:${toString ../../shells/dotnet} --command rider";
     "dev-rover"   = "nix develop path:${toString ../../shells/rust}   --command rust-rover";
+    "dev-unity"   = "nix develop path:${toString ../../shells/dotnet} --command unityhub";
 
     # Scripts.
     "dirt" = "~/scripts/dirt.sh";

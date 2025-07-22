@@ -11,6 +11,6 @@
 
     # API testing.
     postman
-    httpie-desktop
+    #httpie-desktop
   ];
 }

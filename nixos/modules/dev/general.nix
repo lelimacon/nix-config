@@ -16,6 +16,5 @@
     # Build tools.
     go-task # taskfile runner.
     deno # JS/TS runtime.
-    meson ninja
   ];
 }

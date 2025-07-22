@@ -42,6 +42,7 @@
       {
         buildInputs = with pkgs;
         [
+          gnome-builder # IDE.
           vala # language.
           dart-sass # scss, css preprocessor.
           #glib # GNOME core library.

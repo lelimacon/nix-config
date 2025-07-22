@@ -76,16 +76,17 @@
     {
       pkgs = pkgs;
       modules = [ ./nixos/hosts/surfaceLaptop3 ];
-      specialArgs = { inherit inputs pkgs pkgs-unstable outputs system; };
+      specialArgs = { inherit inputs outputs system pkgs pkgs-unstable; };
     };
 
     # Standalone Home Manager configuration.
     # `home-manager switch`.
+    # Also tied to system configuration in /hosts/*/default.nix
     homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
     {
       pkgs = pkgs;
       modules = [ ./home/profiles/all.nix ];
-      extraSpecialArgs = { inherit inputs pkgs pkgs-unstable outputs system; };
+      extraSpecialArgs = { inherit inputs outputs system pkgs pkgs-unstable; };
     };
   };
 }

@@ -15,6 +15,8 @@
     ../modules/kitty.nix
     ../modules/scripts.nix
     ../modules/starship.nix
+
+    ../modules/dev/dotnet.nix
   ];
 
   home.username = "lelimacon";

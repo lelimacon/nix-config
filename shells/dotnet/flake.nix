@@ -29,17 +29,17 @@
         config =
         {
           # For dotnet 6.
-          permittedInsecurePackages =
-          [
-            "dotnet-core-combined"
-            "dotnet-sdk-6.0.428"
-            "dotnet-sdk-wrapped-6.0.428"
-          ];
+          #permittedInsecurePackages =
+          #[
+          #  "dotnet-core-combined"
+          #  "dotnet-sdk-6.0.428"
+          #  "dotnet-sdk-wrapped-6.0.428"
+          #];
         };
       };
       dotnet-sdks = with pkgs; dotnetCorePackages.combinePackages
       [
-        dotnetCorePackages.sdk_6_0
+        #dotnetCorePackages.sdk_6_0
         dotnetCorePackages.sdk_8_0
         dotnetCorePackages.sdk_9_0
       ];

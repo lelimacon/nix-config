@@ -4,7 +4,7 @@
   ...
 }:
 {
-  environment.systemPackages = with pkgs;
+  home.packages = with pkgs;
   [
     typst typst-lsp tinymist # typesetting system.
   ];

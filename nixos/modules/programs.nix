@@ -1,9 +1,15 @@
 {
+  inputs,
   pkgs,
   pkgs-unstable,
   ...
 }:
 {
+  imports =
+  [
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -43,14 +49,30 @@
     firefox
     ungoogled-chromium # chrome without the spyware.
     telegram-desktop
-    slack
     discord
-    teams-for-linux # https://www.reddit.com/r/NixOS/comments/jcheqg/does_microsoft_teams_work_on_nixos/
 
     # Multimedia.
     vlc
     spotify
   ];
+
+  # Steam configuration.
+  programs.steam =
+  {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+
+  services.flatpak =
+  {
+    enable = true;
+    packages =
+    [
+      "app.drey.Blurble" # Wordle clone.
+    ];
+  };
 
   # Locate service, updates every night (`updatedb`).
   services.locate =

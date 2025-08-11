@@ -54,6 +54,7 @@
     # Multimedia.
     vlc
     spotify
+    transmission_4 # torrent client.
   ];
 
   # Steam configuration.

@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -11,6 +12,7 @@
 
     # API testing.
     postman
-    #httpie-desktop
+    pkgs-unstable.httpie-desktop
+    bruno
   ];
 }

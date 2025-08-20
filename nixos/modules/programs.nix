@@ -53,7 +53,7 @@
 
     # Multimedia.
     vlc
-    spotify
+    spotify psst # music clients.
     transmission_4 # torrent client.
   ];
 

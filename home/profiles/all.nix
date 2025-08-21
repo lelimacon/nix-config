@@ -7,7 +7,7 @@
     ../customization.nix
 
     ../desktops/gnome
-    ../desktops/hyprland
+    #../desktops/hyprland
 
     ../modules/console/bash.nix
     ../modules/console/gtk.nix

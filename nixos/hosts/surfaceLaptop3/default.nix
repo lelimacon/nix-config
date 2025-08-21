@@ -18,7 +18,7 @@
     ../../modules/programs.nix
     ../../modules/users.nix
     ../../modules/wayland.nix
-    ../../modules/x11.nix
+    #../../modules/x11.nix
 
     ./hardware-configuration.nix
     ./hardware-overrides.nix

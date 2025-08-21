@@ -15,7 +15,7 @@
       inputs.systems.follows = "systems";
     };
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
     systems.url = "github:nix-systems/x86_64-linux";
   };

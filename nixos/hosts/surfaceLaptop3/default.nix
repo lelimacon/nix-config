@@ -9,6 +9,7 @@
 {
   imports =
   [
+    #inputs.nixos-hardware.nixosModules.microsoft-surface-common
     inputs.home-manager.nixosModules.default
 
     ../../modules/culture.nix

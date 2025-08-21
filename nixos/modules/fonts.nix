@@ -13,18 +13,13 @@
     liberation_ttf
     libertinus
     mplus-outline-fonts.githubRelease
-    (nerdfonts.override
-    {
-      fonts =
-      [
-        "FiraCode"
-        "Ubuntu"
-        "UbuntuMono"
-      ];
-    })
+    #nerd-fonts.fira-code
+    nerd-fonts.ubuntu
+    nerd-fonts.ubuntu-mono
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
     proggyfonts
+    ubuntu-sans
   ];
 }

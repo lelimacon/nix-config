@@ -80,6 +80,5 @@
   {
     enable = true;
     package = pkgs.mlocate; # alternative to GNU findutils.
-    localuser = null; # mlocate runs as root.
   };
 }

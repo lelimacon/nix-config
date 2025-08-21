@@ -4,15 +4,6 @@
   ...
 }:
 let
-  nerdfonts = pkgs.nerdfonts.override
-  {
-    fonts =
-    [
-      "Ubuntu"
-      "UbuntuMono"
-    ];
-  };
-
   theme =
   {
     name = "adw-gtk3";
@@ -21,7 +12,7 @@ let
   font =
   {
     name = "Ubuntu Nerd Font";
-    package = nerdfonts;
+    package = pkgs.ubuntu-sans;
     size = 11;
   };
   cursorTheme =

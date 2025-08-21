@@ -28,10 +28,10 @@ let
     jdk = pkgs.openjdk21;
   }).overrideAttrs (attrs:
   {
-    # Wrap Rider exe with additional arguments.
+    # Wrap executable with additional arguments.
     postInstall =
     ''
-    # Wrap rider with extra tools and libraries.
+    # Wrap with extra tools and libraries.
     mv $out/bin/rider $out/bin/.rider-toolless
     makeWrapper $out/bin/.rider-toolless $out/bin/rider \
       --argv0 rider \

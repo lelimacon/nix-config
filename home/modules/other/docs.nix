@@ -6,6 +6,6 @@
 {
   home.packages = with pkgs;
   [
-    typst typst-lsp tinymist # typesetting system.
+    typst tinymist # typesetting system.
   ];
 }

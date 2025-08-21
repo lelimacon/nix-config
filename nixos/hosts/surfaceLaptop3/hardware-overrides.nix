@@ -18,7 +18,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio =
+  services.pulseaudio =
   {
     enable = false;
 

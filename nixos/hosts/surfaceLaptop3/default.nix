@@ -20,6 +20,7 @@
     ../../modules/users.nix
     ../../modules/wayland.nix
     #../../modules/x11.nix
+    ../../modules/xdg.nix
 
     ./hardware-configuration.nix
     ./hardware-overrides.nix

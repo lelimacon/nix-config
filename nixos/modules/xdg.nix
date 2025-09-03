@@ -26,4 +26,9 @@
     ];
     xdgOpenUsePortal = true;
   };
+
+  environment.systemPackages = with pkgs;
+  [
+    xdg-utils # e.g. "open in browser"
+  ];
 }

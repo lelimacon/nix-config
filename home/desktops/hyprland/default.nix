@@ -11,7 +11,7 @@
 
     ./hyprland.nix
     ./waybar
-    ./xdg.nix
+    #./xdg.nix
   ];
 
   home.packages = with pkgs;

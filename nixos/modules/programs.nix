@@ -47,7 +47,7 @@
 
     # Social.
     firefox
-    ungoogled-chromium # chrome without the spyware.
+    ungoogled-chromium # Chrome without the spyware.
     telegram-desktop
     discord
 

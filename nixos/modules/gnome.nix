@@ -16,7 +16,7 @@
   environment.gnome.excludePackages = with pkgs;
   [
     cheese # webcam.
-    epiphany # "Web" browser.
+    epiphany # web browser.
     evince # document viewer.
     geary # email client.
     gnome-characters # Emoji table.

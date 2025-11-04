@@ -54,7 +54,7 @@
     # Multimedia.
     vlc
     spotify psst # music clients.
-    transmission_4 # torrent client.
+    transmission_4-gtk # torrent client.
   ];
 
   # Steam configuration.

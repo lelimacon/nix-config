@@ -2,10 +2,10 @@
 
 My NixOS / dotfiles setup.
 
-I'm a shy Gnome user with a slowly evolving Hyprland + Astal rice.
+Gnome with a slowly evolving Hyprland + Astal rice.
 
 
-## Structure
+## Folder Structure
 
 - `nixos/`: System configurations, with hardware, users, and global packages
 - `home/`: Home-manager, with programs and desktop environment customization

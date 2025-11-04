@@ -2,4 +2,9 @@
 
 Configurations for home-manager.
 
-Modules and desktops are cherry-picked by the profiles.
+
+## Folder Structure
+
+- `desktops/`: Desktop environments
+- `modules/`: Programs and their customization
+- `profiles/`: Profiles to cherry pick the desktops and modules

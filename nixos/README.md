@@ -1,5 +1,5 @@
 # NixOS system configurations
 
-System configurations by hosts.
+Hosts are device-based configuration that cherry pick the modules.
 
-Modules are cherry-picked by the hosts.
+Modules are low level configuration, and programs that couldn't be moved to home manager.

@@ -10,20 +10,13 @@
     (pkgs-unstable.jetbrains.rust-rover.override {
       jdk = pkgs.openjdk21;
     }) # Rust IDE.
+    #rust-rover
   ];
 }
 /*
 let
-  dotnet-sdks = with pkgs; dotnetCorePackages.combinePackages
-  [
-    dotnetCorePackages.sdk_8_0
-    dotnetCorePackages.sdk_9_0
-  ];
-
   rust-rover-extra-path = with pkgs;
   [
-    dotnet-sdks
-    powershell
   ];
 
   rust-rover-extra-lib = with pkgs;
@@ -47,12 +40,12 @@ let
       --prefix PATH : "${pkgs.lib.makeBinPath rust-rover-extra-path}" \
       --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath rust-rover-extra-lib}"
 
-    # Making Unity Rider plugin work.
-    # The plugin expects the binary to be at /rider/bin/rider,
-    # with bundled files at /rider/.
-    # Rider binary is at $out/bin/rider, so we link $out/rider/ to $out/.
+    # Making Unity RustRover plugin work.
+    # The plugin expects the binary to be at /rust-rover/bin/rust-rover,
+    # with bundled files at /rust-rover/.
+    # RustRover binary is at $out/bin/rust-rover, so we link $out/rust-rover/ to $out/.
     #shopt -s extglob
-    #ln -s $out/rider/!(bin) $out/
+    #ln -s $out/rust-rover/!(bin) $out/
     #shopt -u extglob
     '' +
     attrs.postInstall or "";
@@ -61,7 +54,7 @@ let
   desktopFile = pkgs.makeDesktopItem
   {
     name = "jetbrains-rust-rover";
-    desktopName = "Rider";
+    desktopName = "RustRover";
     exec = "\"${rust-rover}/bin/rust-rover\"";
     icon = "rust-rover";
     type = "Application";
@@ -69,9 +62,9 @@ let
   };
 in
 {
-  home.packages =
+  home.packages = with pkgs;
   [
-    rust-rover
+    #rust-rover
   ];
 
   home.file.".local/share/applications/jetbrains-rust-rover.desktop".source =

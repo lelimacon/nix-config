@@ -66,7 +66,7 @@
     nixosConfigurations."surfaceLaptop3" = nixpkgs.lib.nixosSystem
     {
       pkgs = pkgs;
-      modules = [ ./nixos/hosts/surfaceLaptop3 ];
+      modules = [ ./system/hosts/surfaceLaptop3 ];
       specialArgs = { inherit inputs outputs system pkgs pkgs-unstable; };
     };
 

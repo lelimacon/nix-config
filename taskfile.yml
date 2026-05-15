@@ -3,9 +3,9 @@ version: '3'
 
 includes:
 
-  nixos:
-      taskfile: ./nixos/taskfile.yml
-      dir: ./nixos
+  system:
+      taskfile: ./system/taskfile.yml
+      dir: ./nixosystems
 
   home:
       taskfile: ./home/taskfile.yml
@@ -19,7 +19,7 @@ tasks:
     cmds:
       - nix flake metadata
       - nix flake show
-      - task: nixos:show
+      - task: system:show
 
   check:
     desc: Validate configuration.
@@ -29,7 +29,7 @@ tasks:
   diff:
     desc: Build system configuration, do not activate but show changes.
     cmds:
-      - task: nixos:diff
+      - task: system:diff
 
   update:
     desc: Updates the lock file.

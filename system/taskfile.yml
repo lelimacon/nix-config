@@ -1,45 +1,68 @@
 version: '3'
 
 
+vars:
+  OSTYPE:
+    sh: bash -c 'echo $OSTYPE'
+  OS:
+    sh: |
+      if [[ {{.OSTYPE}} == "linux-gnu"* ]]; then
+        echo "linux"
+      elif [[ {{.OSTYPE}} == "darwin"* ]]; then
+        echo "darwin"
+      else
+        echo "unknown"
+      fi
+
+
 tasks:
 
   show:
-    desc: Show system generations.
+    desc: "Show system generations."
     cmds:
       - nix-env --list-generations --profile /nix/var/nix/profiles/system
 
   diff:
-    desc: Build configuration, do not activate but show changes.
+    desc: "Build configuration, do not activate but show changes."
     cmds:
       - nixos-rebuild dry-activate --flake ".."
 
-  switch:
-    desc: Build configuration, make it default, and switch.
-    cmds:
-      - sudo nixos-rebuild switch --flake ".."
-
-  test:
-    desc: Build configuration, switch, but don't add it to the bootloader menu.
-    cmds:
-      - sudo nixos-rebuild test --flake ".."
-
-  boot:
-    desc: Build configuration, make it default, but switch on next boot.
-    cmds:
-      - sudo nixos-rebuild boot --flake ".."
-
-  list:
-    desc: List packages installed in system profile.
-    cmds:
-      - nix profile list
-
   gc:
-    desc: Garbage collect unused objects and 6+ generations.
+    desc: "Garbage collect unused objects and 6+ generations."
     cmds:
       - sudo nix-env --delete-generations +6 --profile /nix/var/nix/profiles/system
       - nix-store --gc
 
   repair:
-    desc: Fix stuff. Maybe. `/nix/store/***-source no such file or directory`
+    desc: "Fix stuff. Maybe. `/nix/store/***-source no such file or directory`"
     cmds:
       - nix-store --repair --verify --check-contents
+
+  list:
+    desc: "List packages installed in system profile."
+    cmds:
+      - nix profile list
+
+  #
+  # System / host-specific tasks
+  #
+
+  check:
+    desc: "Validate configuration."
+    cmds:
+      - task --taskfile "taskfile.{{.OS}}.yml" check
+
+  switch:
+    desc: "Build configuration, make it default, and switch."
+    cmds:
+      - task --taskfile "taskfile.{{.OS}}.yml" switch
+
+  test:
+    desc: "Build configuration, switch, but don't add it to the bootloader menu."
+    cmds:
+      - task --taskfile "taskfile.{{.OS}}.yml" test
+
+  boot:
+    desc: "Build configuration, make it default, but switch on next boot."
+    cmds:
+      - task --taskfile "taskfile.{{.OS}}.yml" boot

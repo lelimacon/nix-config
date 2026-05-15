@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+
+  dev:
+    dir: ..
+    desc: "Run `develop` script with root path."
+    cmds:
+      - nu ext/scripts/develop.nu .
+
+  where:
+    desc: "Run `where` script with root path."
+    cmds:
+      - nu scripts/where.nu

@@ -1,83 +1,71 @@
 {
-  description = "Configuration of lelimacon";
+  description = "Common flake";
 
   inputs =
   {
-    flake-utils =
+    nix-firefox-addons =
     {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
+      url = "github:osipog/nix-firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager =
     {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
+      #url = "github:nix-community/home-manager";
+      #inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    nix-darwin =
+    {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      #url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak/main";
+    # TODO: Add?
+    #nix-flatpak.url = "github:gmodena/nix-flatpak/main";
 
-    #nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    systems.url = "github:nix-systems/x86_64-linux";
+    systems.url = "github:nix-systems/default";
   };
 
   outputs = inputs @
   {
-    flake-utils,
-    home-manager,
     nixpkgs,
+    nixpkgs-unstable,
     self,
+    systems,
     ...
   }:
   let
     inherit (self) outputs;
 
-    userName = "lelimacon";
-    system = "x86_64-linux";
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f system);
+    eachSystemPkgs = f: nixpkgs.lib.genAttrs (import systems) (system: f (import nixpkgs { inherit system; }));
 
-    pkgs = import nixpkgs
-    {
-      system = system;
-      config =
-      {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
-    pkgs-unstable = import inputs.nixpkgs-unstable
-    {
-      system = system;
-      config =
-      {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
+    nixpkgs-local = eachSystemPkgs (pkgs: import ./ext/index.nix { inherit pkgs; });
+    lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable nixpkgs-local systems; };
   in
   {
-    # System configuration.
-    # `nixos-rebuild switch`.
-    nixosConfigurations."surfaceLaptop3" = nixpkgs.lib.nixosSystem
-    {
-      pkgs = pkgs;
-      modules = [ ./system/hosts/surfaceLaptop3 ];
-      specialArgs = { inherit inputs outputs system pkgs pkgs-unstable; };
-    };
+    # Expose lib for host-specific flakes.
+    lib = lib;
 
-    # Standalone Home Manager configuration.
-    # `home-manager switch`.
-    # Also tied to system configuration in /hosts/*/default.nix
-    homeConfigurations.${userName} = home-manager.lib.homeManagerConfiguration
+    # Expose custom packages.
+    # This allows for `nix run .#shelve`.
+    packages = nixpkgs-local;
+
+    # Dev shells.
+    devShells = eachSystem (system: import ./shells/index.nix
     {
-      pkgs = pkgs;
-      modules = [ ./home/profiles/all.nix ];
-      extraSpecialArgs = { inherit inputs outputs system pkgs pkgs-unstable; };
-    };
+      inherit system;
+      pkgs = lib.get-pkgs nixpkgs system;
+    });
   };
 }

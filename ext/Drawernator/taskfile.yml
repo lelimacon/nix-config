@@ -1,0 +1,29 @@
+version: '3'
+
+tasks:
+
+  shell:
+    desc: Open development shell.
+    cmds:
+      - 'nix develop'
+
+  init:
+    desc: Initialize.
+    cmds:
+      - 'meson setup out'
+
+  build:
+    desc: Build app.
+    cmds:
+      - 'ninja -C out'
+
+  run:
+    desc: Run app.
+    deps: [build]
+    cmds:
+      - './out/drawernator'
+
+  clean:
+    desc: "Delete ALL generated files"
+    cmds:
+      - 'rm -rf ./out/'

@@ -35,6 +35,7 @@
   system.stateVersion = "24.05";
 
   # Tie Home Manager to system configuration.
+  # TODO: Remove from here.
   home-manager =
   {
     users."lelimacon" = import ../../../home/profiles/all.nix;

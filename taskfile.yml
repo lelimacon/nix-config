@@ -2,36 +2,42 @@ version: '3'
 
 
 includes:
-
+  ext:
+    taskfile: ./ext
+    dir: ./ext
   system:
-      taskfile: ./system/taskfile.yml
-      dir: ./nixosystems
-
+    taskfile: ./system/taskfile.yml
+    dir: ./system
   home:
-      taskfile: ./home/taskfile.yml
-      dir: ./home
+    taskfile: ./home/taskfile.yml
+    dir: ./home
 
 
 tasks:
 
   show:
-    desc: Show configuration and generations.
+    desc: "Show configuration and generations."
     cmds:
       - nix flake metadata
       - nix flake show
       - task: system:show
 
+  list:
+    desc: "List packages installed in system profile."
+    cmds:
+      - nix-env -qaP
+
   check:
-    desc: Validate configuration.
+    desc: "Validate configuration."
     cmds:
       - nix flake check --impure
 
   diff:
-    desc: Build system configuration, do not activate but show changes.
+    desc: "Build system configuration, do not activate but show changes."
     cmds:
       - task: system:diff
 
   update:
-    desc: Updates the lock file.
+    desc: "Updates the lock file."
     cmds:
       - nix flake update

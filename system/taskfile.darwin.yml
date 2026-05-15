@@ -1,0 +1,27 @@
+version: '3'
+
+
+vars:
+  HOST_NAME:
+    sh: scutil --get HostName
+  FLAKE_PATH: "./hosts/{{.HOST_NAME}}"
+
+
+tasks:
+
+  init-darwin:
+    desc: "Initialize."
+    cmds:
+      # Install Homebrew.
+      - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      # Install nix.
+      - sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+      # Apply configuration.
+      - sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes nix-darwin -- switch --flake .#max-air-m4
+
+  switch:
+    desc: "Build configuration, make it default, and switch."
+    platforms: [darwin]
+    cmds:
+      - echo "Switching config on host '{{.HOST_NAME}}'"
+      - sudo darwin-rebuild switch --flake "{{.FLAKE_PATH}}#{{.HOST_NAME}}"

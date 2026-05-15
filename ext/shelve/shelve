@@ -1,0 +1,82 @@
+#!/usr/bin/env nu
+
+let dstDir = $".git/.shelve/"
+
+# Shelve utility.
+export def main [] {
+    help commands main
+}
+
+# Create patch by name.
+def "main to" [dstRelativePath: string] {
+    shelve-to $dstRelativePath
+}
+
+# Apply patch from name.
+def "main from" [dstRelativePath: string] {
+    shelve-from $dstRelativePath
+}
+
+# Silently shelve all changes to patch with generic name.
+def "main silent" [] {
+    let timestamp = date now | format date "%Y%m%d%H%M%S"
+    let branch = git branch --show-current
+    shelve-to $"($timestamp)_($branch)"
+}
+
+# List available patches.
+def "main list" [] {
+    list-patches
+}
+
+def list-patches [] {
+    pwd | print
+
+    mkdir $dstDir
+    let patches = (
+        ls $dstDir
+        | sort-by --reverse modified
+        | insert patch_name { get name | path parse | get stem }
+        | select patch_name modified
+        | rename name modified
+    )
+
+    print $"Available patches :"
+    print $patches
+}
+
+def shelve-to [dstRelativePath] {
+    let absoluteDstPath = $"($dstDir)($dstRelativePath).patch"
+    if ($absoluteDstPath | path exists) {
+        print $"Shelve already exists at : '($absoluteDstPath)'"
+        exit
+    }
+    mkdir $dstDir
+
+    print $"Shelving all changes to : '($absoluteDstPath)'"
+    git-diff-all $absoluteDstPath
+    git-wipe
+}
+
+def shelve-from [dstRelativePath] {
+    let absoluteDstPath = $"($dstDir)($dstRelativePath).patch"
+    if not ($absoluteDstPath | path exists) {
+        print $"Patch not found : '($absoluteDstPath)'"
+        list-patches
+        exit
+    }
+    print $"Applying patch from : '($absoluteDstPath)'"
+    git apply $absoluteDstPath
+}
+
+# Create a patch with local changes.
+def git-diff-all [absoluteDstPath] {
+    git add -N .
+    git diff HEAD --binary | save $absoluteDstPath
+}
+
+# Reset all changes, both tracked and untracked.
+def git-wipe [] {
+    git reset --hard HEAD
+    git clean -fd
+}

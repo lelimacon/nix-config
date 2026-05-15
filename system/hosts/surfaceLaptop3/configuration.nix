@@ -17,6 +17,7 @@
     ../../modules/gnome.nix
     #../../modules/hyprland.nix
     ../../modules/programs.nix
+    ../../modules/system-defaults.nix
     ../../modules/users.nix
     ../../modules/wayland.nix
     #../../modules/x11.nix
@@ -25,11 +26,6 @@
     ./hardware-configuration.nix
     ./hardware-overrides.nix
   ];
-
-  nix.settings =
-  {
-    experimental-features = [ "nix-command" "flakes" ];
-  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

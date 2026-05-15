@@ -1,0 +1,76 @@
+{
+  vars,
+  ...
+}:
+{
+  # Privacy.
+  system.defaults.CustomUserPreferences =
+  {
+    "com.apple.AdLib".allowApplePersonalizedAdvertising = false;
+  };
+
+  # Show battery percentage.
+  system.defaults.CustomUserPreferences =
+  {
+    "/Users/${vars.user.name}/Library/Preferences/ByHost/com.apple.controlcenter".BatteryShowPercentage = true;
+  };
+
+  # Screen.
+  system.defaults.screensaver =
+  {
+    askForPasswordDelay = 10;
+  };
+
+  # Dock.
+  system.defaults.dock =
+  {
+    autohide = true;
+    autohide-delay = 0.2;
+    autohide-time-modifier = 0.1;
+    magnification = false;
+    mru-spaces = false; # don't rearrange spaces based on most recent.
+    mineffect = "genie"; # the worst of all.
+    minimize-to-application = true;
+    showhidden = false;
+    show-recents = false;
+    tilesize = 40;
+  };
+
+  # Finder.
+  system.defaults.finder =
+  {
+    AppleShowAllExtensions = true;
+    AppleShowAllFiles = true; # show hidden files.
+    FXPreferredViewStyle = "Nlsv"; # list view.
+    CreateDesktop = false; # hide icons on the desktop.
+    FXEnableExtensionChangeWarning = false; # no warning when renaming file extension.
+    ShowPathbar = true;
+    ShowStatusBar = true;
+  };
+
+  # Screenshots.
+  system.defaults =
+  {
+    screencapture.location = "~/Pictures/screenshots";
+  };
+
+  # Disable Homebrew telemetry.
+  environment.variables.HOMEBREW_NO_ANALYTICS = "1";
+
+  homebrew =
+  {
+    enable = true;
+    casks =
+    [
+      #"visual-studio-code"
+      "1password" # password manager.
+      "ghostty" # terminal emulator.
+    ];
+    brews =
+    [
+      #"erlang"
+      #"elixir"
+      "gitversion"
+    ];
+  };
+}

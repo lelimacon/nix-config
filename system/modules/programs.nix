@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   pkgs-unstable,
   ...
@@ -20,10 +19,10 @@
   #   enableSSHSupport = true;
   # };
 
+  # TODO: Organize these by category.
   environment.systemPackages = with pkgs;
   [
     # CLI tools.
-    home-manager
     busybox curl jq
     vim
     neofetch

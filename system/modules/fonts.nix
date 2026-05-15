@@ -12,13 +12,18 @@
     inriafonts
     liberation_ttf
     libertinus
+    monaspace
     mplus-outline-fonts.githubRelease
     #nerd-fonts.fira-code
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono
     noto-fonts
     noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
     noto-fonts-color-emoji
+    noto-fonts-emoji-blob-bin
+    noto-fonts-lgc-plus
+    noto-fonts-monochrome-emoji
     proggyfonts
     ubuntu-sans
   ];

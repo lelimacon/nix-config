@@ -16,12 +16,12 @@ tasks:
   switch:
     desc: Build configuration, make it default, and switch.
     cmds:
-      - nixos-rebuild switch --flake ".."
+      - sudo nixos-rebuild switch --flake ".."
 
   test:
     desc: Build configuration, switch, but don't add it to the bootloader menu.
     cmds:
-      - nixos-rebuild test --flake ".."
+      - sudo nixos-rebuild test --flake ".."
 
   boot:
     desc: Build configuration, make it default, but switch on next boot.

@@ -20,6 +20,7 @@
     ../modules/dev/git.nix
     ../modules/dev/gtk.nix
     ../modules/dev/java.nix
+    ../modules/dev/nix.nix
     ../modules/dev/rust.nix
     ../modules/dev/web.nix
 

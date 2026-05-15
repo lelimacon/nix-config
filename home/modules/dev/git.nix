@@ -9,11 +9,11 @@
     enable = true;
     lfs.enable = true;
 
-    userName = "lelimacon";
-    userEmail = "lelimacon@users.noreply.github.com";
-
-    extraConfig =
+    settings =
     {
+      user.name = "lelimacon";
+      user.email = "lelimacon@users.noreply.github.com";
+
       init.defaultBranch = "main";
       pull.rebase = true;
       mergetool.prompt = true;

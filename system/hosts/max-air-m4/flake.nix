@@ -15,15 +15,13 @@
     };
   };
 
-  outputs = inputs @
+  outputs =
   {
     common,
     self,
     ...
   }:
   let
-    inherit (self) outputs;
-
     config-path = ./configuration.nix;
     home-config-path = ../../../home/profiles/max-air-m4.nix;
     vars =
@@ -37,7 +35,7 @@
     };
   in
   {
-    # System configuration.
+    # System configuration with Home Manager.
     darwinConfigurations."${vars.hostName}" =
       common.lib.mkDarwinSystemWithHome { inherit vars config-path home-config-path; };
 

@@ -29,15 +29,13 @@
     };
   };
 
-  outputs = inputs @
+  outputs =
   {
     common,
     self,
     ...
   }:
   let
-    inherit (self) outputs;
-
     config-path = ./configuration.nix;
     home-config-path = ../../../home/profiles/surface-laptop-3.nix;
     vars =
@@ -49,28 +47,9 @@
       user.homeDirectory = "/home/lelimacon";
       hostName = "surfaceLaptop3";
     };
-
-    # pkgs = import nixpkgs
-    # {
-    #   system = vars.system;
-    #   config =
-    #   {
-    #     allowUnfree = true;
-    #     allowUnfreePredicate = _: true;
-    #   };
-    # };
-    # pkgs-unstable = import inputs.nixpkgs-unstable
-    # {
-    #   system = vars.system;
-    #   config =
-    #   {
-    #     allowUnfree = true;
-    #     allowUnfreePredicate = _: true;
-    #   };
-    # };
   in
   {
-    # System configuration.
+    # System configuration with Home Manager.
     nixosConfigurations."${vars.hostName}" =
       common.lib.mkNixosSystemWithHome { inherit vars config-path home-config-path; };
 
@@ -79,24 +58,5 @@
     # Home Manager is also tied to system configuration.
     homeConfigurations."${vars.user.name}" =
       common.lib.mkHomeConfiguration { inherit vars home-config-path; };
-
-    # # System configuration.
-    # # `nixos-rebuild switch`.
-    # nixosConfigurations."${vars.hostName}" = nixpkgs.lib.nixosSystem
-    # {
-    #   pkgs = pkgs;
-    #   modules = [ ./system/hosts/surfaceLaptop3 ];
-    #   specialArgs = { inherit inputs outputs vars pkgs pkgs-unstable; };
-    # };
-
-    # # Standalone Home Manager configuration.
-    # # `home-manager switch`.
-    # # Also tied to system configuration in /hosts/*/default.nix
-    # homeConfigurations."${vars.user.name}" = home-manager.lib.homeManagerConfiguration
-    # {
-    #   pkgs = pkgs;
-    #   modules = [ ./home/profiles/all.nix ];
-    #   extraSpecialArgs = { inherit inputs outputs vars pkgs pkgs-unstable; };
-    # };
   };
 }

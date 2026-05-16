@@ -1,11 +1,5 @@
 {
   inputs,
-  outputs,
-  system,
-  pkgs,
-  pkgs-local,
-  pkgs-unstable,
-  vars,
   ...
 }:
 {
@@ -32,12 +26,4 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
-
-  # Tie Home Manager to system configuration.
-  # TODO: Remove from here.
-  home-manager =
-  {
-    users."lelimacon" = import ../../../home/profiles/surface-laptop-3.nix;
-    extraSpecialArgs = { inherit inputs outputs vars system pkgs pkgs-local pkgs-unstable; };
-  };
 }

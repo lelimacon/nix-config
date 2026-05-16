@@ -1,4 +1,4 @@
-# Aggregate of all custom packages.
+# Index of all custom packages.
 {
   pkgs,
 }:

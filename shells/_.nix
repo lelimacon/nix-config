@@ -1,14 +1,15 @@
-# Aggregate of all dev shells.
+# Index of all dev shells.
 {
   pkgs,
-  system,
 }:
 let
   beam-shell = import ./beam.nix { inherit pkgs; };
+  dotnet-shell = import ./dotnet.nix { inherit pkgs; };
   web-shell = import ./web.nix { inherit pkgs; };
 in
 {
   beam = beam-shell;
+  dotnet = dotnet-shell;
   web = web-shell;
 
   # Combined shells.

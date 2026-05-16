@@ -17,19 +17,24 @@ tasks:
 
   switch:
     desc: "Build configuration, make it default, and switch."
+    silent: true
     platforms: [linux]
     cmds:
-      - echo "Switching config on host '{{.HOST_NAME}}'"
+      - echo "Configuration switch on host '{{.HOST_NAME}}'"
       - sudo nixos-rebuild switch --flake "{{.FLAKE_PATH}}#{{.HOST_NAME}}"
 
   test:
     desc: "Build configuration, switch, but don't add it to the bootloader menu."
+    silent: true
     platforms: [linux]
     cmds:
+      - echo "Configuration test on host '{{.HOST_NAME}}'"
       - sudo nixos-rebuild test --flake "{{.FLAKE_PATH}}#{{.HOST_NAME}}"
 
   boot:
     desc: "Build configuration, make it default, but switch on next boot."
+    silent: true
     platforms: [linux]
     cmds:
+      - echo "Configuration boot on host '{{.HOST_NAME}}'"
       - sudo nixos-rebuild boot --flake "{{.FLAKE_PATH}}#{{.HOST_NAME}}"

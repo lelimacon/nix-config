@@ -50,7 +50,7 @@
     eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f system);
     eachSystemPkgs = f: nixpkgs.lib.genAttrs (import systems) (system: f (import nixpkgs { inherit system; }));
 
-    nixpkgs-local = eachSystemPkgs (pkgs: import ./ext/index.nix { inherit pkgs; });
+    nixpkgs-local = eachSystemPkgs (pkgs: import ./ext/_.nix { inherit pkgs; });
     lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable nixpkgs-local systems; };
   in
   {
@@ -62,7 +62,7 @@
     packages = nixpkgs-local;
 
     # Dev shells.
-    devShells = eachSystem (system: import ./shells/index.nix
+    devShells = eachSystem (system: import ./shells/_.nix
     {
       inherit system;
       pkgs = lib.get-pkgs nixpkgs system;

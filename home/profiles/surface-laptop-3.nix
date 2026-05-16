@@ -21,13 +21,13 @@
     ../modules/dev/dotnet.nix
     ../modules/dev/containerization.nix
     ../modules/dev/db.nix
-    ../modules/dev/gamedev.nix
+    #../modules/dev/gamedev.nix
     ../modules/dev/general.nix
     ../modules/dev/git.nix
     ../modules/dev/gtk.nix
-    ../modules/dev/jvm.nix
+    #../modules/dev/jvm.nix
     ../modules/dev/nix.nix
-    ../modules/dev/rust.nix
+    #../modules/dev/rust.nix
     ../modules/dev/vscode.nix
     ../modules/dev/web.nix
 

@@ -62,9 +62,10 @@ in
 {
   home.packages =
   [
-    rider
+    #rider
+    pkgs-unstable.jetbrains.rider
   ];
 
-  home.file.".local/share/applications/jetbrains-rider.desktop".source =
-    "${desktopFile}/share/applications/jetbrains-rider.desktop";
+  #home.file.".local/share/applications/jetbrains-rider.desktop".source =
+  #  "${desktopFile}/share/applications/jetbrains-rider.desktop";
 }

@@ -47,6 +47,7 @@ in
         (editorBinding "ctrl+shift+u" "editor.action.transformToUppercase")
         (editorBinding "ctrl+shift+i" "editor.action.transformToLowercase")
         (editorBinding "shift+cmd+numpad0" "editor.action.fontZoomReset")
+        (editorBinding "ctrl+numpad_divide" "editor.action.commentLine")
       ];
 
       # General settings.
@@ -54,18 +55,23 @@ in
       {
         "update.mode" = "none";
         "breadcrumbs.enabled" = true;
+
         #"files.autoSave" = "off";
+        "files.trimTrailingWhitespace" = true;
+        "files.eol" = "\n";
 
         "extensions.autoUpdate" = false; # fixes vscode freaking out when theres an update.
-        #"window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
 
+        #"window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
         #"window.menuBarVisibility" = "toggle";
         #"terminal.integrated.fontFamily" = "'Maple Mono', 'SymbolsNerdFont'";
-        #"workbench.colorTheme" = "Gruvbox Dark Hard";
-        #"workbench.iconTheme" = "gruvbox-material-icon-theme";
+        "terminal.external.linuxExec" = "ghostty";
+
         #"material-icon-theme.folders.theme" = "classic";
         #"vsicons.dontShowNewVersionMessage" = true;
+
         "explorer.confirmDragAndDrop" = false;
+        #"explorer.openEditors.visible" = 0;
 
         "editor.fontFamily" = "'FiraCode Nerd Font', Monaspace, Monaco, monospace";
         "editor.fontLigatures" = true;
@@ -82,7 +88,12 @@ in
         #"editor.scrollbar.vertical" = "hidden";
         #"editor.scrollbar.horizontal" = "hidden";
         "editor.mouseWheelZoom" = true;
+        "editor.roundedSelection" = false;
+        "editor.multiCursorModifier" = "ctrlCmd";
+        "editor.renderWhitespace" = "boundary";
 
+        #"workbench.colorTheme" = "Gruvbox Dark Hard";
+        #"workbench.iconTheme" = "gruvbox-material-icon-theme";
         #"workbench.colorTheme" = "Smoothy 7";
         #"workbench.editor.limit.enabled" = true;
         #"workbench.editor.limit.value" = 10;
@@ -95,9 +106,12 @@ in
         #"workbench.statusBar.visible" = false;
         #"workbench.layoutControl.enabled" = false;
         "workbench.tree.indent" = 16;
-        #"explorer.openEditors.visible" = 0;
 
         "git.autofetch" = true;
+
+        #"git.openRepositoryInParentFolders" = "never";
+        "diffEditor.ignoreTrimWhitespace" = false;
+        #"security.workspace.trust.untrustedFiles" = "open";
       };
 
       # Theming.
@@ -107,6 +121,7 @@ in
         #"workbench.colorTheme" = "Koala";
         "workbench.colorTheme" = "Default Light+";
         #"workbench.iconTheme" = "catppuccin noctis icons";
+        #"workbench.iconTheme" = "file-icons";
         "workbench.iconTheme" = "bearded-icons";
         "workbench.colorCustomizations" =
         {
@@ -138,6 +153,15 @@ in
       userSettings =
       {
         "catppuccin-noctis-icons.hidesExplorerArrows" = true;
+      };
+
+      # Extension: Rust Analyzer.
+      # https://open-vsx.org/extension/rust-lang/rust-analyzer
+      userSettings =
+      {
+        "rust-analyzer.inlayHints.typeHints.enable" = false;
+        "rust-analyzer.inlayHints.parameterHints.enable" = false;
+        "rust-analyzer.inlayHints.closingBraceHints.enable" = false;
       };
 
       # Extension: Markdown Header Coloring.

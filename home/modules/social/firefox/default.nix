@@ -117,14 +117,14 @@ in
       '';
       #userContent =
       #''
-      #  @-moz-document url-prefix("moz-extension://"), 
+      #  @-moz-document url-prefix("moz-extension://"),
       #                 url-prefix("about:treestyletab") {
       #    ${builtins.readFile ./tree-style-tab.css}
       #  }
       #'';
       userContent =
       ''
-        @-moz-document url-prefix("moz-extension://"), 
+        @-moz-document url-prefix("moz-extension://"),
                       url-prefix("about:treestyletab") {
             .tab.active {
                 background: rgba(255,0,0,0.5);
@@ -134,103 +134,100 @@ in
     };
 
     # At ~/Library/Application\ Support/Firefox/Profiles
-    profiles =
+    profiles.default =
     {
-      default =
+      id = 0;
+      name = "default";
+      isDefault = true;
+      settings =
       {
-        id = 0;
-        name = "default";
-        isDefault = true;
-        settings =
-        {
-          # "browser.startup.homepage" = "https://duckduckgo.com";
-          "browser.search.defaultenginename" = "DuckDuckGo";
-          "browser.search.order.1" = "DuckDuckGo";
+        # "browser.startup.homepage" = "https://duckduckgo.com";
+        "browser.search.defaultenginename" = "DuckDuckGo";
+        "browser.search.order.1" = "DuckDuckGo";
 
-          "signon.rememberSignons" = false;
-          "browser.aboutConfig.showWarning" = false;
-          "browser.compactmode.show" = true;
-          "browser.cache.disk.enable" = false; # Be kind to hard drive
+        "signon.rememberSignons" = false;
+        "browser.aboutConfig.showWarning" = false;
+        "browser.compactmode.show" = true;
+        "browser.cache.disk.enable" = false; # Be kind to hard drive
 
-          "mousewheel.default.delta_multiplier_x" = 200;
-          "mousewheel.default.delta_multiplier_y" = 200;
-          "mousewheel.default.delta_multiplier_z" = 200;
+        "mousewheel.default.delta_multiplier_x" = 200;
+        "mousewheel.default.delta_multiplier_y" = 200;
+        "mousewheel.default.delta_multiplier_z" = 200;
 
-          # Firefox 75+ remembers the last workspace it was opened on as part of its session management.
-          # This is annoying, because I can have a blank workspace, click Firefox from the launcher, and
-          # then have Firefox open on some other workspace.
-          "widget.disable-workspace-management" = true;
-        };
-        search =
-        {
-          force = true;
-          default = "ddg";
-          order = [ "ddg" "nixpkgs" ];
-          engines = {
-            "ddg" =
-            {
-              #Name = "DuckDuckGo"; # TODO find label.
-              icon = "https://duckduckgo.com/favicon.ico";
-              urls =
-              [
-                {
-                  template = "https://start.duckduckgo.com/?t=ffab&ia=web&q={searchTerms}";
-                }
-              ];
-            };
-            "nixpkgs" =
-            {
-              #name = "Nix packages";
-              Alias = "@npkgs";
-              urls =
-              [
-                {
-                  template = "https://github.com/search?type=code&q=repo:NixOS/nixpkgs+lang:nix+{searchTerms}";
-                }
-              ];
-            };
-            "Home Manager" =
-            {
-              #name = "Home Manager";
-              Alias = "@hmgr";
-              urls =
-              [
-                {
-                  template = "https://github.com/search?type=code&q=repo:nix-community/home-manager+lang:nix+{searchTerms}";
-                }
-              ];
-            };
-            "Home Manager Options" =
-            {
-              #name = "Home Manager Options";
-              Alias = "@oh";
-              icon = "https://home-manager-options.extranix.com/images/favicon.png";
-              urls =
-              [
-                {
-                  template = "https://home-manager-options.extranix.com/?release=master";
-                  params =
-                  [
-                    { name = "query"; value = "{searchTerms}"; }
-                  ];
-                }
-              ];
-            };
-            "NixOS Options" =
-            {
-              #name = "NixOS Options";
-              Alias = "@on";
-              urls =
-              [
-                {
-                  template = "https://search.nixos.org/options?channel=unstable&from=0&size=100&sort=alpha_asc";
-                  params =
-                  [
-                    { name = "query"; value = "{searchTerms}"; }
-                  ];
-                }
-              ];
-            };
+        # Firefox 75+ remembers the last workspace it was opened on as part of its session management.
+        # This is annoying, because I can have a blank workspace, click Firefox from the launcher, and
+        # then have Firefox open on some other workspace.
+        "widget.disable-workspace-management" = true;
+      };
+      search =
+      {
+        force = true;
+        default = "ddg";
+        order = [ "ddg" "nixpkgs" ];
+        engines = {
+          "ddg" =
+          {
+            #Name = "DuckDuckGo"; # TODO find label.
+            icon = "https://duckduckgo.com/favicon.ico";
+            urls =
+            [
+              {
+                template = "https://start.duckduckgo.com/?t=ffab&ia=web&q={searchTerms}";
+              }
+            ];
+          };
+          "nixpkgs" =
+          {
+            #name = "Nix packages";
+            Alias = "@npkgs";
+            urls =
+            [
+              {
+                template = "https://github.com/search?type=code&q=repo:NixOS/nixpkgs+lang:nix+{searchTerms}";
+              }
+            ];
+          };
+          "Home Manager" =
+          {
+            #name = "Home Manager";
+            Alias = "@hmgr";
+            urls =
+            [
+              {
+                template = "https://github.com/search?type=code&q=repo:nix-community/home-manager+lang:nix+{searchTerms}";
+              }
+            ];
+          };
+          "Home Manager Options" =
+          {
+            #name = "Home Manager Options";
+            Alias = "@oh";
+            icon = "https://home-manager-options.extranix.com/images/favicon.png";
+            urls =
+            [
+              {
+                template = "https://home-manager-options.extranix.com/?release=master";
+                params =
+                [
+                  { name = "query"; value = "{searchTerms}"; }
+                ];
+              }
+            ];
+          };
+          "NixOS Options" =
+          {
+            #name = "NixOS Options";
+            Alias = "@on";
+            urls =
+            [
+              {
+                template = "https://search.nixos.org/options?channel=unstable&from=0&size=100&sort=alpha_asc";
+                params =
+                [
+                  { name = "query"; value = "{searchTerms}"; }
+                ];
+              }
+            ];
           };
         };
       };

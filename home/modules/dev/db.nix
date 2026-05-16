@@ -6,7 +6,7 @@
 {
   home.packages = with pkgs;
   [
-    pkgs-unstable.jetbrains.datagrip
+    #pkgs-unstable.jetbrains.datagrip
     #dbeaver-bin
   ];
 }

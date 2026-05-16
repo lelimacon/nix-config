@@ -39,14 +39,14 @@
     inherit (self) outputs;
 
     config-path = ./configuration.nix;
-    home-config-path = ../../../home/profiles/all.nix;
+    home-config-path = ../../../home/profiles/surface-laptop-3.nix;
     vars =
     {
       system = "x86_64-linux";
       config.path = ./.;
       config.rev = self.rev or self.dirtyRev or null;
       user.name = "lelimacon";
-      #user.homeDirectory = "/Users/max";
+      user.homeDirectory = "/home/lelimacon";
       hostName = "surfaceLaptop3";
     };
 

@@ -3,7 +3,9 @@
   outputs,
   system,
   pkgs,
+  pkgs-local,
   pkgs-unstable,
+  vars,
   ...
 }:
 {
@@ -16,7 +18,8 @@
     ../../modules/fonts.nix
     ../../modules/gnome.nix
     #../../modules/hyprland.nix
-    ../../modules/programs.nix
+    ../../modules/linux-software.nix
+    ../../modules/steam.nix
     ../../modules/system-defaults.nix
     ../../modules/users.nix
     ../../modules/wayland.nix
@@ -34,7 +37,7 @@
   # TODO: Remove from here.
   home-manager =
   {
-    users."lelimacon" = import ../../../home/profiles/all.nix;
-    extraSpecialArgs = { inherit inputs outputs system pkgs pkgs-unstable; };
+    users."lelimacon" = import ../../../home/profiles/surface-laptop-3.nix;
+    extraSpecialArgs = { inherit inputs outputs vars system pkgs pkgs-local pkgs-unstable; };
   };
 }

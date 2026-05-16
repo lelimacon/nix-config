@@ -1,9 +1,9 @@
+# Starship prompt engine.
+# https://starship.rs/config
 {
   ...
 }:
 {
-  # Starship.
-  # https://starship.rs/config
   programs.starship =
   {
     enable = true;

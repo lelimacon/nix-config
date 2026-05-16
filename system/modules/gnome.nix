@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -27,5 +26,14 @@
     gnome-weather
     totem # video player.
     yelp gnome-initial-setup gnome-tour # assistance apps.
+  ];
+
+  # Generic apps.
+  environment.systemPackages = with pkgs;
+  [
+    # Utils.
+    pavucontrol # PulseAudio Volume Control.
+    mission-center # activity monitor.
+    #rustdesk # remote desktop sharing (OSS alternative to AnyDesk).
   ];
 }

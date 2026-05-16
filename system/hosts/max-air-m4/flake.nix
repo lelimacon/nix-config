@@ -25,7 +25,7 @@
     inherit (self) outputs;
 
     config-path = ./configuration.nix;
-    home-config-path = ../../../home/profiles/all.nix;
+    home-config-path = ../../../home/profiles/max-air-m4.nix;
     vars =
     {
       system = "aarch64-darwin";

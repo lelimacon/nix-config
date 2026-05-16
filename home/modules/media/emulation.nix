@@ -1,11 +1,11 @@
 {
   pkgs,
-  pkgs-unstable,
   ...
 }:
 {
   home.packages = with pkgs;
   [
-    typst tinymist # typesetting system.
+    # Wine.
+    bottles # WINE prefix manager.
   ];
 }

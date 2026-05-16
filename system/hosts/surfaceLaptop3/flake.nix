@@ -46,6 +46,15 @@
       user.name = "lelimacon";
       user.homeDirectory = "/home/lelimacon";
       hostName = "surfaceLaptop3";
+      theme =
+      {
+        # https://colorhunt.co/palette/fffbf1fff2d0ffb2b2e36a6a
+        colors.b = "#3f1e1e"; # Stone 900.
+        colors.primary = "#E36A6A"; # Pink 600.
+        colors.primary-dark = "#755757"; # Pink 800.
+        colors.primary-light = "#FFF2D0"; # Pink 100.
+        colors.primary-lighter = "#FFFBF1"; # Pink 50.
+      };
     };
   in
   {

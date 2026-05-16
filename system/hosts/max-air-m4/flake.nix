@@ -32,6 +32,16 @@
       user.name = "max";
       user.homeDirectory = "/Users/max";
       hostName = "max-air-m4";
+      theme =
+      {
+        # Theme colors.
+        # https://tailwindcss.com/docs/colors
+        colors.b = "#1c1917"; # Stone 900.
+        colors.primary = "#db2777"; # Pink 600.
+        colors.primary-dark = "#9d174d"; # Pink 800.
+        colors.primary-light = "#fce7f3"; # Pink 100.
+        colors.primary-lighter = "#fdf2f8"; # Pink 50.
+      };
     };
   in
   {

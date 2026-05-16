@@ -1,5 +1,6 @@
 {
   pkgs,
+  vars,
   ...
 }:
 let
@@ -9,13 +10,7 @@ let
     command = command;
     when = "editorTextFocus && !editorReadonly";
   };
-  # Theme colors.
-  # https://tailwindcss.com/docs/colors
-  color-b = "#1c1917"; # Stone 900.
-  color-primary = "#db2777"; # Pink 600.
-  color-primary-dark = "#9d174d"; # Pink 800.
-  color-primary-light = "#fce7f3"; # Pink 100.
-  color-primary-lighter = "#fdf2f8"; # Pink 50.
+  colors = vars.theme.colors;
 
   # Lib.
   css-linear-gradient = direction: stops:
@@ -127,21 +122,20 @@ in
         {
           "[Default Light+]" =
           {
-              "activityBar.background" = color-primary;
+              "activityBar.background" = colors.primary;
               "activityBar.activeForeground" = "white";
               "activityBar.inactiveForeground" = "#fdf2f8";
-              "activityBarBadge.background" = color-primary-dark;
+              "activityBarBadge.background" = colors.primary-dark;
               #"editor.background" = "#000000";
-              #"editorGroupHeader.tabsBackground" = "#0b1014";
+              "editorGroupHeader.tabsBackground" = colors.primary-lighter;
               #"sideBar.foreground" = "#c7c7c7";
               #"sideBar.background" = "#0b1014";
-              "sideBar.background" = color-primary-lighter;
+              "sideBar.background" = colors.primary-lighter;
               #"sideBarSectionHeader.background" = "#0b1014";
-              #"statusBar.background" = "#0b1014";
-              "statusBar.background" = color-primary;
+              "statusBar.background" = colors.primary;
               #"statusBar.foreground" = "#626262";
-              #"tab.inactiveBackground" = "#0b1014";
-              #"tab.activeBackground" = "#0b1014";
+              "tab.inactiveBackground" = colors.primary-light;
+              "tab.activeBackground" = colors.primary-lighter;
               #"tab.activeBorder" = "#ffd866";
               #"titleBar.activeBackground" = "#0b1014";
           };
@@ -175,10 +169,10 @@ in
           "enabled" = true;
           "Header_1" =
           {
-              "color" = color-primary;
+              "color" = colors.primary;
               "textDecoration" = "padding: 2px; font-size: 1.2em;";
-              "backgroundColor" = css-linear-gradient "to top" [ "${color-b} 1px" "rgba(0, 0, 0, 0) 2px" ];
-              "overviewRulerColor" = color-primary;
+              "backgroundColor" = css-linear-gradient "to top" [ "${colors.b} 1px" "rgba(0, 0, 0, 0) 2px" ];
+              "overviewRulerColor" = colors.primary;
           };
           "Header_2" =
           {
@@ -197,19 +191,19 @@ in
           {
               "color" = "#831843"; # Pink 900.
               "backgroundColor" = false;
-              "overviewRulerColor" = color-primary-light;
+              "overviewRulerColor" = colors.primary-light;
           };
           "Header_5" =
           {
               "color" = "#831843"; # Pink 900.
               "backgroundColor" = false;
-              "overviewRulerColor" = color-primary-light;
+              "overviewRulerColor" = colors.primary-light;
           };
           "Header_6" =
           {
               "color" = "#831843"; # Pink 900.
               "backgroundColor" = false;
-              "overviewRulerColor" = color-primary-light;
+              "overviewRulerColor" = colors.primary-light;
           };
         };
       };

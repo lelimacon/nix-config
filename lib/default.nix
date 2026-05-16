@@ -43,7 +43,7 @@ in
       modules =
       [
         config-path
-        #home-manager-in-system
+        home-manager-in-system
       ];
       specialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };
     };

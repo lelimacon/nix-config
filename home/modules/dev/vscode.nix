@@ -123,20 +123,19 @@ in
           "[Default Light+]" =
           {
               "activityBar.background" = colors.primary;
-              "activityBar.activeForeground" = "white";
-              "activityBar.inactiveForeground" = "#fdf2f8";
+              "activityBar.activeForeground" = colors.primary-fg-strong;
+              "activityBar.inactiveForeground" = colors.primary-fg;
               "activityBarBadge.background" = colors.primary-dark;
-              #"editor.background" = "#000000";
+              "editor.background" = colors.bg-strong;
               "editorGroupHeader.tabsBackground" = colors.primary-lighter;
-              #"sideBar.foreground" = "#c7c7c7";
-              #"sideBar.background" = "#0b1014";
+              "sideBar.foreground" = colors.fg;
               "sideBar.background" = colors.primary-lighter;
-              #"sideBarSectionHeader.background" = "#0b1014";
+              "sideBarSectionHeader.background" = colors.primary-light;
               "statusBar.background" = colors.primary;
-              #"statusBar.foreground" = "#626262";
+              "statusBar.foreground" = colors.primary-fg-strong;
               "tab.inactiveBackground" = colors.primary-light;
               "tab.activeBackground" = colors.primary-lighter;
-              #"tab.activeBorder" = "#ffd866";
+              "tab.activeBorder" = colors.primary-dark;
               #"titleBar.activeBackground" = "#0b1014";
           };
         };
@@ -171,39 +170,39 @@ in
           {
               "color" = colors.primary;
               "textDecoration" = "padding: 2px; font-size: 1.2em;";
-              "backgroundColor" = css-linear-gradient "to top" [ "${colors.b} 1px" "rgba(0, 0, 0, 0) 2px" ];
+              "backgroundColor" = css-linear-gradient "to top" [ "${colors.border} 1px" "rgba(0, 0, 0, 0) 2px" ];
               "overviewRulerColor" = colors.primary;
           };
           "Header_2" =
           {
-              "color" = "#9d174d"; # Pink 800.
+              "color" = colors.primary;
               "textDecoration" = "padding: 1px; font-size: 1.1em;";
               "backgroundColor" = false;
-              "overviewRulerColor" = "#f472b6"; # Pink 400.
+              "overviewRulerColor" = colors.primary;
           };
           "Header_3" =
           {
-              "color" = "#831843"; # Pink 900.
+              "color" = colors.primary-dark;
               "backgroundColor" = false;
-              "overviewRulerColor" = "#fbcfe8"; # Pink 200.
+              "overviewRulerColor" = colors.primary-dark;
           };
           "Header_4" =
           {
-              "color" = "#831843"; # Pink 900.
+              "color" = colors.primary-dark;
               "backgroundColor" = false;
-              "overviewRulerColor" = colors.primary-light;
+              "overviewRulerColor" = colors.primary-dark;
           };
           "Header_5" =
           {
-              "color" = "#831843"; # Pink 900.
+              "color" = colors.primary-dark;
               "backgroundColor" = false;
-              "overviewRulerColor" = colors.primary-light;
+              "overviewRulerColor" = colors.primary-dark;
           };
           "Header_6" =
           {
-              "color" = "#831843"; # Pink 900.
+              "color" = colors.primary-dark;
               "backgroundColor" = false;
-              "overviewRulerColor" = colors.primary-light;
+              "overviewRulerColor" = colors.primary-dark;
           };
         };
       };

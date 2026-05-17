@@ -49,11 +49,20 @@
       theme =
       {
         # https://colorhunt.co/palette/fffbf1fff2d0ffb2b2e36a6a
-        colors.b = "#3f1e1e"; # Stone 900.
-        colors.primary = "#E36A6A"; # Pink 600.
-        colors.primary-dark = "#755757"; # Pink 800.
-        colors.primary-light = "#FFF2D0"; # Pink 100.
-        colors.primary-lighter = "#FFFBF1"; # Pink 50.
+        colors.primary = "#E36A6A";
+        colors.primary-dark = "#755757";
+        colors.primary-light = "#FFF2D0";
+        colors.primary-lighter = "#FFFBF1";
+        colors.primary-fg = "#FFFBF1";
+        colors.primary-fg-strong = "#fff";
+        colors.fg = "#3f1e1e";
+        colors.fg-strong = "#000";
+        colors.bg = "#FFFBF1";
+        colors.bg-soft = "#FFFBF1";
+        colors.bg-strong = "#fff";
+        colors.border = "#654141ff";
+        colors.border-soft = "#b6a8a8ff";
+        colors.border-strong = "#3f1e1e";
       };
     };
   in

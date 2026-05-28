@@ -46,6 +46,7 @@ in
   # Set Bash as the default shell :
   # > chsh -s /etc/profiles/per-user/$USER/bin/bash
   # > chsh -s /run/current-system/sw/bin/bash
+  # > chsh -s /run/current-system/sw/bin/nu
   environment.shells =
   [
     pkgs.nushell

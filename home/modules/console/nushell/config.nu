@@ -25,7 +25,7 @@ $env.config = {
 #)
 
 # Print version number.
-print $"(ansi light_gray_bold)nu (nu --version)(ansi reset)"
+print $"(ansi light_gray_bold)nu ((version).version)(ansi reset)"
 
 # Load private config if any.
 # https://github.com/nushell/nushell/issues/8214

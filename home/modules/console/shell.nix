@@ -23,4 +23,10 @@
     "dirt" = toString ../../../ext/scripts/dirt.sh;
     "what" = toString ../../../ext/scripts/what.sh;
   };
+
+  # Some (manual) installs are in _unconventional_ locations.
+  home.sessionPath =
+  [
+    "$HOME/.local/bin"
+  ];
 }

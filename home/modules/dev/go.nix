@@ -1,6 +1,7 @@
 # Golang.
 {
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {

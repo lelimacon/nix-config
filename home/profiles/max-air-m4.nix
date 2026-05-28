@@ -21,10 +21,10 @@
     ../modules/dev/general.nix
     ../modules/dev/git.nix
     ../modules/dev/go.nix
-    ../modules/dev/jvm.nix
-    ../modules/dev/jetbrains.nix
+    ../modules/dev/java.nix
+    #../modules/dev/jetbrains.nix
     #../modules/dev/mise.nix
-    ../modules/dev/node.nix
+    #../modules/dev/node.nix
     ../modules/dev/vscode.nix
     ../modules/dev/web.nix
 

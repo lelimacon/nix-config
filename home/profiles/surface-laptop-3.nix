@@ -25,7 +25,7 @@
     ../modules/dev/general.nix
     ../modules/dev/git.nix
     ../modules/dev/gtk.nix
-    #../modules/dev/jvm.nix
+    #../modules/dev/java.nix
     ../modules/dev/nix.nix
     #../modules/dev/rust.nix
     ../modules/dev/vscode.nix

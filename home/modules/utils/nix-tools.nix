@@ -12,6 +12,8 @@
     nix-index # find nixos packages.
     nix-inspect # not working?
     nix-tree
+
+    nixd # Nix language server.
   ];
 
   home.shellAliases =

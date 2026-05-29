@@ -20,7 +20,7 @@
 
     ../modules/dev/dotnet.nix
     ../modules/dev/containerization.nix
-    ../modules/dev/db.nix
+    #../modules/dev/db.nix
     #../modules/dev/gamedev.nix
     ../modules/dev/general.nix
     ../modules/dev/git.nix

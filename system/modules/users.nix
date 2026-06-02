@@ -1,21 +1,23 @@
 {
-  inputs,
-  outputs,
+  lib,
+  pkgs,
+  config,
   ...
 }:
 {
-  imports =
-  [
-    # TODO: Remove this.
-    inputs.home-manager.nixosModules.default
-  ];
+  # Darwin only.
+  system.primaryUser = lib.mkIf pkgs.stdenv.isDarwin config.user.name;
 
   # User account.
   # Set password with ‘passwd’.
-  users.users."lelimacon" =
+  users.users.${config.user.name} =
+  {
+    name = config.user.name;
+    description = config.user.name;
+    home = config.user.homeDirectory;
+  } // lib.optionalAttrs pkgs.stdenv.isLinux
   {
     isNormalUser = true;
-    description = "lelimacon";
     extraGroups =
     [
       "networkmanager"

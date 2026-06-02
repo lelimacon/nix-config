@@ -19,7 +19,6 @@
 
   theme =
   {
-    # Theme colors.
     # https://tailwindcss.com/docs/colors
     colors.primary = "#db2777"; # Pink 600.
     colors.primary-dark = "#9d174d"; # Pink 800.

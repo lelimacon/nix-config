@@ -15,6 +15,7 @@
     #../../modules/hyprland.nix
     ../../modules/linux-software.nix
     ../../modules/steam.nix
+    ../../modules/shells.nix
     ../../modules/system-defaults.nix
     ../../modules/users.nix
     ../../modules/wayland.nix

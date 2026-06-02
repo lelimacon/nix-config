@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   vars,
   ...
@@ -23,6 +24,8 @@ let
       # W3C, Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+.
       "background: linear-gradient(${direction}, ${pkgs.lib.join "," stops})"
     ];
+
+  font-feature-settings = "'liga', 'calt', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08'";
 in
 {
   home.shellAliases =
@@ -61,6 +64,8 @@ in
         #"window.menuBarVisibility" = "toggle";
         #"terminal.integrated.fontFamily" = "'Maple Mono', 'SymbolsNerdFont'";
         "terminal.external.linuxExec" = "ghostty";
+        "terminal.integrated.fontLigatures.enabled" = true;
+        "terminal.integrated.fontLigatures.featureSettings" = font-feature-settings;
 
         #"material-icon-theme.folders.theme" = "classic";
         #"vsicons.dontShowNewVersionMessage" = true;
@@ -68,9 +73,12 @@ in
         "explorer.confirmDragAndDrop" = false;
         #"explorer.openEditors.visible" = 0;
 
-        "editor.fontFamily" = "'FiraCode Nerd Font', Monaspace, Monaco, monospace";
-        "editor.fontLigatures" = true;
-        "editor.fontSize" = 12;
+        "editor.fontFamily" = "'MonaspiceAr Nerd Font', 'FiraCode Nerd Font', Monaco, monospace";
+        # => -> --> >= <= ===
+        # /= ~> >-> <-< <> |>
+        #"editor.fontLigatures" = true;
+        "editor.fontLigatures" = font-feature-settings;
+        "editor.fontSize" = 13;
         "editor.minimap.enabled" = false;
         "editor.stickyScroll.enabled" = false;
         #"editor.formatOnSave" = true;

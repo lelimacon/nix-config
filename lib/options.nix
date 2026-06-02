@@ -3,6 +3,11 @@
   ...
 }:
 let
+  str = description: lib.mkOption
+  {
+    type = lib.types.str;
+    description = description;
+  };
   hexColor = value: description: lib.mkOption
   {
     type = lib.types.str;
@@ -10,44 +15,39 @@ let
     description = description;
   };
 
-  my-theme-options =
+  theme-options =
   {
-    #enable = lib.mkEnableOption "Custom system styling";
     colors =
     {
       primary = hexColor "#ff0000ff" "Accent color used across the system.";
-      primary-dark = hexColor "#9d174d" "Primary darker accent";
-      primary-light = hexColor "#fce7f3" "Primary lighter accent";
-      primary-lighter = hexColor "#fdf2f8" "Primary more lighter accent";
-      primary-fg = hexColor "#FFFBF1" "Foreground on primary";
-      primary-fg-strong = hexColor "#fff" "Flashy foreground on primary";
-      fg = hexColor "#1c1917" "Foreground color";
-      fg-strong = hexColor "#000" "Strong foreground (more contrasty)";
-      bg = hexColor "#FFFBF1" "Background color";
-      bg-soft = hexColor "#FFFBF1" "Soft background (less contrasty)";
-      bg-strong = hexColor "#fff" "Strong background (more contrasty)";
-      border = hexColor "#1c1917" "Border color";
-      border-soft = hexColor "#b6a8a8ff" "Soft border (less contrasty)";
-      border-strong = hexColor "#1c1917" "Strong border (more contrasty)";
+      primary-dark = hexColor "#900000ff" "Primary darker accent";
+      primary-light = hexColor "#ff8888ff" "Primary lighter accent";
+      primary-lighter = hexColor "#ffccccff" "Primary more lighter accent";
+      primary-fg = hexColor "#ffeeeeff" "Foreground on primary";
+      primary-fg-strong = hexColor "#ffffffff" "Flashy foreground on primary";
+      fg = hexColor "#444444ff" "Foreground color";
+      fg-strong = hexColor "#000000ff" "Strong foreground (more contrasty)";
+      bg = hexColor "#eeeeeeff" "Background color";
+      bg-soft = hexColor "#ccccccff" "Soft background (less contrasty)";
+      bg-strong = hexColor "#ffffffff" "Strong background (more contrasty)";
+      border = hexColor "#555555ff" "Border color";
+      border-soft = hexColor "#aaaaaaff" "Soft border (less contrasty)";
+      border-strong = hexColor "#444444ff" "Strong border (more contrasty)";
     };
-  };
-
-  vars-options =
-  {
-    system = lib.mkOption
-    {
-      type = lib.types.str;
-      description = "The system architecture (e.g., aarch64-darwin).";
-    };
-    config.name = lib.mkOption { type = lib.types.str; };
-    config.homeDirectory = lib.mkOption { type = lib.types.str; };
-    user.name = lib.mkOption { type = lib.types.str; };
-    user.homeDirectory = lib.mkOption { type = lib.types.str; };
-    hostName = lib.mkOption { type = lib.types.str; };
-    theme = my-theme-options;
   };
 in
 {
-  options.my-theme = my-theme-options;
-  options.vars = vars-options;
+  options =
+  {
+    config-src.path = str "Path to this configuration's flake directory";
+    config-src.rev = str "Configuration revision (Git commit hash)";
+
+    host.system = str "System architecture (x86_64-linux, aarch64-darwin)";
+    host.name = str "Host name";
+
+    theme = theme-options;
+
+    user.name = str "User name";
+    user.homeDirectory = str "Path to home directory";
+  };
 }

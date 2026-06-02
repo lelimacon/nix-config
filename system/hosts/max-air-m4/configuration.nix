@@ -1,5 +1,5 @@
 {
-  vars,
+  self,
   ...
 }:
 {
@@ -8,7 +8,16 @@
     ../../../lib/options.nix
   ];
 
-  my-theme =
+  config-src.path = ./.;
+  config-src.rev = self.rev or self.dirtyRev or null;
+
+  host.system = "aarch64-darwin";
+  host.name = "max-air-m4";
+
+  user.name = "max";
+  user.homeDirectory = "/Users/max";
+
+  theme =
   {
     # Theme colors.
     # https://tailwindcss.com/docs/colors

@@ -1,5 +1,5 @@
 {
-  vars,
+  config,
   ...
 }:
 {
@@ -12,7 +12,7 @@
   # Show battery percentage.
   system.defaults.CustomUserPreferences =
   {
-    "/Users/${vars.user.name}/Library/Preferences/ByHost/com.apple.controlcenter".BatteryShowPercentage = true;
+    "/Users/${config.user.name}/Library/Preferences/ByHost/com.apple.controlcenter".BatteryShowPercentage = true;
   };
 
   # Screen.

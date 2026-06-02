@@ -1,10 +1,9 @@
 {
   inputs,
-  outputs,
+  config,
   pkgs,
   pkgs-unstable,
   pkgs-local,
-  vars,
   ...
 }:
 {
@@ -31,11 +30,11 @@
 
   # Set the Mac user.
   # TODO: Unify with users.nix
-  system.primaryUser = vars.user.name;
-  users.users.${vars.user.name} =
+  system.primaryUser = config.user.name;
+  users.users.${config.user.name} =
   {
-    name = vars.user.name;
-    home = "/Users/${vars.user.name}";
+    name = config.user.name;
+    home = "/Users/${config.user.name}";
     shell = pkgs.nushell;
   };
 
@@ -51,9 +50,9 @@
     pkgs.nushell
     #pkgs.bash # system bash.
     #pkgs.bashInteractive
-    #"/etc/profiles/per-user/${vars.user.name}/bin/bash" # user bash.
+    #"/etc/profiles/per-user/${config.user.name}/bin/bash" # user bash.
   ];
 
   # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = vars.system;
+  nixpkgs.hostPlatform = config.host.system;
 }

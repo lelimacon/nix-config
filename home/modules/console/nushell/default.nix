@@ -1,6 +1,6 @@
 {
   pkgs,
-  vars,
+  config,
   ...
 }:
 let
@@ -19,11 +19,11 @@ in
 
         # Nushell does not source /etc/profile, so nix paths must be added explicitly.
         $env.PATH = ($env.PATH | prepend [
-          "/etc/profiles/per-user/${vars.user.name}/bin"
+          "/etc/profiles/per-user/${config.user.name}/bin"
           "/nix/var/nix/profiles/default/bin"
           "/run/current-system/sw/bin"
           "/usr/local/bin"
-          "${vars.user.homeDirectory}/.local/bin"
+          "${config.user.homeDirectory}/.local/bin"
         ])
       '';
 

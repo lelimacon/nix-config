@@ -1,5 +1,5 @@
 {
-  vars,
+  config,
   ...
 }:
 {
@@ -54,8 +54,8 @@
   ];
 
   home.stateVersion = "24.05";
-  home.username = vars.user.name;
-  home.homeDirectory = vars.user.homeDirectory;
+  home.username = config.user.name;
+  home.homeDirectory = config.user.homeDirectory;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

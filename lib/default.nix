@@ -21,20 +21,23 @@ in
   get-pkgs = get-pkgs;
 
   # NixOS system configuration.
-  mkNixosSystemWithHome = {vars, config-path, home-config-path}:
+  mkNixosSystemWithHome = {config-module, system-config-path, home-config-path}:
     let
-      pkgs = get-pkgs nixpkgs vars.system;
-      pkgs-unstable = get-pkgs nixpkgs-unstable vars.system;
-      pkgs-local = nixpkgs-local.${vars.system}; # reference to output packages.
+      system = config-module.host.system;
+      username = config-module.user.name;
+      pkgs = get-pkgs nixpkgs system;
+      pkgs-unstable = get-pkgs nixpkgs-unstable system;
+      pkgs-local = nixpkgs-local.${system}; # reference to output packages.
       home-manager-in-system =
       {
         imports = [ inputs.home-manager.nixosModules.default ];
         home-manager =
         {
-          users.${vars.user.name} = import home-config-path;
+          users.${username} = import home-config-path;
           #useGlobalPkgs = true;
           #useUserPackages = true;
-          extraSpecialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };
+          extraSpecialArgs = { inherit inputs outputs pkgs pkgs-unstable pkgs-local; };
+          sharedModules = [ config-module ];
         };
       };
     in
@@ -42,28 +45,31 @@ in
     {
       modules =
       [
-        config-path
+        config-module
+        system-config-path
         home-manager-in-system
       ];
-      specialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };
+      specialArgs = { inherit inputs outputs pkgs pkgs-unstable pkgs-local; };
     };
 
   # Darwin system configuration.
-  mkDarwinSystemWithHome = {vars, config-path, system-config-path, home-config-path}:
+  mkDarwinSystemWithHome = {config-module, system-config-path, home-config-path}:
     let
-      pkgs = get-pkgs nixpkgs vars.system;
-      pkgs-unstable = get-pkgs nixpkgs-unstable vars.system;
-      pkgs-local = nixpkgs-local.${vars.system}; # reference to output packages.
+      system = config-module.host.system;
+      username = config-module.user.name;
+      pkgs = get-pkgs nixpkgs system;
+      pkgs-unstable = get-pkgs nixpkgs-unstable system;
+      pkgs-local = nixpkgs-local.${system}; # reference to output packages.
       home-manager-in-system =
       {
         imports = [ inputs.home-manager.darwinModules.home-manager ];
         home-manager =
         {
-          users.${vars.user.name} = import home-config-path;
+          users.${username} = import home-config-path;
           useGlobalPkgs = true;
           useUserPackages = true;
-          extraSpecialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };
-          sharedModules = [ config-path ];
+          extraSpecialArgs = { inherit inputs outputs pkgs pkgs-unstable pkgs-local; };
+          sharedModules = [ config-module ];
         };
       };
     in
@@ -71,24 +77,25 @@ in
     {
       modules =
       [
-        config-path
+        config-module
         system-config-path
         home-manager-in-system
       ];
-      specialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };
+      specialArgs = { inherit inputs outputs pkgs pkgs-unstable pkgs-local; };
     };
 
-  # Standalone Home Manager configuration.
-  mkhomeConfiguration = {vars, home-config-path}:
+  # Standalone Home Manager configuration (typesafe, config-based).
+  mkHomeConfiguration = {config-module, home-config-path}:
     let
-      pkgs = get-pkgs nixpkgs vars.system;
-      pkgs-unstable = get-pkgs nixpkgs-unstable vars.system;
-      pkgs-local = nixpkgs-local.${vars.system};
+      system = config-module.host.system;
+      pkgs = get-pkgs nixpkgs system;
+      pkgs-unstable = get-pkgs nixpkgs-unstable system;
+      pkgs-local = nixpkgs-local.${system};
     in
     inputs.home-manager.lib.homeManagerConfiguration
     {
       pkgs = pkgs;
-      modules = [ home-config-path ];
-      extraSpecialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };
+      modules = [ config-module home-config-path ];
+      extraSpecialArgs = { inherit inputs outputs pkgs pkgs-unstable pkgs-local; };
     };
 }

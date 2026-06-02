@@ -1,6 +1,6 @@
 {
   pkgs,
-  vars,
+  config,
   ...
 }:
 {
@@ -8,7 +8,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set Git commit hash for darwin-version.
-  system.configurationRevision = vars.config.rev;
+  system.configurationRevision = config.config-src.rev;
 
   # Default programs.
   environment.systemPackages = with pkgs;

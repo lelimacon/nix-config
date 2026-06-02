@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -11,8 +10,7 @@ let
     command = command;
     when = "editorTextFocus && !editorReadonly";
   };
-  #colors = vars.theme.colors;
-  colors = config.my-theme.colors;
+  colors = config.theme.colors;
 
   # Lib.
   css-linear-gradient = direction: stops:

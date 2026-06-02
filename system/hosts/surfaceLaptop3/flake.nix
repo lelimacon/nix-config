@@ -36,45 +36,19 @@
     ...
   }:
   let
-    config-path = ./configuration.nix;
+    config-module = import ./configuration.nix { inherit self; };
+    system-config-path = ./system-configuration.nix;
     home-config-path = ../../../home/profiles/surface-laptop-3.nix;
-    vars =
-    {
-      system = "x86_64-linux";
-      config.path = ./.;
-      config.rev = self.rev or self.dirtyRev or null;
-      user.name = "lelimacon";
-      user.homeDirectory = "/home/lelimacon";
-      hostName = "surfaceLaptop3";
-      theme =
-      {
-        # https://colorhunt.co/palette/fffbf1fff2d0ffb2b2e36a6a
-        colors.primary = "#E36A6A";
-        colors.primary-dark = "#755757";
-        colors.primary-light = "#FFF2D0";
-        colors.primary-lighter = "#FFFBF1";
-        colors.primary-fg = "#FFFBF1";
-        colors.primary-fg-strong = "#fff";
-        colors.fg = "#3f1e1e";
-        colors.fg-strong = "#000";
-        colors.bg = "#FFFBF1";
-        colors.bg-soft = "#FFFBF1";
-        colors.bg-strong = "#fff";
-        colors.border = "#654141ff";
-        colors.border-soft = "#b6a8a8ff";
-        colors.border-strong = "#3f1e1e";
-      };
-    };
   in
   {
     # System configuration with Home Manager.
-    nixosConfigurations."${vars.hostName}" =
-      common.my-lib.mkNixosSystemWithHome { inherit vars config-path home-config-path; };
+    nixosConfigurations."${config-module.host.name}" =
+      common.my-lib.mkNixosSystemWithHome { inherit config-module system-config-path home-config-path; };
 
     # Standalone Home Manager configuration.
     # `home-manager switch`.
     # Home Manager is also tied to system configuration.
-    homeConfigurations."${vars.user.name}" =
-      common.my-lib.mkHomeConfiguration { inherit vars home-config-path; };
+    homeConfigurations."${config-module.user.name}" =
+      common.my-lib.mkHomeConfiguration { inherit config-module home-config-path; };
   };
 }

@@ -1,6 +1,6 @@
 # https://nix-darwin.github.io/nix-darwin/manual/index.html
 {
-  vars,
+  config,
   ...
 }:
 {
@@ -20,7 +20,7 @@
     ];
   };
 
-  networking.hostName = vars.hostName;
-  networking.computerName = vars.hostName;
-  networking.localHostName = vars.hostName;
+  networking.hostName = config.host.name;
+  networking.computerName = config.host.name;
+  networking.localHostName = config.host.name;
 }

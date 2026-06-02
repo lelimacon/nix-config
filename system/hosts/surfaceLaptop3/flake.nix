@@ -69,12 +69,12 @@
   {
     # System configuration with Home Manager.
     nixosConfigurations."${vars.hostName}" =
-      common.lib.mkNixosSystemWithHome { inherit vars config-path home-config-path; };
+      common.my-lib.mkNixosSystemWithHome { inherit vars config-path home-config-path; };
 
     # Standalone Home Manager configuration.
     # `home-manager switch`.
     # Home Manager is also tied to system configuration.
     homeConfigurations."${vars.user.name}" =
-      common.lib.mkHomeConfiguration { inherit vars home-config-path; };
+      common.my-lib.mkHomeConfiguration { inherit vars home-config-path; };
   };
 }

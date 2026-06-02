@@ -6,6 +6,7 @@
 {
   imports =
   [
+    # TODO: Remove this.
     inputs.home-manager.nixosModules.default
   ];
 

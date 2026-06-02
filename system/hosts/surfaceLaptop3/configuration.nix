@@ -6,6 +6,7 @@
   imports =
   [
     #inputs.nixos-hardware.nixosModules.microsoft-surface-common
+    # TODO: Remove this as specified in the lib.
     inputs.home-manager.nixosModules.default
 
     ../../modules/culture.nix

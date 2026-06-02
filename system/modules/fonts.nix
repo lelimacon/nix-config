@@ -4,6 +4,18 @@
   ...
 }:
 {
+  # options.my-fonts = lib.mkOption {
+  #   type = lib.types.attrs;
+  #   default = {
+  #     monaspace-nerd = {
+  #       package = pkgs.nerd-fonts.monaspace;
+  #       ar = "MonaspiceAr Nerd Font";
+  #       ne = "MonaspiceNe Nerd Font";
+  #     };
+  #   };
+  #   description = "Centralized font dictionary matching packages to family strings.";
+  # };
+
   config.fonts.packages = with pkgs;
   [
     # Fira

@@ -52,10 +52,12 @@
 
     nixpkgs-local = eachSystemPkgs (pkgs: import ./ext/_.nix { inherit pkgs; });
     lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable nixpkgs-local systems; };
+    #my-options = import ./lib/options.nix;
   in
   {
     # Expose lib for host-specific flakes.
-    lib = lib;
+    my-lib = lib;
+    #my-options = my-options;
 
     # Expose custom packages.
     # This allows for `nix run .#shelve`.

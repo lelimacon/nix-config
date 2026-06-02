@@ -49,7 +49,7 @@ in
     };
 
   # Darwin system configuration.
-  mkDarwinSystemWithHome = {vars, config-path, home-config-path}:
+  mkDarwinSystemWithHome = {vars, config-path, system-config-path, home-config-path}:
     let
       pkgs = get-pkgs nixpkgs vars.system;
       pkgs-unstable = get-pkgs nixpkgs-unstable vars.system;
@@ -63,6 +63,7 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           extraSpecialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };
+          sharedModules = [ config-path ];
         };
       };
     in
@@ -71,6 +72,7 @@ in
       modules =
       [
         config-path
+        system-config-path
         home-manager-in-system
       ];
       specialArgs = { inherit inputs outputs vars pkgs pkgs-unstable pkgs-local; };

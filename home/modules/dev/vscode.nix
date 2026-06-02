@@ -11,7 +11,8 @@ let
     command = command;
     when = "editorTextFocus && !editorReadonly";
   };
-  colors = vars.theme.colors;
+  #colors = vars.theme.colors;
+  colors = config.my-theme.colors;
 
   # Lib.
   css-linear-gradient = direction: stops:
@@ -74,6 +75,7 @@ in
         #"explorer.openEditors.visible" = 0;
 
         "editor.fontFamily" = "'MonaspiceAr Nerd Font', 'FiraCode Nerd Font', Monaco, monospace";
+        #"editor.fontFamily" = "'${config.my-fonts.monaspace-nerd.ar}', 'FiraCode Nerd Font', Monaco, monospace";
         # => -> --> >= <= ===
         # /= ~> >-> <-< <> |>
         #"editor.fontLigatures" = true;
@@ -131,6 +133,7 @@ in
           "[Default Light+]" =
           {
               "activityBar.background" = colors.primary;
+              #"activityBar.background" = osConfig.my-theme.colors.primary;
               "activityBar.activeForeground" = colors.primary-fg-strong;
               "activityBar.inactiveForeground" = colors.primary-fg;
               "activityBarBadge.background" = colors.primary-dark;

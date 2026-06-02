@@ -1,60 +1,30 @@
 {
-  inputs,
-  outputs,
-  pkgs,
-  pkgs-unstable,
-  pkgs-local,
   vars,
   ...
 }:
-let
-  system = "aarch64-darwin";
-in
 {
   imports =
   [
-    # TODO: Remove
-    inputs.home-manager.darwinModules.home-manager
-
-    ../../modules/fonts.nix
-    ../../modules/mac-hardware.nix
-    ../../modules/mac-software.nix
-    ../../modules/mac-ui.nix
-    ../../modules/system-defaults.nix
-    ../../modules/yabai.nix
+    ../../../lib/options.nix
   ];
 
-  # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.stateVersion
-  system.stateVersion = 6;
-
-  #nix.extraOptions = ''
-  #  auto-optimise-store = true
-  #  extra-platforms = x86_64-darwin aarch64-darwin
-  #'';
-
-  # Set the Mac user.
-  system.primaryUser = vars.user.name;
-  users.users.${vars.user.name} =
+  my-theme =
   {
-    name = vars.user.name;
-    home = "/Users/${vars.user.name}";
-    shell = pkgs.nushell;
+    # Theme colors.
+    # https://tailwindcss.com/docs/colors
+    colors.primary = "#db2777"; # Pink 600.
+    colors.primary-dark = "#9d174d"; # Pink 800.
+    colors.primary-light = "#fce7f3"; # Pink 100.
+    colors.primary-lighter = "#fdf2f8"; # Pink 50.
+    colors.primary-fg = "#FFFBF1";
+    colors.primary-fg-strong = "#fff";
+    colors.fg = "#1c1917"; # Stone 900.
+    colors.fg-strong = "#000"; # Stone 900.
+    colors.bg = "#FFFBF1";
+    colors.bg-soft = "#FFFBF1";
+    colors.bg-strong = "#fff";
+    colors.border = "#1c1917"; # Stone 900.
+    colors.border-soft = "#b6a8a8ff";
+    colors.border-strong = "#1c1917"; # Stone 900.
   };
-
-  # https://discourse.nixos.org/t/how-to-set-desired-shell-with-nix-darwin/49826
-  # Add to available shells in /etc/shells
-  # Set Bash as the default shell :
-  # > chsh -s /etc/profiles/per-user/$USER/bin/bash
-  # > chsh -s /run/current-system/sw/bin/bash
-  # > chsh -s /run/current-system/sw/bin/nu
-  environment.shells =
-  [
-    pkgs.nushell
-    #pkgs.bash # system bash.
-    #pkgs.bashInteractive
-    #"/etc/profiles/per-user/${vars.user.name}/bin/bash" # user bash.
-  ];
-
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = system;
 }

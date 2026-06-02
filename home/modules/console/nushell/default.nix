@@ -22,6 +22,8 @@ in
           "/etc/profiles/per-user/${vars.user.name}/bin"
           "/nix/var/nix/profiles/default/bin"
           "/run/current-system/sw/bin"
+          "/usr/local/bin"
+          "${vars.user.homeDirectory}/.local/bin"
         ])
       '';
 

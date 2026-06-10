@@ -15,6 +15,19 @@
     "/Users/${config.user.name}/Library/Preferences/ByHost/com.apple.controlcenter".BatteryShowPercentage = true;
   };
 
+  # TODO: Does not seem to work.
+  # Menu bar clock: ISO date (YYYY-MM-DD), 24h time.
+  system.defaults.menuExtraClock =
+  {
+    Show24Hour = true;
+    ShowAMPM = false;
+    ShowDate = 1;
+  };
+  system.defaults.CustomUserPreferences =
+  {
+    "com.apple.menuextra.clock".DateFormat = "yyyy-MM-dd  HH:mm";
+  };
+
   # Screen.
   system.defaults.screensaver =
   {

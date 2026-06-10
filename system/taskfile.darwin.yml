@@ -18,7 +18,7 @@ tasks:
       # Install nix.
       - sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
       # Apply configuration.
-      - sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes nix-darwin -- switch --flake .#max-air-m4
+      - sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes nix-darwin -- switch --flake .#mox-air-m4
 
   check:
     desc: "Validate configuration."

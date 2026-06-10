@@ -144,11 +144,12 @@ in
         # "browser.startup.homepage" = "https://duckduckgo.com";
         "browser.search.defaultenginename" = "DuckDuckGo";
         "browser.search.order.1" = "DuckDuckGo";
-
-        "signon.rememberSignons" = false;
         "browser.aboutConfig.showWarning" = false;
         "browser.compactmode.show" = true;
-        "browser.cache.disk.enable" = false; # Be kind to hard drive
+        "browser.cache.disk.enable" = false; # be kind to hard drive.
+        "browser.tabs.inTitlebar" = 0; # show native system titlebar.
+
+        "signon.rememberSignons" = false;
 
         "mousewheel.default.delta_multiplier_x" = 200;
         "mousewheel.default.delta_multiplier_y" = 200;
@@ -158,6 +159,64 @@ in
         # This is annoying, because I can have a blank workspace, click Firefox from the launcher, and
         # then have Firefox open on some other workspace.
         "widget.disable-workspace-management" = true;
+
+        # Toolbar configuration.
+        # Extracted from `about:config` > `browser.uiCustomization.state`.
+        "browser.uiCustomization.state" = builtins.toJSON
+        {
+          placements =
+          {
+            nav-bar =
+            [
+              "back-button"
+              "forward-button"
+              "stop-reload-button"
+              "vertical-spacer"
+              "urlbar-container"
+              "personal-bookmarks"
+              "downloads-button"
+              "unified-extensions-button"
+              "ublock0_raymondhill_net-browser-action"
+            ];
+            widget-overflow-fixed-list =
+            [
+              "fxa-toolbar-menu-button" # account.
+            ];
+            unified-extensions-area =
+            [
+              "_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action" # 1password.
+              "treestyletab_piro_sakura_ne_jp-browser-action" # TreeStyleTab.
+              "amptra_keepa_com-browser-action" # Keepa.
+            ];
+            #TabsToolbar = [
+            #  "firefox-view-button"
+            #  "tabbrowser-tabs"
+            #  "new-tab-button"
+            #  "alltabs-button"
+            #];
+            #"vertical-tabs" = [];
+            #"PersonalToolbar" = ["import-button"];
+          };
+          #seen =
+          #[
+          #  "developer-button"
+          #  "screenshot-button"
+          #  "_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action"
+          #  "treestyletab_piro_sakura_ne_jp-browser-action"
+          #  "ublock0_raymondhill_net-browser-action"
+          #  "amptra_keepa_com-browser-action"
+          #];
+          #dirtyAreaCache =
+          #[
+          #  "nav-bar"
+          #  "vertical-tabs"
+          #  "PersonalToolbar"
+          #  "unified-extensions-area"
+          #  "TabsToolbar"
+          #];
+          currentVersion = 23;
+          newElementCount = 7;
+        };
       };
       search =
       {

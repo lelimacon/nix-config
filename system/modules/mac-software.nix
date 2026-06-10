@@ -46,6 +46,10 @@
     FXEnableExtensionChangeWarning = false; # no warning when renaming file extension.
     ShowPathbar = true;
     ShowStatusBar = true;
+
+    # Default folder when opening Finder.
+    NewWindowTarget = "Other";
+    NewWindowTargetPath = "file:///Users/${config.user.name}";
   };
 
   # Screenshots.
@@ -63,7 +67,7 @@
     casks =
     [
       #"visual-studio-code"
-      "1password" # password manager.
+      #"1password" # password manager (installed manually).
       "ghostty" # terminal emulator.
     ];
     brews =

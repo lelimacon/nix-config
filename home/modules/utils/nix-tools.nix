@@ -1,5 +1,4 @@
-# Graphviz
-# DOT file viewer.
+# Nix tools.
 {
   pkgs,
   ...
@@ -12,13 +11,12 @@
     nix-index # find nixos packages.
     nix-inspect # not working?
     nix-tree
-
-    nixd # Nix language server.
   ];
 
   home.shellAliases =
   {
     # TODO: Not found.
+    # Depends on graphviz.
     "nix-graph" = "nix-du -s=500MB | dot -Tsvg > store.svg";
   };
 }

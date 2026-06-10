@@ -24,7 +24,7 @@
   let
     config-module = import ./configuration.nix { inherit self; };
     system-config-path = ./system-configuration.nix;
-    home-config-path = ../../../home/profiles/max-air-m4.nix;
+    home-config-path = ../../../home/profiles/mox-air-m4.nix;
   in
   {
     # System configuration with Home Manager.

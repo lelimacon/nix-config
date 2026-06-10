@@ -7,4 +7,4 @@ tasks:
     desc: "Build configuration, make it default, and switch."
     cmds:
       - home-manager switch --flake '..'
-      #- home-manager switch --flake ..#max-air-m4-max
+      #- home-manager switch --flake ..#mox-air-m4-mox

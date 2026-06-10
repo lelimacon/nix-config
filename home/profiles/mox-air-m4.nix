@@ -24,7 +24,7 @@
     ../modules/dev/java.nix
     #../modules/dev/jetbrains.nix
     #../modules/dev/mise.nix
-    #../modules/dev/node.nix
+    ../modules/dev/nix.nix
     ../modules/dev/vscode.nix
     ../modules/dev/web.nix
 
@@ -39,7 +39,7 @@
     ../modules/utils/graphviz.nix
     ../modules/utils/local-packages.nix
     ../modules/utils/nix-tools.nix
-    #../modules/utils/password-manager.nix # added via Homebrew.
+    #../modules/utils/password-manager.nix # 1password installed manually.
   ];
 
   home.stateVersion = "25.11";

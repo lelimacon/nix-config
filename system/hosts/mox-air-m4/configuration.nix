@@ -12,10 +12,10 @@
   config-src.rev = self.rev or self.dirtyRev or null;
 
   host.system = "aarch64-darwin";
-  host.name = "max-air-m4";
+  host.name = "mox-air-m4";
 
-  user.name = "max";
-  user.homeDirectory = "/Users/max";
+  user.name = "mox";
+  user.homeDirectory = "/Users/mox";
 
   theme =
   {

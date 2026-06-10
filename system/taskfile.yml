@@ -52,6 +52,11 @@ tasks:
     cmds:
       - task --taskfile "taskfile.{{.OS}}.yml" check
 
+  update:
+    desc: "Update the lock file."
+    cmds:
+      - task --taskfile "taskfile.{{.OS}}.yml" update
+
   switch:
     desc: "Build configuration, make it default, and switch."
     cmds:

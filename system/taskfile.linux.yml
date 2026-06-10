@@ -15,6 +15,12 @@ tasks:
     cmds:
       - nix flake check --impure
 
+  update:
+    desc: "Update the lock file."
+    dir: "{{.FLAKE_PATH}}"
+    cmds:
+      - nix flake update
+
   switch:
     desc: "Build configuration, make it default, and switch."
     silent: true

@@ -12,7 +12,6 @@
     wget # not in ToyBox in nix-darwin.
     curl jq
     vim
-    neofetch
     #git git-lfs
     #kitty # terminal emulator.
     #bash # shell.

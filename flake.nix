@@ -11,7 +11,7 @@
 
     home-manager =
     {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
       #url = "github:nix-community/home-manager";
       #inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -19,7 +19,7 @@
 
     nix-darwin =
     {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       #url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -27,10 +27,10 @@
     # TODO: Add?
     #nix-flatpak.url = "github:gmodena/nix-flatpak/main";
 
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     systems.url = "github:nix-systems/default";

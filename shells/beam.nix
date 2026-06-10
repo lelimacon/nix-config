@@ -21,11 +21,10 @@ pkgs.mkShell
     #mise # runtime version manager.
     go-task # task runner.
     caddy # HTTP web server.
-    nodejs_20
 
     fop # XML driver.
     openssl
-    unixODBC
+    unixodbc
     javaPackages.compiler.openjdk25
     poppler # PDF rendering library.
 

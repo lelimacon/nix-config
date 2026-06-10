@@ -1,17 +1,22 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
-let
-  nuLoadFileIfExists = path: "if ('${path}' | path exists) { source '${path}' }";
-in
 {
   programs.nushell =
   {
     enable = true;
     # Config home: ~/Library/Application Support/nushell/
     configFile.source = ./config.nu;
+
+    # Add env files for `home.sessionVariables`.
+    # Those variables are written to hm-session-vars.sh but Nushell doesn't source the file.
+    extraEnv = lib.concatStringsSep "\n" (lib.mapAttrsToList
+      (name: value: "$env.${name} = ${builtins.toJSON (toString value)}")
+      config.home.sessionVariables);
+
     extraConfig =
       ''
         #$env.SHELL = "${pkgs.bash}"

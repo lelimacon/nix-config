@@ -1,6 +1,7 @@
 # Index of all dev shells.
 {
   pkgs,
+  ...
 }:
 let
   beam-shell = import ./beam.nix { inherit pkgs; };

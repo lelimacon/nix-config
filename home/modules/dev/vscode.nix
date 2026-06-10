@@ -32,7 +32,7 @@ in
     "code" = "codium";
   };
 
-  programs.vscode =
+  programs.vscodium =
   {
     enable = true;
     package = pkgs.vscodium;
@@ -122,13 +122,13 @@ in
       userSettings =
       {
         #"workbench.colorTheme" = "Koala";
-        "workbench.colorTheme" = "Default Light+";
+        "workbench.colorTheme" = "Light+";
         #"workbench.iconTheme" = "catppuccin noctis icons";
         #"workbench.iconTheme" = "file-icons";
         "workbench.iconTheme" = "bearded-icons";
         "workbench.colorCustomizations" =
         {
-          "[Default Light+]" =
+          "[Light+]" =
           {
               "activityBar.background" = colors.primary;
               #"activityBar.background" = osConfig.my-theme.colors.primary;

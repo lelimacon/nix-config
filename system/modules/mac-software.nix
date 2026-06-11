@@ -82,6 +82,7 @@
       #"visual-studio-code"
       #"1password" # password manager (installed manually).
       "ghostty" # terminal emulator.
+      "ungoogled-chromium"
     ];
     brews =
     [

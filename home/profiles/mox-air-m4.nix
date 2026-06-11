@@ -31,7 +31,7 @@
     ../modules/media/docs.nix
     ../modules/media/music.nix
 
-    #../modules/social/chrome.nix # Chromium installed manually.
+    #../modules/social/chrome.nix # installed via Homebrew.
     ../modules/social/firefox
     ../modules/social/slack.nix
 

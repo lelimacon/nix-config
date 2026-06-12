@@ -4,7 +4,7 @@
 }:
 let
   erlang = pkgs.beam27Packages.erlang;
-  elixir = pkgs.beam27Packages.elixir_1_17;
+  elixir = pkgs.beam27Packages.elixir_1_19;
   #elixir = pkgs.beam.packages.erlang.elixir;
   #elixir-ls = pkgs.beam.packages.erlang.elixir_ls;
   #elixir-wrapper = pkgs.symlinkJoin {

@@ -4,7 +4,7 @@
 }:
 let
   erlang = pkgs.beam27Packages.erlang;
-  elixir = pkgs.beam27Packages.elixir_1_17;
+  elixir = pkgs.beam27Packages.elixir_1_19;
 in
 pkgs.mkShell
 {

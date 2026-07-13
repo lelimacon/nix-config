@@ -14,7 +14,7 @@
 
     # Git.
     # Git log formatting: https://gist.github.com/niun/ca61a37791ff1fdc9b33
-    "gl" = "git log --all --graph --pretty=format:'%Cgreen%ad%Creset %C(auto)%h %s %C(bold black)<%aN>%C(auto)%d%Creset' --date=format-local:'%Y-%m-%d %H:%M'";
+    "gl" = "git log --graph --pretty=format:'%Cgreen%ad%Creset %C(auto)%h %s %C(bold black)<%aN>%C(auto)%d%Creset' --date=format-local:'%Y-%m-%d %H:%M'";
 
     # Dev shells.
     "dev" = "develop ${toString ../../..}";

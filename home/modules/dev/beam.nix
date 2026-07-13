@@ -25,6 +25,7 @@ in
     elixir
     #elixir-wrapper
     gleam
+    dexter # Elixir LSP.
   ];
 
   home.sessionVariables =

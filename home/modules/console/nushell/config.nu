@@ -11,7 +11,7 @@ $env.config = {
         algorithm: "fuzzy"
         external: {
             enable: true # look into $env.PATH to find more suggestions.
-            max_results: 100 
+            max_results: 100
             completer: $carapace_completer
         }
     }
@@ -30,8 +30,8 @@ print $"(ansi light_gray_bold)nu ((version).version)(ansi reset)"
 # Load private config if any.
 # https://github.com/nushell/nushell/issues/8214
 source (
-    if (($nu.default-config-dir | path join "private.config.nu") | path expand | path exists) {
-        $nu.default-config-dir | path join "private.config.nu"
+    if (($nu.home-dir | path join ".config/private.config.nu") | path expand | path exists) {
+        $nu.home-dir | path join ".config/private.config.nu"
     }
     else {
         # Fallback to empty file.

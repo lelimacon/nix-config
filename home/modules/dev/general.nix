@@ -19,7 +19,7 @@
     eza # ls alternative.
     fontconfig # list fonts with `fc-list`.
     openssl # SSL & TLS library.
-    cocogitto # cli tools for conventional commit and semver
+    cocogitto # cli tools for conventional commit and semver.
 
     # TUI file explorers.
     ranger

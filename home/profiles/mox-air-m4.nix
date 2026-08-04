@@ -13,6 +13,7 @@
 
     ../modules/customization/sketchybar
 
+    ../modules/dev/ai.nix
     #../modules/dev/asdf.nix
     ../modules/dev/aws.nix
     ../modules/dev/beam.nix

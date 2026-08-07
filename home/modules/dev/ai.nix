@@ -5,7 +5,8 @@
 {
   home.packages = with pkgs;
   [
-    llama-cpp
+    llama-cpp # inference engine supporting GGUF.
+    ollama # llama.cpp wrapper.
     stable-diffusion-cpp
     #rembg # tool to remove background from images.
     git-xet # Git LFS plugin for Xet protocol.

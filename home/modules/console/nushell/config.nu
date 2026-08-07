@@ -30,8 +30,8 @@ print $"(ansi light_gray_bold)nu ((version).version)(ansi reset)"
 # Load private config if any.
 # https://github.com/nushell/nushell/issues/8214
 source (
-    if (($nu.home-dir | path join ".config/private.config.nu") | path expand | path exists) {
-        $nu.home-dir | path join ".config/private.config.nu"
+    if (($nu.home-path | path join ".config/private.config.nu") | path expand | path exists) {
+        $nu.home-path | path join ".config/private.config.nu"
     }
     else {
         # Fallback to empty file.

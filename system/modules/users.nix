@@ -6,7 +6,10 @@
 }:
 {
   # Darwin only.
-  system.primaryUser = lib.mkIf pkgs.stdenv.isDarwin config.user.name;
+  #system.primaryUser = lib.mkIf pkgs.stdenv.isDarwin config.user.name;
+  #system = lib.mkIf pkgs.stdenv.isDarwin {
+  #  primaryUser = config.user.name;
+  #};
 
   # User account.
   # Set password with ‘passwd’.

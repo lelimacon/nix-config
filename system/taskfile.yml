@@ -52,6 +52,11 @@ tasks:
     cmds:
       - task --taskfile "taskfile.{{.OS}}.yml" check
 
+  trace:
+    desc: "Show configuration changes."
+    cmds:
+      - task --taskfile "taskfile.{{.OS}}.yml" trace
+
   update:
     desc: "Update the lock file."
     cmds:

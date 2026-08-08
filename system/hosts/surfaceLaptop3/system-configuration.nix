@@ -9,6 +9,17 @@
     # TODO: Remove this as specified in the lib.
     inputs.home-manager.nixosModules.default
 
+    ./hardware-configuration.nix
+
+    ../../hardware/audio.nix
+    ../../hardware/bluetooth.nix
+    ../../hardware/drives.nix
+    ../../hardware/laptop.nix
+    ../../hardware/logind.nix
+    ../../hardware/network.nix
+    ../../hardware/printing.nix
+    ../../hardware/virtualization.nix
+
     ../../modules/culture.nix
     ../../modules/fonts.nix
     ../../modules/gnome.nix
@@ -21,9 +32,6 @@
     ../../modules/wayland.nix
     #../../modules/x11.nix
     ../../modules/xdg.nix
-
-    ./hardware-configuration.nix
-    ./hardware-overrides.nix
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

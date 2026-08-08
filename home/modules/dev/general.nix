@@ -13,6 +13,7 @@
     curl jq
     vim
     #git git-lfs
+    #git-xet # Git LFS plugin for Xet protocol.
     #kitty # terminal emulator.
     #bash # shell.
     #starship # prompt engine.

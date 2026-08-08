@@ -38,7 +38,7 @@
   let
     config-module = import ./configuration.nix { inherit self; };
     system-config-path = ./system-configuration.nix;
-    home-config-path = ../../../home/profiles/ff08-configuration.nix;
+    home-config-path = ../../../home/profiles/ff08-amd.nix;
   in
   {
     # System configuration with Home Manager.

@@ -18,16 +18,19 @@ tasks:
       # Download repo.
       - git clone https://github.com/lelimacon/nix-config.git
       # Apply configuration (from host flake directory).
-      - sudo nix run --extra-experimental-features 'nix-command flakes' nixos-rebuild switch --flake .#ff08-amd
-      - sudo nixos-rebuild switch --extra-experimental-features 'nix-command flakes' --flake .#ff08-amd
       - sudo env NIX_CONFIG="experimental-features = nix-command flakes" nixos-rebuild switch --flake .#ff08-amd
-      - nixos-install --flake .#ff08-amd
 
   check:
     desc: "Validate configuration."
     dir: "{{.FLAKE_PATH}}"
     cmds:
       - nix flake check --impure
+
+  trace:
+    desc: "Show configuration changes."
+    dir: "{{.FLAKE_PATH}}"
+    cmds:
+      - sudo nixos-rebuild switch --show-trace
 
   update:
     desc: "Update the lock file."

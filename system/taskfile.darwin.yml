@@ -34,8 +34,6 @@ tasks:
 
   switch:
     desc: "Build configuration, make it default, and switch."
-    silent: true
     platforms: [darwin]
     cmds:
-      - echo "Configuration switch on host '{{.HOST_NAME}}'"
       - sudo darwin-rebuild switch --flake "{{.FLAKE_PATH}}#{{.HOST_NAME}}"

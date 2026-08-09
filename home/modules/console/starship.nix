@@ -16,7 +16,7 @@
       shlvl =
       {
         disabled = false;
-        symbol = "↕️ ";
+        symbol = "↑";
         style = "bright-red bold";
       };
       username =

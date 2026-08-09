@@ -18,25 +18,28 @@
       config.home.sessionVariables);
 
     extraConfig =
-      ''
-        #$env.SHELL = "${pkgs.bash}"
-        $env.STORE_ROOT = "${toString ../../../..}"
+    ''
+      $env.STORE_ROOT = "${toString ../../../..}"
 
-        # Nushell does not source /etc/profile, so nix paths must be added explicitly.
-        $env.PATH = ($env.PATH | prepend [
-          "/etc/profiles/per-user/${config.user.name}/bin"
-          "/nix/var/nix/profiles/default/bin"
-          "/run/current-system/sw/bin"
-          "/usr/local/bin"
-          "${config.user.homeDirectory}/.local/bin"
-        ])
-      '';
+      # Nushell does not source /etc/profile, so nix paths must be added explicitly.
+      # Keep wrappers first so sudo resolves correctly on NixOS.
+      $env.PATH = ($env.PATH | prepend [
+        "/run/wrappers/bin"
+        "/etc/profiles/per-user/${config.user.name}/bin"
+        "/nix/var/nix/profiles/default/bin"
+        "/run/current-system/sw/bin"
+        "/usr/local/bin"
+        "${config.user.homeDirectory}/.local/bin"
+      ] | uniq)
+    '';
 
     shellAliases =
     {
     };
   };
 
+  # Carapace completion library.
+  # https://github.com/carapace-sh/carapace
   programs.carapace =
   {
     enable = true;

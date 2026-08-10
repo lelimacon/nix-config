@@ -5,12 +5,6 @@
   ...
 }:
 {
-  # Darwin only.
-  #system.primaryUser = lib.mkIf pkgs.stdenv.isDarwin config.user.name;
-  #system = lib.mkIf pkgs.stdenv.isDarwin {
-  #  primaryUser = config.user.name;
-  #};
-
   # User account.
   # Set password with ‘passwd’.
   users.users.${config.user.name} =
@@ -29,4 +23,6 @@
       "input" # for keyboard state access.
     ];
   };
+} // lib.optionalAttrs pkgs.stdenv.isDarwin {
+  system.primaryUser = config.user.name;
 }

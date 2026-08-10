@@ -32,7 +32,7 @@ in
     "code" = "codium";
   };
 
-  programs.vscode =
+  programs.vscodium =
   {
     enable = true;
     package = pkgs.vscodium;

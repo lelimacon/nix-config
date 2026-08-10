@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs-local,
   config,
   lib,
   ...
@@ -13,13 +13,22 @@
 
     # Add env files for `home.sessionVariables`.
     # Those variables are written to hm-session-vars.sh but Nushell doesn't source the file.
-    extraEnv = lib.concatStringsSep "\n" (lib.mapAttrsToList
+    extraEnv = lib.concatStringsSep "\n" ([
+      # Starship: use absolute path because PATH is not yet set up in env.nu.
+      ''
+        mkdir ~/.cache/starship
+        ${pkgs-local.starship}/bin/starship init nu | save --force ~/.cache/starship/init.nu
+      ''
+    ] ++ lib.mapAttrsToList
       (name: value: "$env.${name} = ${builtins.toJSON (toString value)}")
       config.home.sessionVariables);
 
     extraConfig =
     ''
-      $env.STORE_ROOT = "${toString ../../../..}"
+      # Starship.
+      source ~/.cache/starship/init.nu
+      # Set STARSHIP_CONFIG explicitly so any starship binary on PATH reads the wrapped config.
+      $env.STARSHIP_CONFIG = "${pkgs-local.starship}/starship.toml"
 
       # Nushell does not source /etc/profile, so nix paths must be added explicitly.
       # Keep wrappers first so sudo resolves correctly on NixOS.

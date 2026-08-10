@@ -27,6 +27,16 @@ tasks:
     cmds:
       - nixos-rebuild dry-activate --flake ".."
 
+  lock:
+    desc: "Reconcile the host lock file without upgrading inputs."
+    vars:
+      HOST_NAME:
+        sh: hostname -s
+    dir: "hosts/{{.HOST_NAME}}"
+    cmds:
+      # --update-input to force a rescan of common to add new inputs.
+      - nix flake lock --update-input common
+
   gc:
     desc: "Garbage collect unused objects and 6+ generations."
     cmds:

@@ -20,6 +20,7 @@
 
     ../modules/dev/ai.nix
     ../modules/dev/dotnet.nix
+    ../modules/dev/console.nix
     ../modules/dev/containerization.nix
     #../modules/dev/db.nix
     #../modules/dev/gamedev.nix

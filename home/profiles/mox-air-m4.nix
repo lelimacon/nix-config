@@ -9,14 +9,13 @@
     #../modules/console/ghostty.nix # installed via Homebrew.
     ../modules/console/shell.nix
     ../modules/console/nushell
-    ../modules/console/starship.nix
-
     ../modules/customization/sketchybar
 
     ../modules/dev/ai.nix
     #../modules/dev/asdf.nix
     ../modules/dev/aws.nix
     ../modules/dev/beam.nix
+    ../modules/dev/console.nix
     #../modules/dev/containerization.nix # Docker installed manually.
     ../modules/dev/db.nix
     ../modules/dev/general.nix

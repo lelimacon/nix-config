@@ -27,6 +27,12 @@
     # TODO: Add?
     #nix-flatpak.url = "github:gmodena/nix-flatpak/main";
 
+    wrappers =
+    {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     #nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -38,6 +44,7 @@
 
   outputs = inputs @
   {
+    wrappers,
     nixpkgs,
     nixpkgs-unstable,
     self,
@@ -50,7 +57,10 @@
     eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f system);
     eachSystemPkgs = f: nixpkgs.lib.genAttrs (import systems) (system: f (import nixpkgs { inherit system; }));
 
-    nixpkgs-local = eachSystemPkgs (pkgs: import ./ext/_.nix { inherit pkgs; });
+    nixpkgs-local = eachSystemPkgs (pkgs:
+      (import ./ext/index.nix { inherit pkgs; }) //
+      (import ./pkgs/index.nix { inherit pkgs wrappers; })
+    );
     lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable nixpkgs-local systems; };
     #my-options = import ./lib/options.nix;
   in
@@ -64,7 +74,7 @@
     packages = nixpkgs-local;
 
     # Dev shells.
-    devShells = eachSystem (system: import ./shells/_.nix
+    devShells = eachSystem (system: import ./shells/index.nix
     {
       inherit system;
       pkgs = lib.get-pkgs nixpkgs system;

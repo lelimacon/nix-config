@@ -3,6 +3,11 @@
   ...
 }:
 {
+  home.sessionVariables =
+  {
+    STORE_ROOT = toString ../../..;
+  };
+
   home.shellAliases =
   {
     ".." = "cd ..";

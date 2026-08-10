@@ -8,7 +8,6 @@
     ../modules/console/bash.nix
     #../modules/console/ghostty.nix # installed via Homebrew.
     ../modules/console/shell.nix
-    ../modules/console/nushell
     ../modules/customization/sketchybar
 
     ../modules/dev/ai.nix

@@ -14,7 +14,6 @@
     ../modules/console/ghostty.nix
     ../modules/console/gtk.nix
     ../modules/console/kitty.nix
-    ../modules/console/nushell
     ../modules/console/shell.nix
     ../modules/console/starship.nix
 

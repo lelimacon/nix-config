@@ -12,8 +12,6 @@
     wget # not in ToyBox in nix-darwin.
     curl jq
     vim
-    #git git-lfs
-    #git-xet # Git LFS plugin for Xet protocol.
     #kitty # terminal emulator.
     #bash # shell.
     #starship # prompt engine.
@@ -21,6 +19,11 @@
     fontconfig # list fonts with `fc-list`.
     openssl # SSL & TLS library.
     cocogitto # cli tools for conventional commit and semver.
+
+    # Versioning.
+    #git git-lfs
+    #git-xet # Git LFS plugin for Xet protocol.
+    github-cli
 
     # TUI file explorers.
     ranger

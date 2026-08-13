@@ -6,11 +6,13 @@
 let
   beam-shell = import ./beam.nix { inherit pkgs; };
   dotnet-shell = import ./dotnet.nix { inherit pkgs; };
+  go-shell = import ./go.nix { inherit pkgs; };
   web-shell = import ./web.nix { inherit pkgs; };
 in
 {
   beam = beam-shell;
   dotnet = dotnet-shell;
+  go = go-shell;
   web = web-shell;
 
   # Combined shells.

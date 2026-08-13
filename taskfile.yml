@@ -36,3 +36,15 @@ tasks:
     desc: "Build system configuration, do not activate but show changes."
     cmds:
       - task: system:diff
+
+  update:
+    desc: "Update all flake inputs and reconcile host locks."
+    cmds:
+      - nix flake update
+      - task: system:lock
+
+  lock:
+    desc: "Reconcile flake.lock without upgrading inputs."
+    cmds:
+      - nix flake lock
+      - task: system:lock

@@ -8,6 +8,11 @@ let
     type = lib.types.str;
     description = description;
   };
+  path = description: lib.mkOption
+  {
+    type = lib.types.path;
+    description = description;
+  };
   hexColor = value: description: lib.mkOption
   {
     type = lib.types.str;
@@ -19,7 +24,7 @@ let
   {
     colors =
     {
-      primary = hexColor "#ff0000ff" "Accent color used across the system.";
+      primary = hexColor "#ff0000ff" "Accent color used across the system";
       primary-dark = hexColor "#900000ff" "Primary darker accent";
       primary-light = hexColor "#ff8888ff" "Primary lighter accent";
       primary-lighter = hexColor "#ffccccff" "Primary more lighter accent";
@@ -39,8 +44,8 @@ in
 {
   options =
   {
-    config-src.path = str "Path to this configuration's flake directory";
-    config-src.rev = str "Configuration revision (Git commit hash)";
+    flake-src.path = path "Path to this configuration's flake directory";
+    flake-src.rev = str "Configuration revision (Git commit hash)";
 
     host.system = str "System architecture (x86_64-linux, aarch64-darwin)";
     host.name = str "Host name";

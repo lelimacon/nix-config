@@ -22,25 +22,32 @@
     ...
   }:
   let
-    config-module = import ./configuration.nix { inherit self; };
+    host-config = import ./host-config.nix;
+    flake-config =
+    {
+      flake-src.path = ./.;
+      flake-src.rev = self.rev or self.dirtyRev or null;
+    };
     system-config-path = ./system-configuration.nix;
     home-config-path = ../../../home/profiles/mox-air-m4.nix;
   in
   {
     # System configuration with Home Manager.
-    darwinConfigurations."${config-module.host.name}" =
+    darwinConfigurations."${host-config.host.name}" =
       common.my-lib.mkDarwinSystemWithHome
       {
-        inherit config-module system-config-path home-config-path;
+        inherit host-config system-config-path home-config-path;
+        extra-modules = [ flake-config ];
       };
 
     # Standalone Home Manager configuration.
     # `home-manager switch`.
     # Home Manager is also tied to system configuration.
-    homeConfigurations."${config-module.host.name}-${config-module.user.name}" =
+    homeConfigurations."${host-config.host.name}-${host-config.user.name}" =
       common.my-lib.mkHomeConfiguration
       {
-        inherit config-module home-config-path;
+        inherit host-config home-config-path;
+        extra-modules = [ flake-config ];
       };
   };
 }

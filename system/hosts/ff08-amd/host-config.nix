@@ -1,18 +1,11 @@
 {
-  self,
-  ...
-}:
-{
   imports =
   [
-    ../../../lib/options.nix
+    ../../../lib/host-options.nix
   ];
 
-  config-src.path = ./.;
-  config-src.rev = self.rev or self.dirtyRev or null;
-
   host.system = "x86_64-linux";
-  host.name = "surfaceLaptop3";
+  host.name = "ff08-amd";
 
   user.name = "lelimacon";
   user.homeDirectory = "/home/lelimacon";

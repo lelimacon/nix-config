@@ -1,15 +1,8 @@
 {
-  self,
-  ...
-}:
-{
   imports =
   [
-    ../../../lib/options.nix
+    ../../../lib/host-options.nix
   ];
-
-  config-src.path = ./.;
-  config-src.rev = self.rev or self.dirtyRev or null;
 
   host.system = "aarch64-darwin";
   host.name = "mox-air-m4";

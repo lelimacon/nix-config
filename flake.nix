@@ -54,15 +54,7 @@
   let
     inherit (self) outputs;
 
-    get-pkgs = nixpkgs: system: import nixpkgs
-    {
-      system = system;
-      config =
-      {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
+    get-pkgs = import ./lib/get-pkgs.nix;
 
     eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f system);
     #eachSystemPkgs = f: nixpkgs.lib.genAttrs (import systems) (system: f (import nixpkgs { inherit system; }));
@@ -80,7 +72,7 @@
       (import ./pkgs/index.nix { inherit pkgs pkgs-unstable wrappers; })
     );
     lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable nixpkgs-local systems; };
-    #my-options = import ./lib/options.nix;
+    #my-options = import ./lib/host-options.nix;
   in
   {
     # Expose lib for host-specific flakes.
@@ -95,7 +87,7 @@
     devShells = eachSystem (system: import ./shells/index.nix
     {
       inherit system;
-      pkgs = lib.get-pkgs nixpkgs system;
+      pkgs = get-pkgs nixpkgs system;
     });
   };
 }

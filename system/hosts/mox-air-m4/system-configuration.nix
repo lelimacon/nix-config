@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   pkgs,
   pkgs-unstable,
   pkgs-local,
@@ -26,7 +25,4 @@
   #  auto-optimise-store = true
   #  extra-platforms = x86_64-darwin aarch64-darwin
   #'';
-
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = config.host.system;
 }

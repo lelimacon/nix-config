@@ -1,7 +1,7 @@
 # Golang.
 {
   pkgs,
-  pkgs-local,
+  pkgs-wrappers,
   ...
 }:
 {
@@ -13,6 +13,6 @@
     govulncheck # vulnerability database.
 
     # IDE.
-    pkgs-local.goland
+    pkgs-wrappers.goland
   ];
 }

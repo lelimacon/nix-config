@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-local,
+  pkgs-wrappers,
   config,
   ...
 }:
@@ -8,10 +8,10 @@
   # Install wrapped nushell system-wide so /run/current-system/sw/bin/nu exists.
   environment.systemPackages =
   [
-    pkgs-local.nushell
+    pkgs-wrappers.nushell
   ];
 
-  users.users.${config.user.name}.shell = pkgs-local.nushell;
+  users.users.${config.user.name}.shell = pkgs-wrappers.nushell;
 
   # Add to available shells in `/etc/shells`.
   # https://discourse.nixos.org/t/how-to-set-desired-shell-with-nix-darwin/49826
@@ -22,7 +22,7 @@
   # > chsh -s /run/current-system/sw/bin/nu
   environment.shells =
   [
-    pkgs-local.nushell
+    pkgs-wrappers.nushell
     pkgs.nushell
     #pkgs.bash # system bash.
     #pkgs.bashInteractive

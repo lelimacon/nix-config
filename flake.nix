@@ -59,19 +59,28 @@
     eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f system);
     #eachSystemPkgs = f: nixpkgs.lib.genAttrs (import systems) (system: f (import nixpkgs { inherit system; }));
 
-    nixpkgs-local = eachSystem (system:
-      let
+    # Used for this flake's own packages (e.g. `nix run .#goland` from the
+    # repo root), where there's no real host to pull a `host-config` from.
+    default-host-config = import ./system/hosts/ff08-amd/host-config.nix;
+
+    local-pkgs = import ./lib/local-pkgs.nix { inherit wrappers; };
+
+    nixpkgs-ext = eachSystem (system:
+      local-pkgs.pkgs-ext { pkgs = get-pkgs nixpkgs system; }
+    );
+
+    # Keyed off a `host-config` for host-specific customization (e.g. theme
+    # colors).
+    nixpkgs-wrappers = eachSystem (system:
+      local-pkgs.pkgs-wrappers
+      {
         pkgs = get-pkgs nixpkgs system;
         pkgs-unstable = get-pkgs nixpkgs-unstable system;
-        #{
-        #  inherit (pkgs) system;
-        #  config = { allowUnfree = true; allowUnfreePredicate = _: true; };
-        #};
-      in
-      (import ./ext/index.nix { inherit pkgs; }) //
-      (import ./pkgs/index.nix { inherit pkgs pkgs-unstable wrappers; })
+        config = default-host-config;
+      }
     );
-    lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable nixpkgs-local systems; };
+
+    lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable systems; };
     #my-options = import ./lib/host-options.nix;
   in
   {
@@ -80,8 +89,8 @@
     #my-options = my-options;
 
     # Expose custom packages.
-    # This allows for `nix run .#shelve`.
-    packages = nixpkgs-local;
+    # This allows for `nix run .#shelve`/`nix run .#goland`.
+    packages = eachSystem (system: nixpkgs-ext.${system} // nixpkgs-wrappers.${system});
 
     # Dev shells.
     devShells = eachSystem (system: import ./shells/index.nix

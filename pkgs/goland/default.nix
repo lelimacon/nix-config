@@ -1,4 +1,5 @@
 {
+  config, # for customization, not yet used.
   pkgs,
   pkgs-unstable,
   wrappers,

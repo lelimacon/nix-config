@@ -1,12 +1,12 @@
 # Console-related packages.
 {
-  pkgs-local,
+  pkgs-wrappers,
   ...
 }:
 {
   home.packages =
   [
-    #pkgs-local.nushell # installed globally in `system/modules/shells.nix`.
+    #pkgs-wrappers.nushell # installed globally in `system/modules/shells.nix`.
   ];
 
   # Carapace completion library — binary must be in PATH for Nushell completions.
@@ -17,6 +17,6 @@
     enable = true;
     enableBashIntegration = true;
     #enableNushellIntegration = true; # not working here, added in Nushell configuration.
-    package = pkgs-local.starship;
+    package = pkgs-wrappers.starship;
   };
 }

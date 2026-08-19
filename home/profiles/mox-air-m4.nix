@@ -35,9 +35,9 @@
     ../modules/social/firefox
     ../modules/social/slack.nix
 
+    ../modules/utils/ext.nix
     ../modules/utils/fzf.nix
     ../modules/utils/graphviz.nix
-    ../modules/utils/local-packages.nix
     ../modules/utils/monitoring.nix
     ../modules/utils/nix-tools.nix
     #../modules/utils/password-manager.nix # 1password installed manually.

@@ -1,6 +1,6 @@
 # Index of wrapped packages (via nix-wrapper-modules).
-# Merged with ext/index.nix packages in flake.nix as pkgs-local.
 {
+  config,
   pkgs,
   pkgs-unstable,
   wrappers,
@@ -11,5 +11,5 @@ in
 {
   inherit starship;
   nushell = import ./nushell { inherit pkgs wrappers starship; };
-  goland = import ./goland { inherit pkgs pkgs-unstable wrappers; };
+  goland = import ./goland { inherit config pkgs pkgs-unstable wrappers; };
 }

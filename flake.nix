@@ -54,12 +54,30 @@
   let
     inherit (self) outputs;
 
-    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f system);
-    eachSystemPkgs = f: nixpkgs.lib.genAttrs (import systems) (system: f (import nixpkgs { inherit system; }));
+    get-pkgs = nixpkgs: system: import nixpkgs
+    {
+      system = system;
+      config =
+      {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+    };
 
-    nixpkgs-local = eachSystemPkgs (pkgs:
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f system);
+    #eachSystemPkgs = f: nixpkgs.lib.genAttrs (import systems) (system: f (import nixpkgs { inherit system; }));
+
+    nixpkgs-local = eachSystem (system:
+      let
+        pkgs = get-pkgs nixpkgs system;
+        pkgs-unstable = get-pkgs nixpkgs-unstable system;
+        #{
+        #  inherit (pkgs) system;
+        #  config = { allowUnfree = true; allowUnfreePredicate = _: true; };
+        #};
+      in
       (import ./ext/index.nix { inherit pkgs; }) //
-      (import ./pkgs/index.nix { inherit pkgs wrappers; })
+      (import ./pkgs/index.nix { inherit pkgs pkgs-unstable wrappers; })
     );
     lib = import ./lib { inherit inputs outputs nixpkgs nixpkgs-unstable nixpkgs-local systems; };
     #my-options = import ./lib/options.nix;

@@ -1,12 +1,26 @@
 {
   pkgs,
+  wrappers,
   starship,
+  ...
 }:
 let
   emptyNu = pkgs.writeText "empty.nu" "";
+in
+wrappers.wrappers.nushell.wrap
+{
+  inherit pkgs;
 
-  configNu = pkgs.writeText "nushell-config.nu" (
-    (builtins.readFile ./config.nu) + ''
+  "env.nu".content =
+  ''
+    mkdir ~/.cache/starship
+    ${starship}/bin/starship init nu | save --force ~/.cache/starship/init.nu
+    $env.STORE_ROOT = "${toString ../..}"
+  '';
+
+  "config.nu".content =
+    (builtins.readFile ./config.nu)
+    + ''
 
       # Shell aliases referencing Nix store paths.
       alias dev         = develop ${toString ../..}
@@ -39,22 +53,5 @@ let
           "/usr/local/bin"
           $"($env.HOME)/.local/bin"
       ] | uniq)
-    ''
-  );
-
-  envNu = pkgs.writeText "nushell-env.nu" ''
-    mkdir ~/.cache/starship
-    ${starship}/bin/starship init nu | save --force ~/.cache/starship/init.nu
-    $env.STORE_ROOT = "${toString ../..}"
-  '';
-in
-pkgs.symlinkJoin
-{
-  name = "nushell";
-  paths = [ pkgs.nushell ];
-  nativeBuildInputs = [ pkgs.makeWrapper ];
-  postBuild = ''
-    wrapProgram $out/bin/nu \
-      --add-flags "--config ${configNu} --env-config ${envNu}"
-  '';
+    '';
 }

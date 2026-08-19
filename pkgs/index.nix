@@ -2,6 +2,7 @@
 # Merged with ext/index.nix packages in flake.nix as pkgs-local.
 {
   pkgs,
+  pkgs-unstable,
   wrappers,
 }:
 let
@@ -9,5 +10,6 @@ let
 in
 {
   inherit starship;
-  nushell = import ./nushell { inherit pkgs starship; };
+  nushell = import ./nushell { inherit pkgs wrappers starship; };
+  goland = import ./goland { inherit pkgs pkgs-unstable wrappers; };
 }

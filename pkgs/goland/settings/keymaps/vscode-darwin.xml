@@ -1,0 +1,6 @@
+<keymap version="1" name="vscode-darwin" parent="VSCode OSX">
+  <action id="EditorCreateRectangularSelectionOnMouseDrag">
+    <mouse-shortcut keystroke="shift alt button1" />
+    <mouse-shortcut keystroke="alt button1" />
+  </action>
+</keymap>

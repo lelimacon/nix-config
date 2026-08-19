@@ -28,6 +28,7 @@
     ../modules/dev/web.nix
 
     ../modules/media/docs.nix
+    #../modules/media/gfx.nix
     ../modules/media/music.nix
 
     #../modules/social/chrome.nix # installed via Homebrew.

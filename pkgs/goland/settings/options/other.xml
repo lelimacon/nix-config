@@ -1,0 +1,64 @@
+<application>
+  <component name="FileEditorProviderManager">{}</component>
+  <component name="LangManager">
+    <option name="languageName" value="go" />
+  </component>
+  <component name="NotRoamableUiSettings">
+    <option name="fontSize" value="13.0" />
+    <option name="presentationModeIdeScale" value="1.75" />
+  </component>
+  <component name="PropertyService"><![CDATA[{
+  "keyToString": {
+    "EXPORTABILITY_SORTER.file.structure.state": "true",
+    "KEYMAP": "rect",
+    "LAST_CALCULATED_COLOR_INDEX_KEY": "6",
+    "LayoutCode.codeCleanup": "true",
+    "LayoutCode.optimizeImports": "true",
+    "NextRunPlatformUpdateBuild": "GO-262.9437.195",
+    "NextRunPlatformUpdateSelfBuild": "GO-262.8665.336",
+    "NextRunPlatformUpdateVersion": "2026.2.1",
+    "RunOnceActivity.AIPromoWindowAdvisorPreheat": "true",
+    "RunOnceActivity.VFSInitializationConditionsToFusReporter": "true",
+    "RunOnceActivity.git.modal.commit.toggle": "true",
+    "RunOnceActivity.go.enabled.exportability.sorter": "true",
+    "RunOnceActivity.go.init.cfg.2": "true",
+    "RunOnceActivity.go.init.cfg.line.markers": "true",
+    "RunOnceActivity.go.optimizeImportsByDefault": "true",
+    "RunOnceActivity.reset.auto.reparse.settings.to.default": "true",
+    "RunOnceActivity.terminal.shell.command.handling.was.disabled.once": "true",
+    "cef_cleanup_temporary_cache_folder": "/Users/mox/Library/Caches/JetBrains/GoLand2026.2/jcef_cache_temp",
+    "cef_version_last_used": "144",
+    "evlsprt3.262": "5",
+    "experimental.ui.on.first.startup": "true",
+    "experimentalFeature.terminal.shell.command.handling": "false",
+    "fileTypeChangedCounter": "1",
+    "fontSizeToResetConsole": "13.0",
+    "fontSizeToResetEditor": "13.0",
+    "go.126.features.onboarding.should.show": "false",
+    "go.126.features.onboarding.shown.at": "1787079860662",
+    "go.terminal.launcher.onboarding.shown.at": "1787081656195",
+    "got.it.tooltip.settings.sync.in.settings": "1",
+    "llm.installer.last.toolwindow.state": "LLM_INSTALLER",
+    "migrated.non.roamable.values.from.general.settings": "true",
+    "previousColorScheme": "_@user_Light",
+    "registry.to.advanced.settings.migration.build": "GO-262.8665.336",
+    "ts.lib.d.ts.version": "6.0.3",
+    "whats.new.last.shown.version": "2026-2.0.1-8665-98a8b94bcca7410072cf9e29bcf2ce3491617d15"
+  },
+  "keyToStringList": {
+    "fileTypeDetectors": [
+      "com.intellij.ide.scratch.ScratchFileServiceImpl$Detector",
+      "com.intellij.docker.dockerFile.DockerFileTypeDetector",
+      "com.intellij.javascript.debugger.sourcemap.SourceMapFileType$MyFileTypeDetector",
+      "com.goide.execution.testing.frameworks.gofuzz.corpus.GoFuzzCorpusFileTypeDetector",
+      "com.intellij.database.vfs.DbStorageFileType$Detector",
+      "org.jetbrains.plugins.textmate.TextMateFileType$TextMateFileDetector"
+    ]
+  }
+}]]></component>
+  <component name="ReworkedTerminalUsage">{
+  &quot;firstIdeSessionMoment&quot;: {
+    &quot;type&quot;: &quot;org.jetbrains.plugins.terminal.TerminalFirstIdeSessionMoment.BeforeTrackingStarted&quot;
+  }
+}</component>
+</application>

@@ -7,7 +7,7 @@
   ...
 }:
 let
-  get-pkgs = pkgs: system: import pkgs
+  get-pkgs = nixpkgs: system: import nixpkgs
   {
     system = system;
     config =

@@ -1,7 +1,7 @@
 # Golang.
 {
   pkgs,
-  pkgs-unstable,
+  pkgs-local,
   ...
 }:
 {
@@ -13,6 +13,6 @@
     govulncheck # vulnerability database.
 
     # IDE.
-    pkgs-unstable.jetbrains.goland
+    pkgs-local.goland
   ];
 }

@@ -3,6 +3,7 @@
 {
   pkgs,
   wrappers,
+  ...
 }:
 wrappers.wrappers.starship.wrap
 {

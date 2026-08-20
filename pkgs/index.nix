@@ -12,4 +12,5 @@ in
   inherit starship;
   nushell = import ./nushell { inherit pkgs wrappers starship; };
   goland = import ./goland { inherit config pkgs pkgs-unstable wrappers; };
+  netpad = pkgs.callPackage ./netpad { };
 }

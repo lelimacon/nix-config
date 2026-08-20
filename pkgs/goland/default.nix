@@ -51,6 +51,7 @@ in
 wrappers.lib.wrapPackage ({ lib, ... }:
 {
   inherit pkgs;
+
   package = goland;
 
   # Pass config/plugins paths as JVM system properties.
@@ -67,7 +68,16 @@ wrappers.lib.wrapPackage ({ lib, ... }:
     CC = "${pkgs.clang}/bin/clang";
   };
 
-  runtimePkgs = with pkgs; [ go gopls golangci-lint govulncheck clang git ];
+  # TODO: Take these packages from the go shell?
+  runtimePkgs = with pkgs;
+  [
+    go
+    gopls
+    golangci-lint
+    govulncheck
+    clang
+    git
+  ];
 
   runShell =
   [

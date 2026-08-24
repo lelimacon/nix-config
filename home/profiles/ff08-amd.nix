@@ -29,7 +29,6 @@
     #../modules/dev/java.nix
     ../modules/dev/nix.nix
     #../modules/dev/rust.nix
-    ../modules/dev/vscode.nix
     ../modules/dev/web.nix
 
     ../modules/media/docs.nix

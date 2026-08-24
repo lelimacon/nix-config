@@ -24,7 +24,6 @@
     #../modules/dev/jetbrains.nix
     #../modules/dev/mise.nix
     ../modules/dev/nix.nix
-    ../modules/dev/vscode.nix
     ../modules/dev/web.nix
 
     ../modules/media/docs.nix

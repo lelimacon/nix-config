@@ -1,0 +1,8 @@
+
+*[Ss]torage*/
+*[Cc]ache*/
+
+Backups/
+logs/
+
+User/History/

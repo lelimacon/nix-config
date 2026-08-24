@@ -7,13 +7,15 @@
 }:
 let
   inherit (import ../helpers.nix) gitEnsureRepo gitCommit syncSettings;
+  inherit (import ../lib.nix { inherit pkgs; }) wrapIfMacOsApp;
 
   goland = pkgs-unstable.jetbrains.goland;
   version = pkgs.lib.versions.majorMinor goland.version;
   configDir = "$HOME/.config/JetBrains.GoLand.${version}";
   settingsDir = toString ./settings;
 in
-wrappers.lib.wrapPackage ({ lib, ... }:
+wrapIfMacOsApp "Goland" "goland"
+(wrappers.lib.wrapPackage ({ lib, ... }:
 {
   inherit pkgs;
 
@@ -55,4 +57,4 @@ wrappers.lib.wrapPackage ({ lib, ... }:
     (syncSettings settingsDir configDir)
     (gitCommit configDir "after")
   ];
-})
+}))

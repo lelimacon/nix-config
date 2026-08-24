@@ -1,6 +1,7 @@
 {
   pkgs,
   pkgs-unstable,
+  pkgs-wrappers,
   ...
 }:
 {
@@ -32,6 +33,9 @@
     # TUI editors.
     helix
     pkgs-unstable.fresh-editor
+
+    # GUI editors.
+    pkgs-wrappers.vscodium
 
     # Build tools.
     go-task # taskfile runner.

@@ -31,7 +31,7 @@
         target="${dst}/$rel"
         mkdir -p "$(dirname "$target")"
         cp -f "$file" "$target"
-      done < <(find "${src}" -type f -not -name ".gitkeep")
+      done < <(find -L "${src}" -type f -not -name ".gitkeep")
     fi
   '';
 }

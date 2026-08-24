@@ -6,47 +6,12 @@
   ...
 }:
 let
+  inherit (import ../helpers.nix) gitEnsureRepo gitCommit syncSettings;
+
   goland = pkgs-unstable.jetbrains.goland;
   version = pkgs.lib.versions.majorMinor goland.version;
   configDir = "$HOME/.config/JetBrains.GoLand.${version}";
   settingsDir = toString ./settings;
-
-  # Ensures the dir exists and the git repo is initialized.
-  # Copies .gitignore from `gitignoreSrc` before the first init so ignored
-  # files are never staged in the initial commit.
-  gitEnsureRepo = dir: gitignoreSrc:
-  ''
-    mkdir -p "${dir}"
-    if [ ! -d "${dir}/.git" ]; then
-      [ -f "${gitignoreSrc}" ] && cp -f "${gitignoreSrc}" "${dir}/.gitignore"
-      git -C "${dir}" init --quiet
-    fi
-  '';
-
-  # Stages everything and commits if anything changed.
-  gitCommit = dir: label:
-  ''
-    (
-      GIT="git -C ${dir}"
-      $GIT add -A
-      $GIT diff --cached --quiet || \
-        $GIT commit --quiet -m "$(date -u '+%Y-%m-%dT%H:%M:%SZ') ${label}"
-    )
-  '';
-
-  # Generates a shell snippet that syncs every file from `src` into `dst`,
-  # always overwriting. Uses find so dotfiles are included.
-  syncSettings = src: dst:
-  ''
-    if [ -d "${src}" ]; then
-      while IFS= read -r file; do
-        rel="''${file#${src}/}"
-        target="${dst}/$rel"
-        mkdir -p "$(dirname "$target")"
-        cp -f "$file" "$target"
-      done < <(find "${src}" -type f -not -name ".gitkeep")
-    fi
-  '';
 in
 wrappers.lib.wrapPackage ({ lib, ... }:
 {

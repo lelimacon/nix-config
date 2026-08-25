@@ -1,3 +1,4 @@
+# This .gitignore is meant for the settings repository.
 
 *[Ss]torage*/
 *[Cc]ache*/
@@ -6,3 +7,11 @@ Backups/
 logs/
 
 User/History/
+
+Service Worker/
+
+*.lock
+
+*-wal
+
+TransportSecurity

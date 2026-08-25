@@ -4,7 +4,7 @@
   wrappers,
 }:
 let
-  inherit (import ../helpers.nix) gitEnsureRepo gitCommit syncSettings;
+  inherit (import ../../lib/shell.nix) gitEnsureRepo gitCommit syncSettings;
   inherit (import ../../lib/wrapping.nix { inherit pkgs; }) wrapIfMacOsApp;
 
   lib = pkgs.lib;
@@ -37,6 +37,13 @@ wrapIfMacOsApp "VSCodium" "codium"
         data = "--user-data-dir=${configDir}";
         esc-fn = lib.id;
       }
+    ];
+    # GUI-launched apps (Dock, Spotlight, Finder) don't inherit a login
+    # shell's PATH, so extensions that shell out to tools (nushell, nix,
+    # etc.) can't find them. Prefix the same paths a login shell would have.
+    prefixVar =
+    [
+      [ "PATH" ":" "/run/current-system/sw/bin:/etc/profiles/per-user/${config.user.name}/bin:/nix/var/nix/profiles/default/bin" ]
     ];
     runShell =
     [

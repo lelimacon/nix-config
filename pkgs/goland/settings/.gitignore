@@ -4,6 +4,8 @@
 .lock
 options/recentProjects.xml
 options/usage.statistics.xml
+options/actionSummary.xml
+options/workspace/
 
 # Binary files.
 **/*.db

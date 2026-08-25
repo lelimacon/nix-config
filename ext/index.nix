@@ -16,4 +16,5 @@ in
   # Scripts.
   develop = nuScript "develop" ./scripts/develop.nu;
   where = nuScript "where" ./scripts/where.nu;
+  dirt = nuScript "dirt" ./scripts/dirt.nu;
 }

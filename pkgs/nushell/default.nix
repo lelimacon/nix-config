@@ -28,7 +28,7 @@ wrappers.wrappers.nushell.wrap
       alias dev-rider   = nix develop path:${toString ../../shells/dotnet} --command rider
       alias dev-rover   = nix develop path:${toString ../../shells/rust}   --command rust-rover
       alias dev-unity   = nix develop path:${toString ../../shells/dotnet} --command unityhub
-      alias dirt        = bash ${toString ../../ext/scripts/dirt.sh}
+      alias nix-dirt    = dirt --dir ~/.config --verbosity files
       alias what        = bash ${toString ../../ext/scripts/what.sh}
 
       # Load private config if any.

@@ -29,7 +29,7 @@
     "dev-unity"   = "nix develop path:${toString ../../../shells/dotnet} --command unityhub";
 
     # Scripts.
-    "dirt" = toString ../../../ext/scripts/dirt.sh;
+    "nix-dirt" = "dirt --dir ~/.config --verbosity files";
     "what" = toString ../../../ext/scripts/what.sh;
   };
 

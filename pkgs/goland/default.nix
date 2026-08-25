@@ -7,7 +7,7 @@
 }:
 let
   inherit (import ../helpers.nix) gitEnsureRepo gitCommit syncSettings;
-  inherit (import ../lib.nix { inherit pkgs; }) wrapIfMacOsApp;
+  inherit (import ../../lib/wrapping.nix { inherit pkgs; }) wrapIfMacOsApp;
 
   goland = pkgs-unstable.jetbrains.goland;
   version = pkgs.lib.versions.majorMinor goland.version;

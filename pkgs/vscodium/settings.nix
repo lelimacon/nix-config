@@ -1,4 +1,8 @@
-{ colors, lib }:
+{
+  colors,
+  lib,
+  pkgs,
+}:
 let
   join = sep: list: lib.concatStringsSep sep list;
 
@@ -60,6 +64,12 @@ in
 
   # Extension: Catppuccin Noctis Icons.
   "catppuccin-noctis-icons.hidesExplorerArrows" = true;
+
+  # Extension: Nix IDE.
+  # Absolute path avoids relying on $PATH, which GUI-launched apps don't
+  # inherit from the shell (nix-instantiate would otherwise go unfound).
+  "nix.enableLanguageServer" = true;
+  "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
 
   # Extension: Rust Analyzer.
   "rust-analyzer.inlayHints.typeHints.enable" = false;

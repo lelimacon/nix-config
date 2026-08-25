@@ -5,12 +5,12 @@
 }:
 let
   inherit (import ../helpers.nix) gitEnsureRepo gitCommit syncSettings;
-  inherit (import ../lib.nix { inherit pkgs; }) wrapIfMacOsApp;
+  inherit (import ../../lib/wrapping.nix { inherit pkgs; }) wrapIfMacOsApp;
 
   lib = pkgs.lib;
   colors = config.theme.colors;
 
-  settings = import ./settings.nix { inherit colors lib; };
+  settings = import ./settings.nix { inherit colors lib pkgs; };
   keybindings = import ./keybindings.nix;
 
   version = lib.versions.majorMinor pkgs.vscodium.version;

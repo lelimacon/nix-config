@@ -41,7 +41,7 @@
     ../modules/media/video.nix
 
     ../modules/social/chrome.nix
-    ../modules/social/firefox
+    ../modules/social/firefox.nix
     ../modules/social/play.nix
     ../modules/social/slack.nix
     ../modules/social/teams.nix

@@ -31,7 +31,7 @@
     ../modules/media/music.nix
 
     #../modules/social/chrome.nix # installed via Homebrew.
-    ../modules/social/firefox
+    ../modules/social/firefox.nix
     ../modules/social/slack.nix
 
     ../modules/utils/ext.nix

@@ -1,0 +1,23 @@
+# This .gitignore is meant for the settings repository.
+
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+lock
+.parentlock
+
+sessionstore*
+sessionstore-backups/
+
+cache2/
+startupCache/
+shader-cache/
+storage/
+OfflineCache/
+
+crashes/
+minidumps/
+saved-telemetry-pings/
+datareporting/
+
+*.bak

@@ -8,9 +8,12 @@ rec {
   # The executable name (CFBundleExecutable) is read from the original bundle.
   wrapMacOsApp = appName: binName: wrapped:
     pkgs.runCommand binName { } ''
-      execName=$(ls ${wrapped}/Applications/${appName}.app/Contents/MacOS/)
+      # Read the real main executable name from Info.plist rather than
+      # listing Contents/MacOS/, which can contain many other files
+      # (helper apps, dylibs, ...) besides the actual CFBundleExecutable.
+      execName=$(/usr/bin/plutil -extract CFBundleExecutable raw -o - "${wrapped}/Applications/${appName}.app/Contents/Info.plist")
 
-      mkdir -p $out/bin $out/Applications/${appName}.app/Contents/MacOS
+      mkdir -p $out/bin "$out/Applications/${appName}.app/Contents/MacOS"
 
       ln -s ${wrapped}/bin/${binName} $out/bin/${binName}
 

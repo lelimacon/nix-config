@@ -12,8 +12,7 @@ let
   settings = import ./settings.nix { inherit config lib pkgs; };
   keybindings = import ./keybindings.nix;
 
-  version = lib.versions.majorMinor pkgs.vscodium.version;
-  configDir = "$HOME/.config/VSCodium.${version}";
+  configDir = "$HOME/.config/VSCodium-nix-wrapper";
   hardcodedDir = toString ./hardcoded-settings;
 
   fmt = json: pkgs.runCommand "fmt.json" { } ''

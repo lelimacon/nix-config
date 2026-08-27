@@ -23,7 +23,7 @@ let
     extraPolicies = policies;
   };
 
-  configDir = "$HOME/.config/Firefox-profile-nix-wrappers";
+  configDir = "$HOME/.config/Firefox-profile-nix-wrapper";
 
   mkUserJs = settings: pkgs.writeText "user.js" (lib.concatStrings (
     lib.mapAttrsToList (name: value: ''

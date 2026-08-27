@@ -1,5 +1,5 @@
 {
-  config, # for customization, not yet used.
+  config,
   pkgs,
   pkgs-unstable,
   wrappers,
@@ -10,9 +10,15 @@ let
   inherit (import ../../lib/wrapping.nix { inherit pkgs; }) wrapIfMacOsApp;
 
   goland = pkgs-unstable.jetbrains.goland;
-  version = pkgs.lib.versions.majorMinor goland.version;
-  configDir = "$HOME/.config/JetBrains.GoLand.${version}";
-  settingsDir = toString ./settings;
+  configDir = "$HOME/.config/JetBrains.GoLand-nix-wrapper";
+  hardcodedDir = toString ./hardcoded-settings;
+
+  settings = import ./settings.nix { inherit config; };
+
+  generatedDir = pkgs.linkFarm "goland-settings"
+  [
+    { name = "options/editor-font.xml"; path = pkgs.writeText "editor-font.xml" settings.fonts; }
+  ];
 in
 wrapIfMacOsApp "Goland" "goland"
 (wrappers.lib.wrapPackage ({ lib, ... }:
@@ -52,9 +58,10 @@ wrapIfMacOsApp "Goland" "goland"
       export CGO_CFLAGS="--sysroot=$(xcrun --show-sdk-path 2>/dev/null)"
       export CGO_LDFLAGS="--sysroot=$(xcrun --show-sdk-path 2>/dev/null)"
     ''
-    (gitEnsureRepo configDir "${settingsDir}/.gitignore")
+    (gitEnsureRepo configDir "${hardcodedDir}/.gitignore")
     (gitCommit configDir "before")
-    (syncSettings settingsDir configDir)
+    (syncSettings hardcodedDir configDir)
+    (syncSettings "${generatedDir}" configDir)
     (gitCommit configDir "after")
   ];
 }))

@@ -61,7 +61,9 @@
 
     # Used for this flake's own packages (e.g. `nix run .#goland` from the
     # repo root), where there's no real host to pull a `host-config` from.
-    default-host-config = import ./system/hosts/ff08-amd/host-config.nix;
+    # Evaluating the bare options module gives us its built-in defaults
+    # (theme, user, ...) without tying it to any specific host.
+    default-host-config = (nixpkgs.lib.evalModules { modules = [ ./lib/host-options.nix ]; }).config;
 
     local-pkgs = import ./lib/local-pkgs.nix { inherit wrappers; };
 

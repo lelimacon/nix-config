@@ -1,10 +1,12 @@
 {
-  colors,
+  config,
   lib,
   pkgs,
 }:
 let
   join = sep: list: lib.concatStringsSep sep list;
+  theme = config.theme;
+  colors = config.theme.colors;
 
   cssLinearGradient = direction: stops:
     join ";" [
@@ -26,9 +28,9 @@ in
   "terminal.integrated.fontLigatures.enabled" = true;
   "terminal.integrated.fontLigatures.featureSettings" = fontFeatureSettings;
   "explorer.confirmDragAndDrop" = false;
-  "editor.fontFamily" = "'MonaspiceAr Nerd Font', 'FiraCode Nerd Font', Monaco, monospace";
+  "editor.fontFamily" = "'${theme.monoFont.family}', 'FiraCode Nerd Font', Monaco, monospace";
   "editor.fontLigatures" = fontFeatureSettings;
-  "editor.fontSize" = 13;
+  "editor.fontSize" = theme.monoFont.size;
   "editor.minimap.enabled" = false;
   "editor.stickyScroll.enabled" = false;
   "editor.inlayHints.enabled" = "off";

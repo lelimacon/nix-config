@@ -27,9 +27,5 @@
     colors.border = "#654141ff";
     colors.border-soft = "#b6a8a8ff";
     colors.border-strong = "#3f1e1e";
-
-    monoFont.family = "MonaspiceAr Nerd Font";
-    monoFont.frozenFamily = "Monaspace Argon Frozen";
-    monoFont.size = 13;
   };
 }

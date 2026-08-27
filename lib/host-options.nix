@@ -3,21 +3,26 @@
   ...
 }:
 let
-  str = description: lib.mkOption
+  str = value: description: lib.mkOption
   {
     type = lib.types.str;
+    default = value;
     description = description;
   };
-  int = description: lib.mkOption
+  int = value: description: lib.mkOption
   {
     type = lib.types.int;
+    default = value;
     description = description;
   };
-  path = description: lib.mkOption
+  path = value: description: lib.mkOption
   {
     type = lib.types.path;
+    default = value;
     description = description;
   };
+  # Defaults taken from the ff08-amd host, used as a fallback when no host
+  # overrides them (e.g. this flake's own packages, built without a host).
   hexColor = value: description: lib.mkOption
   {
     type = lib.types.str;
@@ -45,23 +50,23 @@ let
       border-strong = hexColor "#444444ff" "Strong border (more contrasty)";
     };
 
-    monoFont.family = str "Monospace font";
-    monoFont.frozenFamily = str "Monospace font for apps without variants (e.g. IntelliJ).";
-    monoFont.size = int "Monospace font size";
+    monoFont.family = str "MonaspiceAr Nerd Font" "Monospace font";
+    monoFont.frozenFamily = str "Monaspace Argon Frozen" "Monospace font for apps without variants (e.g. IntelliJ).";
+    monoFont.size = int 13 "Monospace font size";
   };
 in
 {
   options =
   {
-    flake-src.path = path "Path to this configuration's flake directory";
-    flake-src.rev = str "Configuration revision (Git commit hash)";
+    flake-src.path = path ../. "Path to this configuration's flake directory";
+    flake-src.rev = str "-" "Configuration revision (Git commit hash)";
 
-    host.system = str "System architecture (x86_64-linux, aarch64-darwin)";
-    host.name = str "Host name";
+    host.system = str "x86_64-linux" "System architecture (x86_64-linux, aarch64-darwin)";
+    host.name = str "default-host" "Host name";
 
     theme = theme-options;
 
-    user.name = str "User name";
-    user.homeDirectory = str "Path to home directory";
+    user.name = str "lelimacon" "User name";
+    user.homeDirectory = str "/home/lelimacon" "Path to home directory";
   };
 }

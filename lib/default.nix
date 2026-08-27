@@ -11,6 +11,9 @@ let
   # Rebuilt per host (rather than reusing the common flake's output)
   # so `pkgs-wrappers` can use that host's `host-config`.
   local-pkgs = import ./local-pkgs.nix { inherit (inputs) wrappers; };
+
+  # Evaluate config to apply the default options.
+  eval-host-config = host-config: (nixpkgs.lib.evalModules { modules = [ host-config ]; }).config;
 in
 {
   # NixOS system configuration.
@@ -21,7 +24,7 @@ in
       pkgs = get-pkgs nixpkgs system;
       pkgs-unstable = get-pkgs nixpkgs-unstable system;
       pkgs-ext = local-pkgs.pkgs-ext { inherit pkgs; };
-      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = host-config; };
+      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = eval-host-config host-config; };
       # Still forced via specialArgs too (home-manager needs it at import time).
       # `nixpkgs.pkgs` marks it external, so NixOS skips building an unused copy.
       pkgs-module = { nixpkgs.pkgs = pkgs; };
@@ -58,7 +61,7 @@ in
       pkgs = get-pkgs nixpkgs system;
       pkgs-unstable = get-pkgs nixpkgs-unstable system;
       pkgs-ext = local-pkgs.pkgs-ext { inherit pkgs; };
-      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = host-config; };
+      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = eval-host-config host-config; };
       # See the comment in mkNixosSystemWithHome, same logic for nix-darwin.
       pkgs-module = { nixpkgs.pkgs = pkgs; };
       home-manager-in-system =
@@ -93,7 +96,7 @@ in
       pkgs = get-pkgs nixpkgs system;
       pkgs-unstable = get-pkgs nixpkgs-unstable system;
       pkgs-ext = local-pkgs.pkgs-ext { inherit pkgs; };
-      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = host-config; };
+      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = eval-host-config host-config; };
     in
     inputs.home-manager.lib.homeManagerConfiguration
     {

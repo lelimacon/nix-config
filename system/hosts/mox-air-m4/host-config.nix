@@ -27,9 +27,5 @@
     colors.border = "#1c1917"; # Stone 900.
     colors.border-soft = "#b6a8a8ff";
     colors.border-strong = "#1c1917"; # Stone 900.
-
-    monoFont.family = "MonaspiceAr Nerd Font";
-    monoFont.frozenFamily = "Monaspace Argon Frozen";
-    monoFont.size = 13;
   };
 }

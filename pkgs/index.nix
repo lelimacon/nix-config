@@ -10,9 +10,12 @@ let
 in
 {
   inherit starship;
+
   nushell = import ./nushell { inherit pkgs wrappers starship; };
   goland = import ./goland { inherit config pkgs pkgs-unstable wrappers; };
+  kitty = import ./kitty { inherit config pkgs wrappers; };
   vscodium = import ./vscodium { inherit config pkgs wrappers; };
   firefox = import ./firefox { inherit config pkgs wrappers; };
+
   netpad = pkgs.callPackage ./netpad { };
 }

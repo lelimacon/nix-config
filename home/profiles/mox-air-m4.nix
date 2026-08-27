@@ -35,6 +35,7 @@
     ../modules/social/slack.nix
 
     ../modules/utils/ext.nix
+    ../modules/utils/console.nix
     ../modules/utils/fzf.nix
     ../modules/utils/graphviz.nix
     ../modules/utils/monitoring.nix

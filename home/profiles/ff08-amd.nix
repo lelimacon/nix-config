@@ -13,7 +13,6 @@
     ../modules/console/bash.nix
     ../modules/console/ghostty.nix
     ../modules/console/gtk.nix
-    ../modules/console/kitty.nix
     ../modules/console/shell.nix
     ../modules/console/starship.nix
 
@@ -47,6 +46,7 @@
     ../modules/social/teams.nix
 
     ../modules/utils/ext.nix
+    ../modules/utils/console.nix
     ../modules/utils/fzf.nix
     ../modules/utils/graphviz.nix
     ../modules/utils/nix-tools.nix

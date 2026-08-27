@@ -8,6 +8,11 @@ let
     type = lib.types.str;
     description = description;
   };
+  int = description: lib.mkOption
+  {
+    type = lib.types.int;
+    description = description;
+  };
   path = description: lib.mkOption
   {
     type = lib.types.path;
@@ -39,6 +44,10 @@ let
       border-soft = hexColor "#aaaaaaff" "Soft border (less contrasty)";
       border-strong = hexColor "#444444ff" "Strong border (more contrasty)";
     };
+
+    monoFont.family = str "Monospace font";
+    monoFont.frozenFamily = str "Monospace font for apps without variants (e.g. IntelliJ).";
+    monoFont.size = int "Monospace font size";
   };
 in
 {

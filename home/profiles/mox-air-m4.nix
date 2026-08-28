@@ -5,7 +5,6 @@
 {
   imports =
   [
-    ../modules/console/bash.nix
     #../modules/console/ghostty.nix # installed via Homebrew.
     ../modules/console/shell.nix
     ../modules/customization/sketchybar

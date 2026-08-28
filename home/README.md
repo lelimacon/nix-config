@@ -23,6 +23,18 @@ Four categories:
 
 Note: `home.sessionVariables` is not a fundamental blocker — it maps directly to `environment.variables` (NixOS/nix-darwin) at system level.
 
+### Already moved
+
+
+| Module | Tool | Reason |
+|--------|------|--------|
+| `console/kitty.nix` | kitty | Settings map directly to `kitty.conf` options; wrapper available. |
+| `dev/vscode.nix` | vscodium | No wrapper; per-user keybindings, color theme customizations, and extension settings via `programs.vscodium`. |
+| `social/firefox/default.nix` | firefox | No wrapper; per-user profile, `userChrome`, toolbar layout, and search engines via `programs.firefox`. |
+| `dev/starship.nix` | starship | **Already done** in `pkgs/starship/default.nix`. |
+| `console/nushell/default.nix` | nushell | Wrapper available. Current code reads `config.home.sessionVariables` — needs refactoring to explicit values, but the config and carapace init can be embedded. |
+
+
 ### Movable as-is
 
 | Module | Packages | Notes |
@@ -66,9 +78,6 @@ These tools have a built-in wrapper in the library (confirmed from the `wrapperM
 
 | Module | Tool | Notes |
 |--------|------|-------|
-| `dev/console.nix` | starship | **Already done** in `pkgs/starship/default.nix`. |
-| `console/kitty.nix` | kitty | Settings map directly to `kitty.conf` options; wrapper available. |
-| `console/nushell/default.nix` | nushell | Wrapper available. Current code reads `config.home.sessionVariables` — needs refactoring to explicit values, but the config and carapace init can be embedded. |
 | `dev/git.nix` | git | Wrapper available. All current settings (autocrlf, eol, pull.rebase, user identity) are expressible as Nix attrset. |
 
 ### Wrappable with a custom wrapper
@@ -89,5 +98,3 @@ No pre-built nix-wrapper-modules wrapper exists, but config can be embedded via 
 | `console/gtk.nix` | GTK theme | `gtk.*` and `home.pointerCursor` are per-user dconf/XSettings — no system-level equivalent. |
 | `console/shell.nix` | shell aliases/path | Aliases could use `environment.shellAliases`, but `home.sessionPath = ["$HOME/.local/bin"]` is inherently per-user. |
 | `dev/mise.nix` | mise | Shell integration hooks into per-user shell init; no nix-wrapper-modules wrapper. |
-| `dev/vscode.nix` | vscodium | No wrapper; per-user keybindings, color theme customizations, and extension settings via `programs.vscodium`. |
-| `social/firefox/default.nix` | firefox | No wrapper; per-user profile, `userChrome`, toolbar layout, and search engines via `programs.firefox`. |

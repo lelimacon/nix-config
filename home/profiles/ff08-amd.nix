@@ -10,7 +10,6 @@
     ../desktops/gnome
     #../desktops/hyprland
 
-    ../modules/console/bash.nix
     ../modules/console/ghostty.nix
     ../modules/console/gtk.nix
     ../modules/console/shell.nix

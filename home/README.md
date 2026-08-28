@@ -43,7 +43,6 @@ Note: `home.sessionVariables` is not a fundamental blocker — it maps directly 
 | Module | Packages | Notes |
 |--------|----------|-------|
 | `dev/ai.nix` | llama-cpp, ollama, qwen-code, goose-cli, uv, python3 | |
-| `dev/asdf.nix` | asdf-vm | |
 | `dev/aws.nix` | awscli2, ssm-session-manager-plugin, aws-sam-cli | |
 | `dev/beam.nix` | erlang, elixir, gleam, dexter | Session vars (`ERL_TOP`, `*_SDK_HOME`) move to `environment.variables`. |
 | `dev/containerization.nix` | docker, lazydocker | |
@@ -90,9 +89,3 @@ No pre-built nix-wrapper-modules wrapper exists, but config can be embedded via 
 |--------|------|----------|
 | `utils/fzf.nix` | fzf | Package is plain; shell init scripts ship with fzf and can be sourced from the store path in shell config. |
 | `utils/nix-tools.nix` | nix-du, nix-index, nix-inspect, nix-tree | Packages are plain; the `nix-graph` alias can be a script in `pkgs-ext` instead of a shell alias. |
-
-### Home-manager only
-
-| Module | Tool | Reason |
-|--------|------|--------|
-| `dev/mise.nix` | mise | Shell integration hooks into per-user shell init; no nix-wrapper-modules wrapper. |

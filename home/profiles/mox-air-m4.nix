@@ -6,7 +6,6 @@
   imports =
   [
     ../modules/dev/ai.nix
-    #../modules/dev/asdf.nix
     ../modules/dev/aws.nix
     ../modules/dev/beam.nix
     ../modules/dev/console.nix
@@ -17,7 +16,6 @@
     ../modules/dev/go.nix
     ../modules/dev/java.nix
     #../modules/dev/jetbrains.nix
-    #../modules/dev/mise.nix
     ../modules/dev/nix.nix
     ../modules/dev/web.nix
 

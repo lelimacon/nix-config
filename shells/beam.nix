@@ -17,8 +17,6 @@ pkgs.mkShell
     elixir
     gleam
 
-    #asdf-vm # runtime version manager.
-    #mise # runtime version manager.
     go-task # task runner.
     caddy # HTTP web server.
 
@@ -48,10 +46,6 @@ pkgs.mkShell
   ''
     #export LANG=en_US.UTF-8
     #export LC_ALL=en_US.UTF-8
-
-    #source ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
-    #. "$HOME/.asdf/asdf.sh"
-    #. "$HOME/.asdf/completions/asdf.bash"
 
     export ERL_TOP="${erlang}/lib/erlang"
     export ERLANG_SDK_HOME="${erlang}/lib/erlang"

@@ -6,8 +6,9 @@
   home.packages =
   [
     pkgs-ext.develop
-    pkgs-ext.where
-    pkgs-ext.shelve
     pkgs-ext.dirt
+    pkgs-ext.shelve
+    pkgs-ext.what
+    pkgs-ext.where
   ];
 }

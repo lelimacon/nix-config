@@ -28,22 +28,10 @@ import ./lib.nix
       "checkjobs"
     ];
 
+    # Custom aliases.
+    # Aliases from `environment.shellAliases` will be sourced automatically.
     shellAliases =
     {
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "dev" = "develop ${toString ../..}";
-      "dev-builder" = "nix develop path:${toString ../../shells/gtk}    --command gnome-builder";
-      "dev-rider"   = "nix develop path:${toString ../../shells/dotnet} --command rider";
-      "dev-rover"   = "nix develop path:${toString ../../shells/rust}   --command rust-rover";
-      "dev-unity"   = "nix develop path:${toString ../../shells/dotnet} --command unityhub";
-      "gl" = "git log --graph --pretty=format:'%Cgreen%ad%Creset %C(auto)%h %s %C(bold black)<%aN>%C(auto)%d%Creset' --date=format-local:'%Y-%m-%d %H:%M'";
-      "l" = "eza";
-      "ll" = "eza -l --icons";
-      "nix-dirt" = "dirt --dir ~/.config --verbosity files";
-      "nix-graph" = "nix-du -s=500MB | dot -Tsvg > store.svg";
-      "tree" = "eza --tree";
-      "what" = toString ../../ext/scripts/what.sh;
     };
 
     initExtra =

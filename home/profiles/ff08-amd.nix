@@ -12,8 +12,6 @@
 
     ../modules/console/ghostty.nix
     ../modules/console/gtk.nix
-    ../modules/console/shell.nix
-    ../modules/console/starship.nix
 
     ../modules/dev/ai.nix
     ../modules/dev/dotnet.nix

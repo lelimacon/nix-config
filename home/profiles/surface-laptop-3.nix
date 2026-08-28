@@ -10,12 +10,8 @@
     ../desktops/gnome
     #../desktops/hyprland
 
-    ../modules/console/TOTO.nix
-
     ../modules/console/ghostty.nix
     ../modules/console/gtk.nix
-    ../modules/console/shell.nix
-    ../modules/console/starship.nix
 
     ../modules/dev/dotnet.nix
     ../modules/dev/console.nix

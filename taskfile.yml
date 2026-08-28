@@ -5,12 +5,9 @@ includes:
   ext:
     taskfile: ./ext
     dir: ./ext
-  system:
-    taskfile: ./system/taskfile.yml
-    dir: ./system
-  home:
-    taskfile: ./home/taskfile.yml
-    dir: ./home
+  host:
+    taskfile: ./hosts/taskfile.yml
+    dir: ./hosts
 
 
 tasks:

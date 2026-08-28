@@ -1,14 +1,15 @@
 # Nix-config
 
-My NixOS / dotfiles setup.
+My NixOS homeless setup.
 
 
 ## Folder Structure
 
 - `ext/`: Aditional scripts & apps
-- `home/`: Home-manager, with programs and desktop environment customization
-- `system/`: System-specific configurations, with hosts, hardware, users, and global packages
+- `hosts/`: Device-specific configuration that cherry-pick modules
+- `modules/`: System-specific configuration, organized by modules
+- `pkgs/`: Wrapped packages (via [nix-wrapper-modules](https://github.com/BirdeeHub/nix-wrapper-modules))
 - `lib/`: Nix helper functions
 - `shells/`: Generic dev shells
 
-Browse the folder READMEs for details.
+Browse the folder READMEs for more information.

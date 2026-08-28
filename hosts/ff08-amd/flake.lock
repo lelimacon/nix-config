@@ -1,5 +1,28 @@
 {
   "nodes": {
+    "common": {
+      "inputs": {
+        "nix-darwin": "nix-darwin",
+        "nix-firefox-addons": "nix-firefox-addons",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-unstable": [
+          "nixpkgs-unstable"
+        ],
+        "systems": "systems_2",
+        "wrappers": "wrappers"
+      },
+      "locked": {
+        "path": "./../../",
+        "type": "path"
+      },
+      "original": {
+        "path": "./../../",
+        "type": "path"
+      },
+      "parent": []
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -21,6 +44,7 @@
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
+          "common",
           "nixpkgs"
         ]
       },
@@ -43,6 +67,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": [
+          "common",
           "nixpkgs"
         ]
       },
@@ -62,27 +87,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1786535285,
-        "narHash": "sha256-rG5HKMAgAhMgydvKGtco6rqTxRq4EDZQCx9USLvVqYw=",
+        "lastModified": 1778430510,
+        "narHash": "sha256-Ti+ZBvW6yrWWAg2szExVTwCd4qOJ3KlVr1tFHfyfi8Q=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9f78f44a87948854445dae0b6bf82b2e87e4efb5",
+        "rev": "8fd9daa3db09ced9700431c5b7ad0e8ba199b575",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-26.05",
+        "ref": "nixos-25.11",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1786599213,
-        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+        "lastModified": 1778443072,
+        "narHash": "sha256-zi7/fsqM/kFdNuED//4WOCUtezGtKKqRNORjMvfwjnA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+        "rev": "da5ad661ba4e5ef59ba743f0d112cbc30e474f32",
         "type": "github"
       },
       "original": {
@@ -94,12 +119,9 @@
     },
     "root": {
       "inputs": {
-        "nix-darwin": "nix-darwin",
-        "nix-firefox-addons": "nix-firefox-addons",
+        "common": "common",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "systems": "systems_2",
-        "wrappers": "wrappers"
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
     "systems": {
@@ -135,6 +157,7 @@
     "wrappers": {
       "inputs": {
         "nixpkgs": [
+          "common",
           "nixpkgs"
         ]
       },

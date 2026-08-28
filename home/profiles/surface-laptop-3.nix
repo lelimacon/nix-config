@@ -6,7 +6,6 @@
   imports =
   [
     ../desktops/gnome
-    #../desktops/hyprland
 
     ../modules/console/ghostty.nix
     ../modules/console/gtk.nix

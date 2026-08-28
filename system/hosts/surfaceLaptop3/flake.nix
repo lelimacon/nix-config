@@ -9,8 +9,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
     # TODO: Add?
     #nix-flatpak.url = "github:gmodena/nix-flatpak/main";
 

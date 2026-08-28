@@ -24,14 +24,12 @@
     ../../modules/culture.nix
     ../../modules/fonts.nix
     ../../modules/gnome.nix
-    #../../modules/hyprland.nix
     ../../modules/linux-software.nix
     ../../modules/steam.nix
     ../../modules/shells.nix
     ../../modules/system-defaults.nix
     ../../modules/users.nix
     ../../modules/wayland.nix
-    #../../modules/x11.nix
     ../../modules/xdg.nix
   ];
 

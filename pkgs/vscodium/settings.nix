@@ -24,7 +24,7 @@ in
   "files.trimTrailingWhitespace" = true;
   "files.eol" = "\n";
   "extensions.autoUpdate" = false;
-  "terminal.external.linuxExec" = "ghostty";
+  "terminal.external.linuxExec" = "kitty";
   "terminal.integrated.fontLigatures.enabled" = true;
   "terminal.integrated.fontLigatures.featureSettings" = fontFeatureSettings;
   "explorer.confirmDragAndDrop" = false;

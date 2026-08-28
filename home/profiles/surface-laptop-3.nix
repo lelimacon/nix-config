@@ -5,8 +5,6 @@
 {
   imports =
   [
-    ../modules/console/ghostty.nix
-
     ../modules/dev/dotnet.nix
     ../modules/dev/console.nix
     ../modules/dev/containerization.nix

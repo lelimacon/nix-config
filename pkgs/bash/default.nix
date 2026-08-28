@@ -1,13 +1,3 @@
-/*
-Bash, wrapped to always load a Nix-generated rc file instead of `~/.bashrc`.
-
-No dedicated bash module exists in nix-wrapper-modules, so this uses the
-generic `wrapPackage` and forces the rc file via `--rcfile`.
-
-Known issue: `--rcfile` only applies to interactive, non-login shells — a
-login shell (e.g. some terminal defaults) would fall back to sourcing
-/etc/profile and ~/.bash_profile instead, skipping this file entirely.
-*/
 {
   pkgs,
   wrappers,
@@ -15,53 +5,67 @@ login shell (e.g. some terminal defaults) would fall back to sourcing
   ...
 }:
 let
-  lib = pkgs.lib;
-  settings = import ./settings.nix { inherit pkgs starship; };
-
-  # History and the rc file itself live here instead of $HOME directly.
-  configDir = "$HOME/.config/bash-nix-wrapper";
-
-  # Renders the home-manager-shaped settings above into an actual rc file.
-  bashrc = ''
-    # Commands that should be applied only for interactive shells.
-    [[ $- == *i* ]] || return
-
-    HISTFILE=${configDir}/history
-    HISTCONTROL=${lib.concatStringsSep ":" settings.historyControl}
-    HISTFILESIZE=${toString settings.historyFileSize}
-    HISTSIZE=${toString settings.historySize}
-
-    ${lib.concatMapStrings (opt: "shopt -s ${opt}\n") settings.shellOptions}
-    ${lib.concatStrings (lib.mapAttrsToList (name: value: "alias -- ${name}=${lib.escapeShellArg value}\n") settings.shellAliases)}
-    ${settings.initExtra}
-  '';
-
-  rcFile = pkgs.writeText "bashrc" bashrc;
+  loadFileIfExists = path: "[ -f ${path} ] && . ${path}";
 in
-wrappers.lib.wrapPackage ({ lib, ... }:
+import ./lib.nix
 {
-  inherit pkgs;
-  package = pkgs.bashInteractive;
+  inherit pkgs wrappers;
 
-  # esc-fn = lib.id skips shell quoting so $HOME expands at runtime.
-  addFlag =
-  [
+  # Bash configuration, shaped like home-manager's `programs.bash` options
+  # (historyControl, historyFileSize, historySize, shellOptions,
+  # shellAliases, initExtra) — rendered to the actual rc file in lib.nix.
+  settings =
+  {
+    historyControl = [ "erasedups" ];
+    historyFileSize = 20000;
+    historySize = 10000;
+
+    shellOptions =
+    [
+      "histappend"
+      "extglob"
+      "globstar"
+      "checkjobs"
+    ];
+
+    shellAliases =
     {
-      data = [ "--rcfile" "${configDir}/bashrc" ];
-      esc-fn = lib.id;
-    }
-  ];
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "dev" = "develop ${toString ../..}";
+      "dev-builder" = "nix develop path:${toString ../../shells/gtk}    --command gnome-builder";
+      "dev-rider"   = "nix develop path:${toString ../../shells/dotnet} --command rider";
+      "dev-rover"   = "nix develop path:${toString ../../shells/rust}   --command rust-rover";
+      "dev-unity"   = "nix develop path:${toString ../../shells/dotnet} --command unityhub";
+      "gl" = "git log --graph --pretty=format:'%Cgreen%ad%Creset %C(auto)%h %s %C(bold black)<%aN>%C(auto)%d%Creset' --date=format-local:'%Y-%m-%d %H:%M'";
+      "l" = "eza";
+      "ll" = "eza -l --icons";
+      "nix-dirt" = "dirt --dir ~/.config --verbosity files";
+      "nix-graph" = "nix-du -s=500MB | dot -Tsvg > store.svg";
+      "tree" = "eza --tree";
+      "what" = toString ../../ext/scripts/what.sh;
+    };
 
-  runShell =
-  [
+    initExtra =
     ''
-      mkdir -p "${configDir}"
+      if [[ ! -v BASH_COMPLETION_VERSINFO ]]; then
+        . "${pkgs.bash-completion}/etc/profile.d/bash_completion.sh"
+      fi
 
-      # Link bashrc for easy access.
-      ln -sf "${rcFile}" "${configDir}/bashrc"
+      if [[ :$SHELLOPTS: =~ :(vi|emacs): ]]; then
+        eval "$(${pkgs.fzf}/bin/fzf --bash)"
+      fi
 
-      # Log timestamp.
-      date -u '+%Y-%m-%dT%H:%M:%SZ' > "${configDir}/last-run.txt"
-    ''
-  ];
-})
+      SHELL=${pkgs.bashInteractive}/bin/bash
+
+      # Load private bashrc if found.
+      ${loadFileIfExists "$HOME/.private.bashrc"}
+
+      source <(${pkgs.carapace}/bin/carapace _carapace bash)
+
+      if [[ $TERM != "dumb" ]]; then
+        eval "$(${starship}/bin/starship init bash --print-full-init)"
+      fi
+    '';
+  };
+}

@@ -37,6 +37,7 @@ Note: `home.sessionVariables` is not a fundamental blocker — it maps directly 
 | `console/gtk.nix` | GTK theme | `gtk.*` and `home.pointerCursor` are per-user dconf/XSettings — no system-level equivalent. |
 | `console/shell.nix` | shell aliases/path | Aliases could use `environment.shellAliases`, but `home.sessionPath = ["$HOME/.local/bin"]` is inherently per-user. |
 | `dev/git.nix` | git | Wrapper available. All current settings (autocrlf, eol, pull.rebase, user identity) are expressible as Nix attrset. |
+| `utils/fzf.nix` | fzf | Package is plain; shell init scripts ship with fzf and can be sourced from the store path in shell config. |
 
 
 ### Movable as-is
@@ -80,5 +81,4 @@ No pre-built nix-wrapper-modules wrapper exists, but config can be embedded via 
 
 | Module | Tool | Strategy |
 |--------|------|----------|
-| `utils/fzf.nix` | fzf | Package is plain; shell init scripts ship with fzf and can be sourced from the store path in shell config. |
 | `utils/nix-tools.nix` | nix-du, nix-index, nix-inspect, nix-tree | Packages are plain; the `nix-graph` alias can be a script in `pkgs-ext` instead of a shell alias. |

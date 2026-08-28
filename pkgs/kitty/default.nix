@@ -1,5 +1,4 @@
-# Console-related wrapped packages, grouped here as none of them warrants
-# its own directory.
+# Kitty terminal emulator wrapper.
 {
   config,
   pkgs,

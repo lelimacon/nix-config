@@ -1,3 +1,4 @@
+# Terminal and shell.
 {
   pkgs,
   pkgs-wrappers,
@@ -6,11 +7,21 @@
 }:
 {
   # Install wrapped nushell system-wide so /run/current-system/sw/bin/nu exists.
-  environment.systemPackages =
+  environment.systemPackages = with pkgs;
   [
-    pkgs-wrappers.nushell # shell.
-    pkgs-wrappers.starship # shell prompt.
-    pkgs.carapace # completion library.
+    # Terminal emulators.
+    pkgs-wrappers.kitty
+
+    # Shells.
+    pkgs-wrappers.bash
+    pkgs-wrappers.nushell
+
+    # Shell prompts.
+    pkgs-wrappers.starship
+
+    # Utilities.
+    carapace # completion library.
+    fzf # CLI fuzzy finder.
   ];
 
   users.users.${config.user.name}.shell = pkgs-wrappers.nushell;

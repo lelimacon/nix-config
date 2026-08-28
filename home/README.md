@@ -33,6 +33,7 @@ Note: `home.sessionVariables` is not a fundamental blocker — it maps directly 
 | `social/firefox/default.nix` | firefox | No wrapper; per-user profile, `userChrome`, toolbar layout, and search engines via `programs.firefox`. |
 | `dev/starship.nix` | starship | **Already done** in `pkgs/starship/default.nix`. |
 | `console/nushell/default.nix` | nushell | Wrapper available. Current code reads `config.home.sessionVariables` — needs refactoring to explicit values, but the config and carapace init can be embedded. |
+| `console/bash.nix` | bash | No nix-wrapper-modules wrapper; per-user `initExtra` loads `~/.private.bashrc` and sets `STORE_ROOT`. |
 
 
 ### Movable as-is
@@ -94,7 +95,6 @@ No pre-built nix-wrapper-modules wrapper exists, but config can be embedded via 
 
 | Module | Tool | Reason |
 |--------|------|--------|
-| `console/bash.nix` | bash | No nix-wrapper-modules wrapper; per-user `initExtra` loads `~/.private.bashrc` and sets `STORE_ROOT`. |
 | `console/gtk.nix` | GTK theme | `gtk.*` and `home.pointerCursor` are per-user dconf/XSettings — no system-level equivalent. |
 | `console/shell.nix` | shell aliases/path | Aliases could use `environment.shellAliases`, but `home.sessionPath = ["$HOME/.local/bin"]` is inherently per-user. |
 | `dev/mise.nix` | mise | Shell integration hooks into per-user shell init; no nix-wrapper-modules wrapper. |

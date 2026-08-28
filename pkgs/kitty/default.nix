@@ -12,7 +12,7 @@ wrappers.wrappers.kitty.wrap
 
   font =
   {
-    name = config.theme.monoFont.family;
+    name = config.theme.monoFont.frozenFamily;
     size = config.theme.monoFont.size;
   };
 

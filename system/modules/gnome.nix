@@ -71,6 +71,12 @@ let
       edge-tiling = true; # drag windows against screen edges to rezise.
       enable-hot-corners = false; # flicking top-left corner for activities overview.
       gtk-enable-primary-paste = false; # no pasting with mouse middle click.
+
+      gtk-theme = "adw-gtk3";
+      icon-theme = "MoreWaita";
+      cursor-theme = "Bibata-Modern-Classic";
+      cursor-size = 16;
+      font-name = "Ubuntu Nerd Font 11";
     };
 
     "org/gnome/desktop/peripherals/mouse" =
@@ -105,6 +111,14 @@ in
     { settings = dconfSettings; }
   ];
 
+  # Cursor theme/size for apps that don't follow GNOME's dconf/XSETTINGS
+  # (e.g. some Wayland-native or XWayland clients).
+  environment.sessionVariables =
+  {
+    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_SIZE = "16";
+  };
+
   # Remove all default apps.
   # Some may be added back in home manager.
   environment.gnome.excludePackages = with pkgs;
@@ -130,6 +144,12 @@ in
     pavucontrol # PulseAudio Volume Control.
     mission-center # activity monitor.
     #rustdesk # remote desktop sharing (OSS alternative to AnyDesk).
+
+    # GTK theming (set above in the dconf settings).
+    adw-gtk3
+    morewaita-icon-theme
+    bibata-cursors
+    ubuntu-sans
 
     # GNOME shell extensions.
     # https://extensions.gnome.org/

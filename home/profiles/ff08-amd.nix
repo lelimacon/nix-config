@@ -6,7 +6,6 @@
   imports =
   [
     ../modules/console/ghostty.nix
-    ../modules/console/gtk.nix
 
     ../modules/dev/ai.nix
     ../modules/dev/dotnet.nix

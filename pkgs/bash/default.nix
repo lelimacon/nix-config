@@ -6,10 +6,11 @@
 }:
 let
   loadFileIfExists = path: "[ -f ${path} ] && . ${path}";
+  package = pkgs.bashInteractive;
 in
 import ./lib.nix
 {
-  inherit pkgs wrappers;
+  inherit package pkgs wrappers;
 
   # Bash configuration, shaped like home-manager's `programs.bash` options
   # (historyControl, historyFileSize, historySize, shellOptions,
@@ -44,7 +45,7 @@ import ./lib.nix
         eval "$(${pkgs.fzf}/bin/fzf --bash)"
       fi
 
-      SHELL=${pkgs.bashInteractive}/bin/bash
+      SHELL=${package}/bin/bash
 
       # Load private bashrc if found.
       ${loadFileIfExists "$HOME/.private.bashrc"}

@@ -89,7 +89,6 @@ No pre-built nix-wrapper-modules wrapper exists, but config can be embedded via 
 |--------|------|----------|
 | `utils/fzf.nix` | fzf | Package is plain; shell init scripts ship with fzf and can be sourced from the store path in shell config. |
 | `utils/nix-tools.nix` | nix-du, nix-index, nix-inspect, nix-tree | Packages are plain; the `nix-graph` alias can be a script in `pkgs-ext` instead of a shell alias. |
-| `customization/sketchybar/default.nix` | sketchybar | Lua config is a static file tree; nix-darwin `services.sketchybar` manages it at system level. |
 
 ### Home-manager only
 

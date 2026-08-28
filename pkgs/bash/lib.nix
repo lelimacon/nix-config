@@ -6,6 +6,7 @@ login shell (e.g. some terminal defaults) would fall back to sourcing
 /etc/profile and ~/.bash_profile instead, skipping this file entirely.
 */
 {
+  package,
   pkgs,
   wrappers,
   settings,
@@ -37,7 +38,7 @@ wrappers.lib.wrapPackage ({ lib, ... }:
 {
   inherit pkgs;
 
-  package = pkgs.bashInteractive;
+  package = package;
 
   # esc-fn = lib.id skips shell quoting so $HOME expands at runtime.
   addFlag =

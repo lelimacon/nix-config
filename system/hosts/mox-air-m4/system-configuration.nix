@@ -1,7 +1,4 @@
 {
-  inputs,
-  pkgs,
-  pkgs-unstable,
   ...
 }:
 {
@@ -14,7 +11,6 @@
     ../../modules/shells.nix
     ../../modules/system-defaults.nix
     ../../modules/users.nix
-    ../../modules/yabai.nix
   ];
 
   # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.stateVersion

@@ -5,9 +5,6 @@
 {
   imports =
   [
-    #../modules/console/ghostty.nix # installed via Homebrew.
-    ../modules/customization/sketchybar
-
     ../modules/dev/ai.nix
     #../modules/dev/asdf.nix
     ../modules/dev/aws.nix

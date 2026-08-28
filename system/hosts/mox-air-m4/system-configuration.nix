@@ -8,7 +8,7 @@
     ../../modules/mac-hardware.nix
     ../../modules/mac-software.nix
     ../../modules/mac-ui.nix
-    ../../modules/shells.nix
+    ../../modules/console.nix
     ../../modules/system-defaults.nix
     ../../modules/users.nix
   ];

@@ -8,7 +8,6 @@
     ../modules/dev/ai.nix
     ../modules/dev/aws.nix
     ../modules/dev/beam.nix
-    ../modules/dev/console.nix
     #../modules/dev/containerization.nix # Docker installed manually.
     ../modules/dev/db.nix
     ../modules/dev/general.nix

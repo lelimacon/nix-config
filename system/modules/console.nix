@@ -8,7 +8,9 @@
   # Install wrapped nushell system-wide so /run/current-system/sw/bin/nu exists.
   environment.systemPackages =
   [
-    pkgs-wrappers.nushell
+    pkgs-wrappers.nushell # shell.
+    pkgs-wrappers.starship # shell prompt.
+    pkgs.carapace # completion library.
   ];
 
   users.users.${config.user.name}.shell = pkgs-wrappers.nushell;

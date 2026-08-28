@@ -5,8 +5,6 @@
 {
   imports =
   [
-    ../desktops/gnome
-
     ../modules/console/ghostty.nix
     ../modules/console/gtk.nix
 

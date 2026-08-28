@@ -13,6 +13,7 @@ in
 
   nushell = import ./nushell { inherit pkgs wrappers starship; };
   bash = import ./bash { inherit pkgs wrappers starship; };
+  git = import ./git { inherit pkgs wrappers; };
   goland = import ./goland { inherit config pkgs pkgs-unstable wrappers; };
   kitty = import ./kitty { inherit config pkgs wrappers; };
   vscodium = import ./vscodium { inherit config pkgs wrappers; };

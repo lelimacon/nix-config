@@ -36,6 +36,7 @@ Note: `home.sessionVariables` is not a fundamental blocker — it maps directly 
 | `console/bash.nix` | bash | No nix-wrapper-modules wrapper; per-user `initExtra` loads `~/.private.bashrc` and sets `STORE_ROOT`. |
 | `console/gtk.nix` | GTK theme | `gtk.*` and `home.pointerCursor` are per-user dconf/XSettings — no system-level equivalent. |
 | `console/shell.nix` | shell aliases/path | Aliases could use `environment.shellAliases`, but `home.sessionPath = ["$HOME/.local/bin"]` is inherently per-user. |
+| `dev/git.nix` | git | Wrapper available. All current settings (autocrlf, eol, pull.rebase, user identity) are expressible as Nix attrset. |
 
 
 ### Movable as-is
@@ -72,14 +73,6 @@ Note: `home.sessionVariables` is not a fundamental blocker — it maps directly 
 | `utils/ext.nix` | pkgs-ext.{develop, where, shelve} | |
 | `utils/monitoring.nix` | bottom, dgop | `bottom` also has a nix-wrapper-modules wrapper if config is ever needed. |
 | `utils/password-manager.nix` | _1password-gui | |
-
-### Wrappable with nix-wrapper-modules out of the box
-
-These tools have a built-in wrapper in the library (confirmed from the `wrapperModules/` directory at rev `6e7f66f`). Config is expressed as a Nix attrset and baked into the package via `wrappers.wrappers.<name>.wrap { inherit pkgs; settings = { ... }; }`.
-
-| Module | Tool | Notes |
-|--------|------|-------|
-| `dev/git.nix` | git | Wrapper available. All current settings (autocrlf, eol, pull.rebase, user identity) are expressible as Nix attrset. |
 
 ### Wrappable with a custom wrapper
 

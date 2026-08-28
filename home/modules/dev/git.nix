@@ -1,34 +1,13 @@
 {
   pkgs,
+  pkgs-wrappers,
   ...
 }:
 {
-  home.packages = with pkgs;
+  home.packages =
   [
-    lazygit # TUI for git commands.
+    pkgs.lazygit # TUI for git commands.
+    pkgs.git-lfs
+    pkgs-wrappers.git
   ];
-
-  programs.git =
-  {
-    enable = true;
-    lfs.enable = true;
-
-    settings =
-    {
-      core =
-      {
-        autocrlf = "input"; # checkout as-is, commit Unix-style.
-        eol = "lf";
-      };
-
-      user.name = "lelimacon";
-      user.email = "lelimacon@users.noreply.github.com";
-
-      init.defaultBranch = "main";
-
-      pull.rebase = true;
-
-      mergetool.prompt = true;
-    };
-  };
 }

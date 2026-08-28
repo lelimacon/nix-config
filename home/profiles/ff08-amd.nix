@@ -5,8 +5,6 @@
 {
   imports =
   [
-    ../customization.nix
-
     ../desktops/gnome
     #../desktops/hyprland
 

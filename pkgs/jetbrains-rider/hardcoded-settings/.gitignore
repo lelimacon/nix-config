@@ -1,0 +1,11 @@
+# This .gitignore is meant for the settings repository.
+
+# Transient configuration files.
+.lock
+options/recentProjects.xml
+options/usage.statistics.xml
+options/actionSummary.xml
+options/workspace/
+
+# Binary files.
+**/*.db

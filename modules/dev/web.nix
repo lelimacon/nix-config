@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-unstable,
+  pkgs-wrappers,
   ...
 }:
 {
@@ -17,6 +17,6 @@
     bruno
 
     # IDE.
-    pkgs-unstable.jetbrains.webstorm
+    pkgs-wrappers.jetbrains-webstorm
   ];
 }

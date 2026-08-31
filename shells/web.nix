@@ -3,7 +3,7 @@
   ...
 }:
 let
-  node = pkgs.nodejs_20;
+  node = pkgs.nodejs_22;
 in
 pkgs.mkShell
 {

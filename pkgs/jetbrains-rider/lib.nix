@@ -3,12 +3,14 @@
   wrappers,
   package,
   settings,
+  env ? { },
+  runtimePkgs ? [ ],
 }:
 let
   inherit (import ../../lib/shell.nix) gitEnsureRepo gitCommit syncSettings;
   inherit (import ../../lib/wrapping.nix { inherit pkgs; }) wrapIfMacOsApp;
 
-  configDir = "$HOME/.config/JetBrains.GoLand-nix-wrapper";
+  configDir = "$HOME/.config/JetBrains.Rider-nix-wrapper";
   hardcodedDir = toString ./hardcoded-settings;
 
   colorsSchemeXml =
@@ -50,7 +52,7 @@ let
     </application>
   '';
 
-  generatedDir = pkgs.linkFarm "goland-settings"
+  generatedDir = pkgs.linkFarm "jetbrains-rider-settings"
   [
     { name = "options/colors.scheme.xml"; path = pkgs.writeText "colors.scheme.xml" colorsSchemeXml; }
     { name = "options/editor.xml";        path = pkgs.writeText "editor.xml" editorXml; }
@@ -58,7 +60,7 @@ let
     { name = "options/laf.xml";           path = pkgs.writeText "laf.xml" lafXml; }
   ];
 in
-wrapIfMacOsApp "Goland" "goland"
+wrapIfMacOsApp "Rider" "rider"
 (wrappers.lib.wrapPackage ({ lib, ... }:
 {
   inherit pkgs;
@@ -73,29 +75,10 @@ wrapIfMacOsApp "Goland" "goland"
     { data = "-Didea.plugins.path=${configDir}/plugins"; esc-fn = lib.id; }
   ];
 
-  env =
-  {
-    GOROOT = "${pkgs.go}/share/go";
-    CC = "${pkgs.clang}/bin/clang";
-  };
-
-  # TODO: Take these packages from the go shell?
-  runtimePkgs = with pkgs;
-  [
-    go
-    gopls
-    golangci-lint
-    govulncheck
-    clang
-    git
-  ];
+  inherit env runtimePkgs;
 
   runShell =
   [
-    ''
-      export CGO_CFLAGS="--sysroot=$(xcrun --show-sdk-path 2>/dev/null)"
-      export CGO_LDFLAGS="--sysroot=$(xcrun --show-sdk-path 2>/dev/null)"
-    ''
     (gitEnsureRepo configDir "${hardcodedDir}/.gitignore")
     (gitCommit configDir "before")
     (syncSettings hardcodedDir configDir)

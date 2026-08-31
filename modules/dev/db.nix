@@ -1,12 +1,12 @@
 {
   pkgs,
-  pkgs-unstable,
+  pkgs-wrappers,
   ...
 }:
 {
   environment.systemPackages = with pkgs;
   [
-    pkgs-unstable.jetbrains.datagrip
+    pkgs-wrappers.jetbrains-datagrip
     #dbeaver-bin
   ];
 }

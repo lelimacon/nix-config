@@ -13,6 +13,6 @@
     govulncheck # vulnerability database.
 
     # IDE.
-    pkgs-wrappers.goland
+    pkgs-wrappers.jetbrains-goland
   ];
 }

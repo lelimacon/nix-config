@@ -31,7 +31,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    systems.url = "github:nix-systems/default";
+    # aarch64-darwin, aarch64-linux, x86_64-linux.
+    systems.url = "github:nix-systems/triplet";
   };
 
   outputs = inputs @

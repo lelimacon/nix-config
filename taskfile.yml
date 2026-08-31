@@ -27,7 +27,7 @@ tasks:
   check:
     desc: "Validate configuration."
     cmds:
-      - nix flake check --impure
+      - nix flake check --impure --all-systems
 
   diff:
     desc: "Build system configuration, do not activate but show changes."

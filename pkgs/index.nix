@@ -25,6 +25,8 @@ in
   kitty = import ./kitty { inherit config pkgs wrappers; };
   vscodium = import ./vscodium { inherit config pkgs wrappers; };
   firefox = import ./firefox { inherit config pkgs wrappers; };
-
+}
+// pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin
+{
   netpad = pkgs.callPackage ./netpad { };
 }

@@ -1,6 +1,0 @@
-@-moz-document url-prefix("moz-extension://"),
-              url-prefix("about:treestyletab") {
-    .tab.active {
-        background: rgba(129, 231, 176, 0.5);
-    }
-}

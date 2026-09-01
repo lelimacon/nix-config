@@ -6,6 +6,9 @@
 {
   environment.systemPackages = with pkgs;
   [
+    # General.
+    comma # run any program, `$ , fastfetch`.
+
     # CLI tools.
     nix-du # used with alias to generate graph.
     nix-index # find nixos packages.

@@ -92,12 +92,33 @@
         "type": "github"
       }
     },
+    "paseo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788241427,
+        "narHash": "sha256-pHPH/eDlwNIssaf3H8wczuYS7VhZfi6UjWP6Qj4wrfo=",
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "rev": "0c38749c38f9c6a1db3adda88e5e25faf6c62e17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nix-darwin": "nix-darwin",
         "nix-firefox-addons": "nix-firefox-addons",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "paseo": "paseo",
         "systems": "systems_2",
         "wrappers": "wrappers"
       }

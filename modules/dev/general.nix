@@ -36,6 +36,7 @@
 
     # GUI editors.
     pkgs-wrappers.vscodium
+    lapce
 
     # Build tools.
     go-task # taskfile runner.

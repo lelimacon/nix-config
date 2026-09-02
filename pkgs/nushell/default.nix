@@ -5,7 +5,8 @@
   ...
 }:
 let
-  emptyNu = pkgs.writeText "empty.nu" "";
+  configDir = "~/.config/Nushell-nix-wrapper";
+  privateConfigPath = "${configDir}/private.config.nu";
 in
 wrappers.wrappers.nushell.wrap
 {
@@ -13,15 +14,24 @@ wrappers.wrappers.nushell.wrap
 
   "env.nu".content =
   ''
+    $env.STORE_ROOT = "${toString ../..}"
+
+    # Starship.
     mkdir ~/.cache/starship
     ${starship}/bin/starship init nu | save --force ~/.cache/starship/init.nu
-    $env.STORE_ROOT = "${toString ../..}"
+
+    # Create the private config if it doesn't exist yet, since `source` in
+    # config.nu resolves its path at parse time, before any of config.nu's
+    # own statements have run.
+    if not ("${privateConfigPath}" | path expand | path exists) {
+        mkdir ("${privateConfigPath}" | path expand | path dirname)
+        touch ("${privateConfigPath}" | path expand)
+    }
   '';
 
   "config.nu".content =
     (builtins.readFile ./config.nu)
     + ''
-
       # Shell aliases referencing Nix store paths.
       alias dev         = develop ${toString ../..}
       alias dev-builder = nix develop path:${toString ../../shells/gtk}    --command gnome-builder
@@ -31,13 +41,8 @@ wrappers.wrappers.nushell.wrap
       alias nix-dirt    = dirt --dir ~/.config --verbosity files
       alias what        = bash ${toString ../../ext/scripts/what.sh}
 
-      # Load private config if any.
-      source (
-          if (($nu.home-dir | path join ".config/private.config.nu") | path expand | path exists) {
-              $nu.home-dir | path join ".config/private.config.nu"
-          }
-          else { "${emptyNu}" }
-      )
+      # Load private config (env.nu creates it if missing).
+      source "${privateConfigPath}"
 
       # Starship.
       source ~/.cache/starship/init.nu

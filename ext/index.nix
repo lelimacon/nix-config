@@ -20,6 +20,7 @@ in
   shelve = import ./shelve/default.nix { inherit pkgs; };
 
   # Scripts.
+  aws-login = nuScript "aws-login" ./scripts/aws-login.nu;
   develop = nuScript "develop" ./scripts/develop.nu;
   dirt = nuScript "dirt" ./scripts/dirt.nu;
   what = shellScript "what" ./scripts/what.sh;

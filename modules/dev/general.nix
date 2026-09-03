@@ -20,11 +20,10 @@
     fontconfig # list fonts with `fc-list`.
     openssl # SSL & TLS library.
     cocogitto # cli tools for conventional commit and semver.
-
-    # Versioning.
-    #git git-lfs
-    #git-xet # Git LFS plugin for Xet protocol.
-    github-cli
+    pkgs-ext.develop
+    pkgs-ext.dirt
+    pkgs-ext.what
+    pkgs-ext.where
 
     # TUI file explorers.
     ranger

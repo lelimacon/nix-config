@@ -27,7 +27,7 @@ def list-executables [path: string, filter?: string] {
                 let color = if $filter == null or ($it.baseName =~ $filter) { ansi green } else { ansi light_gray }
                 $"($color)($it.baseName)(ansi reset)"
             }
-            | str join ','
+            | str join '  '
     } else {
         null
     }

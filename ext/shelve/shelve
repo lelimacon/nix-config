@@ -1,5 +1,8 @@
 #!/usr/bin/env nu
 
+# shelve
+# Git stash with less steps.
+
 let dstDir = $".git/.shelve/"
 
 # Shelve utility.

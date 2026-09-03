@@ -33,12 +33,12 @@
     #../../modules/dev/dotnet.nix
     #../../modules/dev/gamedev.nix
     ../../modules/dev/general.nix
-    ../../modules/dev/git.nix
     ../../modules/dev/go.nix
     #../../modules/dev/gtk.nix
     ../../modules/dev/java.nix
     ../../modules/dev/nix.nix
     #../../modules/dev/rust.nix
+    ../../modules/dev/versioning.nix
     ../../modules/dev/web.nix
 
     ../../modules/media/docs.nix
@@ -58,7 +58,6 @@
     ../../modules/social/slack.nix
     #../../modules/social/teams.nix
 
-    ../../modules/utils/ext.nix
     ../../modules/utils/graphviz.nix
     #../../modules/utils/locate.nix
     ../../modules/utils/monitoring.nix

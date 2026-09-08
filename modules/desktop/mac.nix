@@ -1,3 +1,5 @@
+# Nix Darwin desktop environment configuration.
+# More settings at https://mynixos.com/nix-darwin/options/system
 {
   config,
   ...
@@ -23,6 +25,23 @@
   {
     "com.apple.AdLib".allowApplePersonalizedAdvertising = false;
   };
+
+  # Navigation.
+  system.defaults.NSGlobalDomain =
+  {
+    # "Natural" scrolling direction.
+    # Inverted for mouse with UnnaturalScrollWheels.
+    "com.apple.swipescrolldirection" = true;
+
+    # Swipe left or right with two fingers to navigate backward or forward.
+    AppleEnableSwipeNavigateWithScrolls = false;
+    AppleEnableMouseSwipeNavigateWithScrolls = false;
+  };
+  system.defaults.trackpad =
+  {
+    TrackpadTwoFingerFromRightEdgeSwipeGesture = false;
+  };
+  system.defaults.dock.showDesktopGestureEnabled = false; # four-finger spread gesture to show Desktop.
 
   # Show battery percentage.
   system.defaults.CustomUserPreferences =

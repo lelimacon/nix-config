@@ -111,6 +111,43 @@ in
     { settings = dconfSettings; }
   ];
 
+  hardware =
+  {
+    # Opengl.
+    graphics.enable = true;
+
+    # Most wayland compositors need this.
+    nvidia.modesetting.enable = true;
+  };
+
+  # Wayland options.
+  environment.sessionVariables =
+  {
+    # If your cursor becomes invisible.
+    WLR_NO_HARDWARE_CURSORS = "1";
+
+    # Tell Firefox to use Wayland.
+    MOZ_ENABLE_WAYLAND = "1";
+
+    # Hint Electron apps to use Wayland.
+    NIXOS_OZONE_WL = "1";
+  };
+
+  # XDG portal (handles interactions between apps).
+  xdg.portal =
+  {
+    enable = true;
+    config =
+    {
+    };
+    extraPortals =
+    [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    xdgOpenUsePortal = true;
+  };
+
   # Cursor theme/size for apps that don't follow GNOME's dconf/XSETTINGS
   # (e.g. some Wayland-native or XWayland clients).
   environment.sessionVariables =
@@ -119,8 +156,7 @@ in
     XCURSOR_SIZE = "16";
   };
 
-  # Remove all default apps.
-  # Some may be added back in home manager.
+  # Remove default apps.
   environment.gnome.excludePackages = with pkgs;
   [
     cheese # webcam.
@@ -137,9 +173,10 @@ in
     yelp gnome-initial-setup gnome-tour # assistance apps.
   ];
 
-  # Generic apps.
   environment.systemPackages = with pkgs;
   [
+    xdg-utils # e.g. "open in browser"
+
     # Utils.
     pavucontrol # PulseAudio Volume Control.
     mission-center # activity monitor.

@@ -21,8 +21,6 @@
 
     #../../modules/desktop/gnome.nix
     ../../modules/desktop/mac.nix
-    #../../modules/desktop/wayland.nix
-    #../../modules/desktop/xdg.nix
 
     ../../modules/dev/ai.nix
     ../../modules/dev/aws.nix

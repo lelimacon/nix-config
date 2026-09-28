@@ -10,15 +10,23 @@ vars:
 tasks:
 
   init-darwin:
-    desc: "Initialize."
+    desc: "Initialization (run manually)."
     internal: true
     cmds:
       # Install Homebrew.
       - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       # Install nix.
       - sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
-      # Apply configuration.
-      - sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes nix-darwin -- switch --flake .#mox-air-m4
+      # Open dev shell.
+      - nix-shell -p git fresh-editor
+      # Download repo.
+      - git clone https://github.com/lelimacon/nix-config.git
+      # Apply configuration (from host flake directory).
+      - sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes nix-darwin -- switch --flake .#air-m4
+      # Enable access for wrapped apps like Firefox.
+      # Settings > Privacy & Security > Full Disk Access
+      # Change shell.
+      # chsh -s /run/current-system/sw/bin/nu
 
   check:
     desc: "Validate configuration."

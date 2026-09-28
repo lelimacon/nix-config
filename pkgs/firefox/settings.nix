@@ -4,7 +4,7 @@ every launch (see default.nix — unlike policies.nix, this dir is writable
 and Firefox keeps its own state alongside these).
 */
 {
-  # "browser.startup.homepage" = "https://duckduckgo.com";
+  "browser.startup.homepage" = "https://start.duckduckgo.com";
   "browser.search.defaultenginename" = "DuckDuckGo";
   "browser.search.order.1" = "DuckDuckGo";
   "browser.aboutConfig.showWarning" = false;

@@ -10,11 +10,11 @@ vars:
 tasks:
 
   init-nixos:
-    desc: "Initialize."
+    desc: "Initialization (run manually)."
     internal: true
     cmds:
       # Open dev shell.
-      - nix-shell -p git vscodium
+      - nix-shell -p git fresh-editor
       # Download repo.
       - git clone https://github.com/lelimacon/nix-config.git
       # Apply configuration (from host flake directory).

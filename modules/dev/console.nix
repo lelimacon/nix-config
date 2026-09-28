@@ -6,7 +6,6 @@
   ...
 }:
 {
-  # Install wrapped nushell system-wide so /run/current-system/sw/bin/nu exists.
   environment.systemPackages = with pkgs;
   [
     # Terminal emulators.

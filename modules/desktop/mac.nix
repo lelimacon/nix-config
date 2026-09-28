@@ -39,7 +39,7 @@
   };
   system.defaults.trackpad =
   {
-    TrackpadTwoFingerFromRightEdgeSwipeGesture = false;
+    TrackpadTwoFingerFromRightEdgeSwipeGesture = 0; # disabled.
   };
   system.defaults.dock.showDesktopGestureEnabled = false; # four-finger spread gesture to show Desktop.
 
@@ -113,8 +113,6 @@
     enable = true;
     casks =
     [
-      #"visual-studio-code"
-      #"1password" # password manager (installed manually).
       "ungoogled-chromium"
     ];
     brews =

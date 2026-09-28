@@ -60,7 +60,7 @@
     #../../modules/utils/locate.nix
     ../../modules/utils/monitoring.nix
     ../../modules/utils/nix-tools.nix
-    #../../modules/utils/password-manager.nix # 1password installed manually.
+    ../../modules/utils/password-manager.nix
   ];
 
   # https://nix-darwin.github.io/nix-darwin/manual/index.html#opt-system.stateVersion

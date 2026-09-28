@@ -2,6 +2,7 @@
   pkgs,
   pkgs-unstable,
   pkgs-wrappers,
+  pkgs-ext,
   ...
 }:
 {

@@ -23,7 +23,7 @@ in
     gradle_9
 
     # IDE.
-    pkgs-wrappers.jetbrains-idea
+    #pkgs-wrappers.jetbrains-idea
   ];
 
   # No `programs.java` on nix-darwin, so set it directly (works on both).

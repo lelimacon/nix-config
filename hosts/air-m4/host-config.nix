@@ -5,10 +5,10 @@
   ];
 
   host.system = "aarch64-darwin";
-  host.name = "mox-air-m4";
+  host.name = "air-m4";
 
-  user.name = "mox";
-  user.homeDirectory = "/Users/mox";
+  user.name = "nandroid";
+  user.homeDirectory = "/Users/nandroid";
 
   currentThemeName = "pink";
 }

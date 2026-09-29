@@ -14,7 +14,7 @@ let
 in
 import ./lib.nix
 {
-  inherit pkgs wrappers;
+  inherit config pkgs wrappers;
 
   package = pkgs-unstable.jetbrains.rider;
 

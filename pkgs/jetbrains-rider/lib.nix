@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   wrappers,
   package,
@@ -76,6 +77,14 @@ wrapIfMacOsApp "Rider" "rider"
   ];
 
   inherit env runtimePkgs;
+
+  # GUI-launched apps (Dock, Spotlight, Finder) don't inherit a login
+  # shell's PATH, so tools like git-lfs (called by git hooks) can't be found.
+  # Prefix the same paths a login shell would have.
+  prefixVar =
+  [
+    [ "PATH" ":" "/run/current-system/sw/bin:/etc/profiles/per-user/${config.user.name}/bin:/nix/var/nix/profiles/default/bin" ]
+  ];
 
   runShell =
   [

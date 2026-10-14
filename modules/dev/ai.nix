@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -14,7 +14,7 @@
     # Coding agents.
     qwen-code
     goose-cli
-    inputs.paseo.packages.${pkgs.system}.desktop # self-hosted daemon for Claude Code/Codex/OpenCode (desktop app).
+    pkgs-unstable.paseo
 
     # Libraries.
     uv # Python package manager.

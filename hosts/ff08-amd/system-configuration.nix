@@ -18,7 +18,6 @@
     #../../modules/hardware/mac.nix
     ../../modules/hardware/network.nix
     ../../modules/hardware/printing.nix
-    ../../modules/hardware/virtualization.nix
 
     ../../modules/culture.nix
     ../../modules/fonts.nix
@@ -32,7 +31,8 @@
     #../../modules/dev/aws.nix
     #../../modules/dev/beam.nix
     ../../modules/dev/console.nix
-    ../../modules/dev/containerization.nix
+    ../../modules/dev/containerization-docker.nix
+    #../../modules/dev/containerization-podman.nix
     #../../modules/dev/db.nix
     ../../modules/dev/dotnet.nix
     #../../modules/dev/gamedev.nix

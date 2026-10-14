@@ -1,9 +1,15 @@
-# Nix-config
 
-My NixOS homeless setup.
+<img src="./ext/octopix.svg" alt="logo" width="300" height="300">
 
+# Features
 
-## Folder Structure
+NixOS homeless**¹** non-blocking-config**²** setup.
+
+**¹** Without a Home Manager, configuration is wrapped directly in the packages thanks to [nix-wrapper-modules](https://github.com/nix-community/nix-wrapper-modules).
+
+**²** Some wrappers have a RW configuration folder (which allows to apply settings directly in-app) initialized with version control to track the changes and add them back to the package configuration.
+
+# Folder Structure
 
 - `ext/`: Aditional scripts & apps
 - `hosts/`: Device-specific configuration that cherry-pick modules

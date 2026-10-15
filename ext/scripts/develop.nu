@@ -18,7 +18,7 @@ export def main [path: string] {
 
     print $"Entering (ansi green)($devShell.name)(ansi reset)..."
 
-    nix develop $"path:($path)#($devShell.name)"
+    nix develop --no-write-lock-file $"path:($path)#($devShell.name)"
 }
 
 # Show help.
@@ -45,7 +45,7 @@ def prompt-shell [devShells: list<record>] {
 }
 
 def list-shells [path: string] {
-    let flakeInfo = nix flake show $"path:($path)" --json err> /dev/null | from json
+    let flakeInfo = nix flake show --no-write-lock-file $"path:($path)" --json err> /dev/null | from json
     if ($flakeInfo | is-empty) {
         print $"(ansi grey)Flake not found. Exiting(ansi reset)"
         exit

@@ -111,10 +111,6 @@
   homebrew =
   {
     enable = true;
-    casks =
-    [
-      "ungoogled-chromium"
-    ];
     brews =
     [
       #"erlang"

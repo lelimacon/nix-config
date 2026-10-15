@@ -4,7 +4,7 @@
   ...
 }:
 let
-  pkgAlias = from: to: pkgs.writeShellScriptBin from ''exec ${to} "$@"'';
+  inherit (import ../../lib/wrapping.nix { inherit pkgs; }) pkgAlias;
 in
 {
   environment.systemPackages = with pkgs;

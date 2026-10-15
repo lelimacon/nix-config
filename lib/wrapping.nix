@@ -3,6 +3,9 @@
   pkgs,
 }:
 rec {
+  # Creates a `from` command that forwards all arguments to `to`.
+  pkgAlias = from: to: pkgs.writeShellScriptBin from ''exec ${to} "$@"'';
+
   # Overlays the .app bundle so the Finder/Dock launcher calls the wrapper
   # script instead of the original Mach-O binary.
   # The executable name (CFBundleExecutable) is read from the original bundle.

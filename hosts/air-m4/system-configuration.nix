@@ -50,7 +50,7 @@
     #../../modules/media/torrent.nix
     #../../modules/media/video.nix
 
-    #../../modules/social/chrome.nix # installed via Homebrew.
+    ../../modules/social/chrome.nix
     ../../modules/social/firefox.nix
     #../../modules/social/play.nix
     ../../modules/social/slack.nix

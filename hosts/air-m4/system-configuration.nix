@@ -25,7 +25,7 @@
     ../../modules/dev/aws.nix
     ../../modules/dev/beam.nix
     ../../modules/dev/console.nix
-    #../../modules/dev/containerization-docker.nix # Docker installed manually.
+    ../../modules/dev/containerization-docker.nix
     #../../modules/dev/containerization-podman.nix
     ../../modules/dev/db.nix
     #../../modules/dev/dotnet.nix

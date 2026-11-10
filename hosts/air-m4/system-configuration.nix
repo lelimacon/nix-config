@@ -22,6 +22,7 @@
     ../../modules/desktop/mac.nix
 
     ../../modules/dev/ai.nix
+    #../../modules/dev/ai-local.nix
     ../../modules/dev/aws.nix
     ../../modules/dev/beam.nix
     ../../modules/dev/console.nix

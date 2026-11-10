@@ -36,8 +36,8 @@ let
   # a runtime, and this needs to stay in sync with that file's set.
   dotnet-sdks = dotnetCorePackages.combinePackages
   [
-    dotnetCorePackages.sdk_9_0
-    dotnetCorePackages.sdk_10_0
+    dotnetCorePackages.sdk_9_0-bin
+    dotnetCorePackages.sdk_10_0-bin
   ];
 in
 stdenv.mkDerivation

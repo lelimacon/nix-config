@@ -26,10 +26,12 @@ let
   # NetPad scripts run through the .NET SDK itself (Roslyn compilation, EF
   # tooling, etc.), so it needs a full SDK, not just a runtime. Mirrors the
   # version set from `shells/dotnet.nix`, bumped to include the latest SDK.
+  # Prebuilt (-bin) SDKs: the default source-built ones compile the whole
+  # .NET VMR locally whenever Hydra hasn't caught up with a nixpkgs bump.
   dotnet-sdks = dotnetCorePackages.combinePackages
   [
-    dotnetCorePackages.sdk_9_0
-    dotnetCorePackages.sdk_10_0
+    dotnetCorePackages.sdk_9_0-bin
+    dotnetCorePackages.sdk_10_0-bin
   ];
 in
 stdenvNoCC.mkDerivation

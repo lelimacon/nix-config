@@ -13,6 +13,16 @@ wrappers.wrappers.git.wrap
     {
       autocrlf = "input"; # checkout as-is, commit Unix-style.
       eol = "lf";
+
+      # Global gitignore.
+      excludesFile = "${pkgs.writeText "gitignore"
+      ''
+        # MacOS.
+        .DS_Store
+
+        # JetBrains.
+        .idea/
+      ''}";
     };
 
     user.name = "lelimacon";

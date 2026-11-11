@@ -9,6 +9,7 @@
     #inputs.nixos-hardware.nixosModules.microsoft-surface-common
 
     ./hardware-configuration.nix
+    ./hardware-overrides.nix
 
     ../../modules/hardware/audio.nix
     ../../modules/hardware/bluetooth.nix

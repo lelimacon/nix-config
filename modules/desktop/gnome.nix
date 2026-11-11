@@ -15,11 +15,11 @@ let
     {
       # Automatic suspend when plugged in.
       sleep-inactive-ac-type = "nothing"; # never suspend.
-      sleep-inactive-ac-timeout = 60 * 20; # 20 min.
+      sleep-inactive-ac-timeout = lib.gvariant.mkInt32 (60 * 20); # 20 min.
 
       # Automatic suspend on battery.
       sleep-inactive-battery-type = "suspend";
-      sleep-inactive-battery-timeout = 60 * 20; # 20 min.
+      sleep-inactive-battery-timeout = lib.gvariant.mkInt32 (60 * 20); # 20 min.
     };
 
     "org/gnome/shell" =
@@ -75,7 +75,7 @@ let
       gtk-theme = "adw-gtk3";
       icon-theme = "MoreWaita";
       cursor-theme = "Bibata-Modern-Classic";
-      cursor-size = 16;
+      cursor-size = lib.gvariant.mkInt32 16;
       font-name = "Ubuntu Nerd Font 11";
     };
 

@@ -9,7 +9,7 @@
   [
     pkgs-wrappers.git
     git-lfs
-    git-xet # Git LFS plugin for Xet protocol.
+    #git-xet # Git LFS plugin for Xet protocol.
 
     lazygit # TUI for git commands.
     github-cli

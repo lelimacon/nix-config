@@ -32,7 +32,12 @@
 
     # TUI editors.
     helix
-    pkgs-unstable.fresh-editor
+    #pkgs-unstable.fresh-editor
+    #fresh-editor
+    (pkgs-unstable.fresh-editor.overrideAttrs (old: {
+      nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkg-config ];
+      buildInputs = (old.buildInputs or []) ++ [ oniguruma ];
+    }))
 
     # GUI editors.
     pkgs-wrappers.vscodium

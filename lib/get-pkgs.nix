@@ -5,5 +5,6 @@ nixpkgs: system: import nixpkgs
   {
     allowUnfree = true;
     allowUnfreePredicate = _: true;
+    permittedInsecurePackages = [ "docker-28.5.2" ];
   };
 }

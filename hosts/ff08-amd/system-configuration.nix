@@ -69,6 +69,7 @@
     ../../modules/utils/graphviz.nix
     ../../modules/utils/locate.nix
     #../../modules/utils/monitoring.nix
+    ../../modules/utils/nix-ld.nix
     ../../modules/utils/nix-tools.nix
     ../../modules/utils/password-manager.nix
   ];

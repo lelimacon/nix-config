@@ -28,6 +28,7 @@
 
     #../../modules/dev/ai.nix
     #../../modules/dev/ai-local.nix
+    #../../modules/dev/android.nix
     #../../modules/dev/aws.nix
     #../../modules/dev/beam.nix
     ../../modules/dev/console.nix
@@ -35,6 +36,7 @@
     #../../modules/dev/containerization-podman.nix
     #../../modules/dev/db.nix
     ../../modules/dev/dotnet.nix
+    #../../modules/dev/flutter.nix
     #../../modules/dev/gamedev.nix
     ../../modules/dev/general.nix
     #../../modules/dev/go.nix
@@ -56,7 +58,7 @@
     ../../modules/media/torrent.nix
     ../../modules/media/video.nix
 
-    ../../modules/social/chrome.nix
+    ../../modules/social/chrome-linux.nix
     ../../modules/social/firefox.nix
     ../../modules/social/play.nix
     ../../modules/social/slack.nix

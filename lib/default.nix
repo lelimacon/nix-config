@@ -23,8 +23,12 @@ in
       pkgs = get-pkgs nixpkgs system;
       pkgs-unstable = get-pkgs nixpkgs-unstable system;
       pkgs-ext = local-pkgs.pkgs-ext { inherit pkgs; };
-      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = eval-host-config host-config; };
+      host-config-eval = eval-host-config host-config;
+      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = host-config-eval; };
       # `nixpkgs.pkgs` marks it external, so NixOS skips building an unused copy.
+      # It also makes `pkgs` available as a module argument, so it must NOT be
+      # added to `specialArgs` (that triggers an evaluation warning in
+      # nixos/lib/eval-config.nix).
       pkgs-module = { nixpkgs.pkgs = pkgs; };
     in
     nixpkgs.lib.nixosSystem
@@ -35,7 +39,11 @@ in
         pkgs-module
         system-config-path
       ] ++ extra-modules;
-      specialArgs = { inherit inputs outputs pkgs pkgs-unstable pkgs-ext pkgs-wrappers; };
+      # `host` has to come through `specialArgs`: modules branch on
+      # `host.isDarwin`/`host.isLinux` at their *top level* (e.g. to define
+      # Darwin-only options such as `launchd`), and `config` can not be read
+      # there without an infinite recursion.
+      specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; host = host-config-eval.host; };
     };
 
   # Darwin system configuration.
@@ -45,7 +53,8 @@ in
       pkgs = get-pkgs nixpkgs system;
       pkgs-unstable = get-pkgs nixpkgs-unstable system;
       pkgs-ext = local-pkgs.pkgs-ext { inherit pkgs; };
-      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = eval-host-config host-config; };
+      host-config-eval = eval-host-config host-config;
+      pkgs-wrappers = local-pkgs.pkgs-wrappers { inherit pkgs pkgs-unstable; config = host-config-eval; };
       # See the comment in mkNixosSystem, same logic for nix-darwin.
       pkgs-module = { nixpkgs.pkgs = pkgs; };
     in
@@ -57,6 +66,6 @@ in
         pkgs-module
         system-config-path
       ] ++ extra-modules;
-      specialArgs = { inherit inputs outputs pkgs pkgs-unstable pkgs-ext pkgs-wrappers; };
+      specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; host = host-config-eval.host; };
     };
 }

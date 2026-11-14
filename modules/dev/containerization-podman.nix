@@ -1,4 +1,5 @@
 {
+  host,
   lib,
   pkgs,
   ...
@@ -17,7 +18,7 @@ in
     podman
     (pkgAlias "docker" "${pkgs.podman}/bin/podman")
   ];
-} // lib.optionalAttrs pkgs.stdenv.isLinux
+} // lib.optionalAttrs host.isLinux
 {
   # Installs podman and enables the user-level `podman.socket`
   # (`/run/user/<uid>/podman/podman.sock`).

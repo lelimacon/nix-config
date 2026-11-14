@@ -1,4 +1,5 @@
 {
+  host,
   lib,
   pkgs,
   config,
@@ -12,7 +13,7 @@
     name = config.user.name;
     description = config.user.name;
     home = config.user.homeDirectory;
-  } // lib.optionalAttrs pkgs.stdenv.isLinux
+  } // lib.optionalAttrs host.isLinux
   {
     isNormalUser = true;
     extraGroups =
@@ -23,6 +24,6 @@
       "input" # for keyboard state access.
     ];
   };
-} // lib.optionalAttrs pkgs.stdenv.isDarwin {
+} // lib.optionalAttrs host.isDarwin {
   system.primaryUser = config.user.name;
 }

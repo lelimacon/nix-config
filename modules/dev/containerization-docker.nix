@@ -1,4 +1,5 @@
 {
+  host,
   lib,
   pkgs,
   ...
@@ -7,12 +8,12 @@
   environment.systemPackages = with pkgs;
   [
     lazydocker # terminal UI for Docker.
-  ] ++ lib.optionals pkgs.stdenv.isDarwin
+  ] ++ lib.optionals host.isDarwin
   [
     docker # CLI only, the daemon is provided by colima.
     colima # Linux VM running the Docker daemon.
   ];
-} // lib.optionalAttrs pkgs.stdenv.isDarwin
+} // lib.optionalAttrs host.isDarwin
 {
   # Start colima at login and switch the Docker context to `colima`.
   launchd.user.agents.colima =
@@ -27,7 +28,7 @@
       StandardErrorPath = "/tmp/colima.log";
     };
   };
-} // lib.optionalAttrs pkgs.stdenv.isLinux
+} // lib.optionalAttrs host.isLinux
 {
   # Also installs the `docker` CLI.
   virtualisation.docker.enable = true;

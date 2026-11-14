@@ -6,7 +6,7 @@ let
   shellScript = name: path: pkgs.writeShellApplication
   {
     name = name;
-    runtimeInputs = with pkgs; [ nix-index toybox which ];
+    runtimeInputs = with pkgs; [ coreutils findutils gnugrep nix-index which ];
     text = builtins.readFile path;
   };
   nuScript = name: path: pkgs.writeShellApplication

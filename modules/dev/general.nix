@@ -8,10 +8,16 @@
 {
   environment.systemPackages = with pkgs;
   [
+    # Applets Toybox/BusyBox used to shadow, from their canonical packages.
+    # coreutils, util-linux, gnutar, gnugrep, gnused, gawk
+    # and findutils already come from the NixOS defaults.
+    file # `file`.
+    pciutils # `lspci`.
+    usbutils # `lsusb`.
+    binutils # `strings`, `readelf`.
+
     # CLI tools.
-    #busybox # replaced with toybox.
-    toybox # ~BusyBox lightweight alternative.
-    wget # not in ToyBox in nix-darwin.
+    wget
     curl jq
     vim
     #kitty # terminal emulator.

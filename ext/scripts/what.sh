@@ -2,7 +2,7 @@
 #
 # Runtime dependencies (see ext/index.nix)
 # - nix-index: for `nix-locate`
-# - toybox: lighter alt to coreutils/busybox, for `grep`, `wc`, `xargs`
+# - coreutils/findutils/gnugrep: for `wc`, `xargs`, `grep`
 # - which: show full path of commands
 #
 # Usage

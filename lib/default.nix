@@ -39,11 +39,7 @@ in
         pkgs-module
         system-config-path
       ] ++ extra-modules;
-      # `host` has to come through `specialArgs`: modules branch on
-      # `host.isDarwin`/`host.isLinux` at their *top level* (e.g. to define
-      # Darwin-only options such as `launchd`), and `config` can not be read
-      # there without an infinite recursion.
-      specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; host = host-config-eval.host; };
+      specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; };
     };
 
   # Darwin system configuration.
@@ -66,6 +62,6 @@ in
         pkgs-module
         system-config-path
       ] ++ extra-modules;
-      specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; host = host-config-eval.host; };
+      specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; };
     };
 }

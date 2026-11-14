@@ -23,7 +23,7 @@
     ../../modules/culture.nix
     ../../modules/fonts.nix
     ../../modules/system-defaults.nix
-    ../../modules/users.nix
+    ../../modules/users-linux.nix
 
     ../../modules/desktop/gnome.nix
     #../../modules/desktop/mac.nix
@@ -34,11 +34,11 @@
     #../../modules/dev/aws.nix
     #../../modules/dev/beam.nix
     ../../modules/dev/console.nix
-    ../../modules/dev/containerization-docker.nix
-    #../../modules/dev/containerization-podman.nix
+    ../../modules/dev/containerization-docker-linux.nix
+    #../../modules/dev/containerization-podman-linux.nix
     #../../modules/dev/db.nix
     ../../modules/dev/dotnet.nix
-    ../../modules/dev/flutter.nix
+    ../../modules/dev/flutter-linux.nix
     #../../modules/dev/gamedev.nix
     ../../modules/dev/general.nix
     #../../modules/dev/go.nix
@@ -49,7 +49,7 @@
     ../../modules/dev/versioning.nix
     ../../modules/dev/web.nix
 
-    ../../modules/media/docs.nix
+    ../../modules/media/docs-linux.nix
     #../../modules/media/emulation.nix
     ../../modules/media/flatpak.nix
     ../../modules/media/games.nix
@@ -68,7 +68,7 @@
 
     ../../modules/utils/graphviz.nix
     ../../modules/utils/locate.nix
-    #../../modules/utils/monitoring.nix
+    ../../modules/utils/monitoring-linux.nix
     ../../modules/utils/nix-ld.nix
     ../../modules/utils/nix-tools.nix
     ../../modules/utils/password-manager.nix

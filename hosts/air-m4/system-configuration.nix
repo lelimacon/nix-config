@@ -16,7 +16,7 @@
     #../../modules/culture.nix
     ../../modules/fonts.nix
     ../../modules/system-defaults.nix
-    ../../modules/users.nix
+    ../../modules/users-darwin.nix
 
     #../../modules/desktop/gnome.nix
     ../../modules/desktop/mac.nix
@@ -27,11 +27,11 @@
     ../../modules/dev/aws.nix
     ../../modules/dev/beam.nix
     ../../modules/dev/console.nix
-    ../../modules/dev/containerization-docker.nix
-    #../../modules/dev/containerization-podman.nix
+    ../../modules/dev/containerization-docker-darwin.nix
+    #../../modules/dev/containerization-podman-darwin.nix
     ../../modules/dev/db.nix
     #../../modules/dev/dotnet.nix
-    #../../modules/dev/flutter.nix
+    #../../modules/dev/flutter-darwin.nix
     #../../modules/dev/gamedev.nix
     ../../modules/dev/general.nix
     ../../modules/dev/go.nix
@@ -42,7 +42,7 @@
     ../../modules/dev/versioning.nix
     ../../modules/dev/web.nix
 
-    ../../modules/media/docs.nix
+    ../../modules/media/docs-darwin.nix
     #../../modules/media/emulation.nix
     #../../modules/media/flatpak.nix
     #../../modules/media/games.nix
@@ -61,7 +61,7 @@
 
     ../../modules/utils/graphviz.nix
     #../../modules/utils/locate.nix
-    ../../modules/utils/monitoring.nix
+    ../../modules/utils/monitoring-darwin.nix
     #../../modules/utils/nix-ld.nix # NixOS only, no darwin equivalent.
     ../../modules/utils/nix-tools.nix
     ../../modules/utils/password-manager.nix

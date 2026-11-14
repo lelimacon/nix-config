@@ -1,7 +1,4 @@
 {
-  host,
-  lib,
-  pkgs,
   config,
   ...
 }:
@@ -13,17 +10,7 @@
     name = config.user.name;
     description = config.user.name;
     home = config.user.homeDirectory;
-  } // lib.optionalAttrs host.isLinux
-  {
-    isNormalUser = true;
-    extraGroups =
-    [
-      "networkmanager"
-      "wheel"
-      "docker"
-      "input" # for keyboard state access.
-    ];
   };
-} // lib.optionalAttrs host.isDarwin {
+
   system.primaryUser = config.user.name;
 }

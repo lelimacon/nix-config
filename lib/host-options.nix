@@ -92,18 +92,6 @@ in
     flake-src.rev = str "-" "Configuration revision (Git commit hash)";
 
     host.system = str "x86_64-linux" "System architecture (x86_64-linux, aarch64-darwin)";
-    host.isDarwin = lib.mkOption
-    {
-      type = lib.types.bool;
-      readOnly = true;
-      description = "Whether the host runs MacOS (derived from `host.system`)";
-    };
-    host.isLinux = lib.mkOption
-    {
-      type = lib.types.bool;
-      readOnly = true;
-      description = "Whether the host runs Linux (derived from `host.system`)";
-    };
     host.name = str "default-host" "Host name";
 
     theme = themeOptions;
@@ -173,7 +161,4 @@ in
     (t: t.name == config.currentThemeName)
     (lib.head config.themes)
     config.themes;
-
-  config.host.isDarwin = lib.hasSuffix "-darwin" config.host.system;
-  config.host.isLinux = lib.hasSuffix "-linux" config.host.system;
 }

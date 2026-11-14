@@ -44,9 +44,9 @@ in
   "diffEditor.ignoreTrimWhitespace" = false;
 
   # Theming.
-  "workbench.colorTheme" = "Light+";
+  "workbench.colorTheme" = "Default Light+";
   "workbench.iconTheme" = "bearded-icons";
-  "workbench.colorCustomizations"."[Light+]" =
+  "workbench.colorCustomizations"."[Default Light+]" =
     {
       "activityBar.background" = colors.primary;
       "activityBar.activeForeground" = colors.primary-fg-strong;

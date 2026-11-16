@@ -37,6 +37,7 @@ in
       [
         host-config
         pkgs-module
+        inputs.hjem.nixosModules.default
         system-config-path
       ] ++ extra-modules;
       specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; };
@@ -60,6 +61,7 @@ in
       [
         host-config
         pkgs-module
+        inputs.hjem.darwinModules.default
         system-config-path
       ] ++ extra-modules;
       specialArgs = { inherit inputs outputs pkgs-unstable pkgs-ext pkgs-wrappers; };

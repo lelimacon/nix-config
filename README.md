@@ -5,7 +5,7 @@
 
 NixOS homeless**¹** non-blocking-config**²** setup.
 
-**¹** Without a Home Manager, configuration is wrapped directly in the packages thanks to [nix-wrapper-modules](https://github.com/nix-community/nix-wrapper-modules).
+**¹** Without Home Manager (or almost, [Hjem](https://github.com/feel-co/hjem) used sparingly), configuration is wrapped directly in the packages thanks to [nix-wrapper-modules](https://github.com/nix-community/nix-wrapper-modules).
 
 **²** Some wrappers have a RW configuration folder (which allows to apply settings directly in-app) initialized with version control to track the changes and add them back to the package configuration.
 

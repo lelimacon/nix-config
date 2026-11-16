@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "agents-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794830813,
+        "narHash": "sha256-9LDRwFff79fiu2370X8fkED61lC8n7/jDx3cRyFwlO8=",
+        "owner": "sudosubin",
+        "repo": "agents.nix",
+        "rev": "56de68d048669303600ecdfaa40b6988377d058e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sudosubin",
+        "repo": "agents.nix",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -15,6 +35,26 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "hjem": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794842388,
+        "narHash": "sha256-k/nDw1zTlCmhA2K3odt/gy4uDiS002x8Nc14lQxvpY8=",
+        "owner": "feel-co",
+        "repo": "hjem",
+        "rev": "2f56c85f80a52c23fb3e956119ca80975a2b9ceb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "repo": "hjem",
         "type": "github"
       }
     },
@@ -94,6 +134,8 @@
     },
     "root": {
       "inputs": {
+        "agents-nix": "agents-nix",
+        "hjem": "hjem",
         "nix-darwin": "nix-darwin",
         "nix-firefox-addons": "nix-firefox-addons",
         "nixpkgs": "nixpkgs",
